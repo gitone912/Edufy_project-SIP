@@ -5,9 +5,12 @@ import {
   BellIcon,
   ArrowRightOnRectangleIcon,
   UserPlusIcon,
+  UserIcon,
+  ArrowLeftOnRectangleIcon
 } from "@heroicons/react/24/solid";
 import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
-import { SignIn, SignUp } from "@/pages/auth";
+import { SignIn, SignUp  } from "@/pages/auth";
+import SignOut from "./pages/auth/sign-out";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -59,6 +62,13 @@ export const routes = [
         path: "/sign-up",
         element: <SignUp />,
       },
+      {
+        icon: <ArrowLeftOnRectangleIcon {...icon} />,
+        name: "sign out",
+        path: "/sign-out",
+        element: <SignOut />,
+      },
+      
     ],
   },
 ];

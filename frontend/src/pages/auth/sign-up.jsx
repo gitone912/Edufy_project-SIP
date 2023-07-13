@@ -9,8 +9,68 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+import React, { useState } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
+import { useRegisterUserMutation } from "../../services/userAuthApi";
+import { storeToken, storeId } from "../../services/LocalStorageService";
+import { Alert } from "@material-tailwind/react";
+import { useCreateUserMutation } from "../../services/cartServiceApi";
+import { useSaveUserIdMutation } from "../../services/userAuthApi";
+import { v4 as uuidv4 } from 'uuid';
 
 export function SignUp() {
+
+  const [server_error, setServerError] = useState({});
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
+  // const [createUser, responseInfo] = useCreateUserMutation();
+  // const [saveUserId, responseInfo2] = useSaveUserIdMutation();
+  // const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const actualData = {
+      name: data.get("name"),
+      email: data.get("email"),
+      password: data.get("password"),
+      confirmPassword: data.get("confirmPassword"),
+      terms: data.get("terms"),
+    };
+
+    // console.log(actualData.name);
+    const res = await registerUser(actualData);
+
+    if (res.error) {
+      setServerError(res.error.data.errors);
+    }
+
+    // if (res.data) {
+    //   const response = await createUser({ name: actualData.name });
+    //   console.log(response);
+    //   const userId = response.data.id;
+    //   console.log(response);
+      
+    //   const res2 = await saveUserId({
+    //     user: actualData.email,
+    //     user_cart_id: userId,
+    //     name: actualData.name
+    //   });
+
+      storeToken(res.data.data.token);
+      // storeId(userId);
+
+      // console.log(userId, actualData.name, actualData.email);
+
+        window.location.href = "/dashboard/home";
+        if (res.isLoading) return <div>is loading......</div>;
+  if (res.isError)
+    return <div>error occurred {res.error.error}</div>;
+  if (isLoading) return <div>is loading......</div>;
+      
+    }
+  
+
+  
   return (
     <>
       <img
@@ -20,6 +80,12 @@ export function SignUp() {
       <div className="absolute inset-0 z-0 h-full w-full bg-black/50" />
       <div className="container mx-auto p-4">
         <Card className="absolute top-2/4 left-2/4 w-full max-w-[24rem] -translate-y-2/4 -translate-x-2/4">
+        <form
+            className="space-y-6"
+            action="#"
+            method="POST"
+            onSubmit={handleSubmit}
+          >
           <CardHeader
             variant="gradient"
             color="blue"
@@ -30,15 +96,55 @@ export function SignUp() {
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
-            <Input label="Name" size="lg" />
-            <Input type="email" label="Email" size="lg" />
-            <Input type="password" label="Password" size="lg" />
+            <Input label="Full Name" size="lg" type="text"
+                  name="name"
+                  required/>
+                  {server_error.name ? (
+                <Alert className="bg-[#d0342c]/10 text-[#d0342c] border-l-4 border-[#d0342c] rounded-none font-small">
+                  {server_error.name[0]}
+                </Alert>
+              ) : null}
+            <Input type="email" label="Email" size="lg" id="email"
+                  name="email"
+                  
+                  autoComplete="email"
+                  required/>
+                  {server_error.email ? (
+                <Alert className="bg-[#d0342c]/10 text-[#d0342c] border-l-4 border-[#d0342c] rounded-none font-small">
+                  {server_error.email[0]}
+                </Alert>
+              ) : null}
+            <Input type="password" label="Password" size="lg" id="password"
+                  name="password"
+                 
+                  autoComplete="current-password"
+                  required/>
+                   {server_error.password ? (
+                <Alert className="bg-[#d0342c]/10 text-[#d0342c] border-l-4 border-[#d0342c] rounded-none font-small">
+                  {server_error.password}
+                </Alert>
+              ) : null}
+            <Input type="password" label="Confirm Password" size="lg"  id="password"
+                  name="confirmPassword"
+                  
+                  required/>
+                  {server_error.confirmPassword ? (
+                <Alert className="bg-[#d0342c]/10 text-[#d0342c] border-l-4 border-[#d0342c] rounded-none font-small">
+                  {server_error.confirmPassword[0]}
+                </Alert>
+              ) : null}
             <div className="-ml-2.5">
-              <Checkbox label="I agree the Terms and Conditions" />
+              <Checkbox label="I agree the Terms and Conditions" name="terms"
+              id="terms"/>
             </div>
+            {server_error.terms ? (
+              <span style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>
+                {server_error.terms[0]}
+              </span>
+            ) : null}
           </CardBody>
           <CardFooter className="pt-0">
-            <Button variant="gradient" fullWidth>
+            <Button variant="gradient" fullWidth type="submit">
               Sign Up
             </Button>
             <Typography variant="small" className="mt-6 flex justify-center">
@@ -55,6 +161,7 @@ export function SignUp() {
               </Link>
             </Typography>
           </CardFooter>
+          </form>
         </Card>
       </div>
     </>
