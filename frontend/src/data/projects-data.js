@@ -1,10 +1,10 @@
 export const projectsData = [
   {
-    img: "/img/home-decor-1.jpeg",
-    title: "Modern",
-    tag: "Project #1",
+    img: "https://www.elegantthemes.com/blog/wp-content/uploads/2023/02/Best-WordPress-landing-page-plugins.jpg",
+    title: "Modern Website Page",
+    tag: "Post 1",
     description:
-      "As Uber works through a huge amount of internal management turmoil.",
+      "This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.",
     route: "/dashboard/profile",
     members: [
       { img: "/img/team-1.jpeg", name: "Romina Hadid" },
@@ -14,11 +14,11 @@ export const projectsData = [
     ],
   },
   {
-    img: "/img/home-decor-2.jpeg",
-    title: "Scandinavian",
-    tag: "Project #2",
+    img: "https://lh3.googleusercontent.com/gi7X34TTW6Uy2F1aiwO9N5GHmkftlVOmfdvWRKUrK3ASh4LV3cKMn-cIJKMj0AiLwVAqLqhouTxohCpQjxkrkk7T1op-503rC4DK6A=w600-l80-sg-rj",
+    title: "Google Headquarters",
+    tag: "Post 2",
     description:
-      "Music is something that every person has his or her own specific opinion about.",
+      "I Visited the Google Headquarters and had a fun time learning about new stuff.",
     route: "/dashboard/profile",
     members: [
       { img: "/img/team-4.jpeg", name: "Alexander Smith" },
@@ -28,11 +28,11 @@ export const projectsData = [
     ],
   },
   {
-    img: "/img/home-decor-3.jpeg",
-    title: "Minimalist",
-    tag: "Project #3",
+    img: "https://www.simplilearn.com/ice9/free_resources_article_thumb/Advantages_and_Disadvantages_of_artificial_intelligence.jpg",
+    title: "Artificial Intelligence",
+    tag: "Post 3",
     description:
-      "Different people have different taste, and various types of music.",
+      "AI is the future of technology. It is going to change the world.",
     route: "/dashboard/profile",
     members: [
       { img: "/img/team-1.jpeg", name: "Romina Hadid" },
@@ -42,11 +42,11 @@ export const projectsData = [
     ],
   },
   {
-    img: "/img/home-decor-4.jpeg",
-    title: "Gothic",
-    tag: "Project #4",
+    img: "https://www.cyberbahnit.com/wp-content/uploads/2017/11/blockchain.jpg",
+    title: "Blockchain Technology",
+    tag: "Post 4",
     description:
-      "Why would anyone pick blue over pink? Pink is obviously a better color.",
+      "Blockchain is the future of technology. It is going to change the world.",
     route: "/dashboard/profile",
     members: [
       { img: "/img/team-4.jpeg", name: "Alexander Smith" },

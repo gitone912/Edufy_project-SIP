@@ -11,6 +11,7 @@ import {
 import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp  } from "@/pages/auth";
 import SignOut from "./pages/auth/sign-out";
+import { ChangePassword } from "@/pages/auth"
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -34,16 +35,22 @@ export const routes = [
       },
       {
         icon: <TableCellsIcon {...icon} />,
-        name: "tables",
-        path: "/tables",
+        name: "Posts",
+        path: "/posts",
         element: <Tables />,
       },
       {
         icon: <BellIcon {...icon} />,
-        name: "notifactions",
-        path: "/notifactions",
+        name: "Courses",
+        path: "/courses",
         element: <Notifications />,
       },
+      {
+        icon: <UserIcon {...icon} />,
+        name: "change password",
+        path: "/change-password",
+        element: <ChangePassword />,
+      }
     ],
   },
   {
@@ -68,6 +75,7 @@ export const routes = [
         path: "/sign-out",
         element: <SignOut />,
       },
+      
       
     ],
   },

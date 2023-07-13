@@ -12,6 +12,7 @@ import {
   Tooltip,
   Button,
 } from "@material-tailwind/react";
+import React, { useEffect } from "react";
 import {
   HomeIcon,
   ChatBubbleLeftEllipsisIcon,
@@ -21,8 +22,20 @@ import {
 import { Link } from "react-router-dom";
 import { ProfileInfoCard, MessageCard } from "@/widgets/cards";
 import {  conversationsData, projectsData } from "@/data";
+import { useGetLoggedUserQuery } from "@/services/userAuthApi";
+import { getToken } from '../../services/LocalStorageService'
 
 export function Profile() {
+  const { access_token } = getToken()
+  const { data: loggedUser, isLoading } = useGetLoggedUserQuery(access_token);
+
+  useEffect(() => {
+    console.log("Logged User", loggedUser);
+  }, [loggedUser]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
     <link
@@ -47,13 +60,13 @@ export function Profile() {
               />
               <div>
                 <Typography variant="h5" color="blue-gray" className="mb-1">
-                  Richard Davis
+                  {loggedUser.data.name}
                 </Typography>
                 <Typography
                   variant="small"
                   className="font-normal text-blue-gray-600"
                 >
-                  CEO / Co-Founder
+                  BCA Student at IUJ
                 </Typography>
               </div>
             </div>
@@ -62,7 +75,7 @@ export function Profile() {
                 <TabsHeader>
                   <Tab value="app">
                     <HomeIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
-                    App
+                    Profile
                   </Tab>
                   <Tab value="message">
                     <ChatBubbleLeftEllipsisIcon className="-mt-0.5 mr-2 inline-block h-5 w-5" />
@@ -77,12 +90,12 @@ export function Profile() {
             
             <ProfileInfoCard
               title="Profile Information"
-              description="Hi, I'm Alec Thompson, Decisions: If you can't decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
+              description="Hi, I'm Akash, Decisions: If you can't decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
               details={{
-                "first name": "Alec M. Thompson",
-                mobile: "(44) 123 1234 123",
-                email: "alecthompson@mail.com",
-                location: "USA",
+                "first name": "Akash",
+                mobile: "6201933790",
+                email: loggedUser.data.email,
+                location: "Ranchi, Jharkhand, India",
                 social: (
                   <div className="flex items-center gap-4">
                     <i className="fa-brands fa-facebook text-blue-700" />
@@ -91,15 +104,11 @@ export function Profile() {
                   </div>
                 ),
               }}
-              action={
-                <Tooltip content="Edit Profile">
-                  <PencilIcon className="h-4 w-4 cursor-pointer text-blue-gray-500" />
-                </Tooltip>
-              }
+              
             />
             <div>
               <Typography variant="h6" color="blue-gray" className="mb-3">
-                Platform Settings
+                Students similar skills as you
               </Typography>
               <ul className="flex flex-col gap-6">
                 {conversationsData.map((props) => (
@@ -118,13 +127,13 @@ export function Profile() {
           </div>
           <div className="px-4 pb-4">
             <Typography variant="h6" color="blue-gray" className="mb-2">
-              Projects
+              Your Posts
             </Typography>
             <Typography
               variant="small"
               className="font-normal text-blue-gray-500"
             >
-              Architects design houses
+              latest posts
             </Typography>
             <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-4">
               {projectsData.map(
@@ -165,7 +174,7 @@ export function Profile() {
                     <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
                       <Link to={route}>
                         <Button variant="outlined" size="sm">
-                          view project
+                          view post
                         </Button>
                       </Link>
                       <div>

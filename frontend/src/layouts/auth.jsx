@@ -31,6 +31,7 @@ export function Auth() {
       icon: ArrowRightOnRectangleIcon,
     },
     
+    
   ];
 
   return (

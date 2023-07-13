@@ -211,18 +211,9 @@ export function Home() {
             className="m-0 p-6"
           >
             <Typography variant="h6" color="blue-gray" className="mb-2">
-              Orders Overview
+              Todo Tasks
             </Typography>
-            <Typography
-              variant="small"
-              className="flex items-center gap-1 font-normal text-blue-gray-600"
-            >
-              <ArrowUpIcon
-                strokeWidth={3}
-                className="h-3.5 w-3.5 text-green-500"
-              />
-              <strong>24%</strong> this month
-            </Typography>
+            
           </CardHeader>
           <CardBody className="pt-0">
             {ordersOverviewData.map(
@@ -235,9 +226,9 @@ export function Home() {
                         : "after:h-4/6"
                     }`}
                   >
-                    {React.createElement(icon, {
-                      className: `!w-5 !h-5 ${color}`,
-                    })}
+                    {<i class={icon} style={{ color: color }} ></i>}
+                      
+                    
                   </div>
                   <div>
                     <Typography
