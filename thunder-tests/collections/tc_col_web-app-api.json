@@ -31,6 +31,13 @@
             "containerId": "",
             "created": "2023-07-15T19:53:41.656Z",
             "sortNum": 40000
+        },
+        {
+            "_id": "5d1b9f99-6d45-47ea-afee-ce8808cbbba6",
+            "name": "videos",
+            "containerId": "",
+            "created": "2023-07-15T20:18:36.234Z",
+            "sortNum": 50000
         }
     ],
     "requests": [
@@ -289,8 +296,16 @@
             "method": "GET",
             "sortNum": 180000,
             "created": "2023-07-15T19:53:41.670Z",
-            "modified": "2023-07-15T19:53:41.670Z",
-            "headers": []
+            "modified": "2023-07-15T20:30:48.794Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "dashboard_id",
+                    "value": "1",
+                    "isPath": true
+                }
+            ],
+            "tests": []
         },
         {
             "_id": "46aaac6e-08ad-4c11-893e-c4a161c4bf63",
@@ -319,6 +334,39 @@
             "created": "2023-07-15T19:53:41.672Z",
             "modified": "2023-07-15T19:53:41.672Z",
             "headers": []
+        },
+        {
+            "_id": "e74c7e06-1e5c-4522-9c6a-cd20869e14b6",
+            "colId": "acc77877-0066-42d6-aedc-aee3dc108298",
+            "containerId": "5d1b9f99-6d45-47ea-afee-ce8808cbbba6",
+            "name": "getevideos",
+            "url": "http://127.0.0.1:8000/videos/1/",
+            "method": "GET",
+            "sortNum": 210000,
+            "created": "2023-07-15T20:27:49.421Z",
+            "modified": "2023-07-15T20:30:12.905Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "4afd6949-4f11-4bcf-91e9-bc268bccc33f",
+            "colId": "acc77877-0066-42d6-aedc-aee3dc108298",
+            "containerId": "5d1b9f99-6d45-47ea-afee-ce8808cbbba6",
+            "name": "createvideospost",
+            "url": "http://127.0.0.1:8000/videos/",
+            "method": "POST",
+            "sortNum": 220000,
+            "created": "2023-07-15T20:28:16.300Z",
+            "modified": "2023-07-15T20:30:03.525Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"python\",\n  \"description\": \n    \"This field is required.\"\n  ,\n  \"course\": 1\n}",
+                "form": []
+            },
+            "tests": []
         }
     ]
 }
