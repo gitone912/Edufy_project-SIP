@@ -41,8 +41,26 @@ export const routes = [
       },
       {
         icon: <BellIcon {...icon} />,
-        name: "Courses",
+        name: "One shot courses",
         path: "/courses",
+        element: <Notifications />,
+      },
+      {
+        icon: <UserIcon {...icon} />,
+        name: "Playlists(full courses)",
+        path: "/playlists",
+        element: <Notifications/>,
+      },
+      {
+        icon: <UserIcon {...icon} />,
+        name: "Notes",
+        path: "/notes",
+        element: <Notifications />,
+      },
+      {
+        icon: <UserIcon {...icon} />,
+        name: "Doubts and Discussions",
+        path: "/notes",
         element: <Notifications />,
       },
       {

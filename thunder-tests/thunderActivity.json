@@ -1,0 +1,67 @@
+[
+    {
+        "_id": "964d04e9-fdfd-4f32-81e0-5f69263ff9b2",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/auth/register/",
+        "url": "http://127.0.0.1:8000/auth/register/",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-14T07:31:55.731Z",
+        "modified": "2023-07-14T07:31:55.731Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+    },
+    {
+        "_id": "2af6397c-d65b-441f-a9ec-c265e733c889",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/auth/register/",
+        "url": "http://127.0.0.1:8000/auth/register/",
+        "method": "POST",
+        "sortNum": 0,
+        "created": "2023-07-14T07:32:00.484Z",
+        "modified": "2023-07-14T07:32:00.484Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+    },
+    {
+        "_id": "b889913a-9fd8-4317-9f3d-e014f1e993aa",
+        "colId": "history",
+        "containerId": "",
+        "name": "​127.0.0.1:8000/auth/profile",
+        "url": "​127.0.0.1:8000/auth/profile",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-15T11:48:44.626Z",
+        "modified": "2023-07-15T11:52:20.182Z",
+        "headers": [],
+        "params": [],
+        "auth": {
+            "type": "bearer",
+            "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5NDI0OTE5LCJpYXQiOjE2ODk0MjE5MTksImp0aSI6IjY1MDE3YjYyZmQzNTQyZDVhMDAwNDc0OTY1NGViYTlkIiwidXNlcl9pZCI6MX0.oeIbdy2k-8C1DjHQ68WNxwmNEO1WUePlVzVewO45Jmw"
+        },
+        "tests": []
+    },
+    {
+        "_id": "17ad4efc-cda8-4211-836d-4086fcd02d4e",
+        "colId": "history",
+        "containerId": "",
+        "name": "​127.0.0.1:8000/auth/login/",
+        "url": "​127.0.0.1:8000/auth/login/",
+        "method": "POST",
+        "sortNum": 0,
+        "created": "2023-07-15T11:51:59.769Z",
+        "modified": "2023-07-15T11:51:59.769Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"email\":\"a@gmail.com\",\n  \"password\":\"admin\"\n}",
+            "form": []
+        },
+        "tests": []
+    }
+]
