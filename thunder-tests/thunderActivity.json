@@ -63,5 +63,265 @@
             "form": []
         },
         "tests": []
+    },
+    {
+        "_id": "1e62572b-00c2-4eb9-aed7-38a9b922705a",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/userprofiles/",
+        "url": "http://127.0.0.1:8000/account/userprofiles/",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-15T15:29:32.311Z",
+        "modified": "2023-07-15T15:48:05.616Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"user\": \"example@gmail.com\",\n  \"about\": \"Lorem ipsum dolor sit amet\",\n  \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\",\n  \"location\": \"New York, USA\",\n  \"skills\": \"Python, Django, JavaScript\",\n  \"mobile_number\": \"1234567890\",\n  \"name\": \"John Doe\"\n}\n",
+            "form": []
+        },
+        "tests": []
+    },
+    {
+        "_id": "87ea7397-c037-45ae-a211-792cc30a7489",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/userprofiles/1",
+        "url": "http://127.0.0.1:8000/account/userprofiles/1",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-15T15:29:57.145Z",
+        "modified": "2023-07-15T15:29:57.145Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+    },
+    {
+        "_id": "8c41a750-e954-48f9-8c50-9cb568605647",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/userprofiles/0",
+        "url": "http://127.0.0.1:8000/account/userprofiles/0",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-15T15:30:00.130Z",
+        "modified": "2023-07-15T15:30:00.130Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+    },
+    {
+        "_id": "d7cfa920-551f-4dd7-acda-d4f97acbd7f6",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/userprofiles/",
+        "url": "http://127.0.0.1:8000/account/userprofiles/",
+        "method": "POST",
+        "sortNum": 0,
+        "created": "2023-07-15T15:38:35.807Z",
+        "modified": "2023-07-15T15:49:18.119Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"user\": \"thorfinnwreck@gmail.com\",\n  \"about\": \"Lorem ipsum dolor sit amet\",\n  \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\",\n  \"location\": \"New York, USA\",\n  \"skills\": \"Python, Django, JavaScript\",\n  \"mobile_number\": \"1234567890\",\n  \"name\": \"John Doe\"\n}\n",
+            "form": []
+        },
+        "tests": []
+    },
+    {
+        "_id": "d1fbc880-30ee-4bae-8b0f-85b1810a61d1",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/getuserprofile/",
+        "url": "http://127.0.0.1:8000/account/getuserprofile/",
+        "method": "POST",
+        "sortNum": 0,
+        "created": "2023-07-15T15:40:47.575Z",
+        "modified": "2023-07-15T15:40:47.575Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"email\":\"a@gmail.com\"\n}",
+            "form": []
+        },
+        "tests": []
+    },
+    {
+        "_id": "59a0614b-e36e-4a3f-8d7a-44ea938fdfba",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/getuserprofile/",
+        "url": "http://127.0.0.1:8000/account/getuserprofile/",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-15T15:43:57.717Z",
+        "modified": "2023-07-15T15:43:57.717Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"email\":\"a@gmail.com\"\n}",
+            "form": []
+        },
+        "tests": []
+    },
+    {
+        "_id": "7c6f35a5-2b6e-4d9d-8d1f-becd057dec08",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/post",
+        "url": "http://127.0.0.1:8000/account/post",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-15T17:58:59.222Z",
+        "modified": "2023-07-15T17:58:59.222Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+    },
+    {
+        "_id": "d1de1b75-70ef-4c5f-a884-f0ead0e733cc",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/posts/",
+        "url": "http://127.0.0.1:8000/account/posts/",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-15T17:59:02.473Z",
+        "modified": "2023-07-15T17:59:02.473Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+    },
+    {
+        "_id": "e922cd4c-15e1-44b9-b95a-e650aedb017c",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/posts/1",
+        "url": "http://127.0.0.1:8000/account/posts/1",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-15T18:00:27.608Z",
+        "modified": "2023-07-15T18:00:27.608Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+    },
+    {
+        "_id": "480a2354-dd55-4462-b2da-cd61d096ad8b",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/posts/",
+        "url": "http://127.0.0.1:8000/account/posts/",
+        "method": "POST",
+        "sortNum": 0,
+        "created": "2023-07-15T18:00:35.493Z",
+        "modified": "2023-07-15T18:08:57.491Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"user\":\"thorfinnwreck@gmail.com\",\n  \"post_id\":4\n}",
+            "form": []
+        },
+        "tests": []
+    },
+    {
+        "_id": "2ab13879-0b95-406f-9a0b-40d4025c96e2",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/posts/3",
+        "url": "http://127.0.0.1:8000/account/posts/3",
+        "method": "POST",
+        "sortNum": 0,
+        "created": "2023-07-15T18:12:04.309Z",
+        "modified": "2023-07-15T18:12:04.309Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"user\":\"thorfinnwreck@gmail.com\",\n  \"post_id\":4\n}",
+            "form": []
+        },
+        "tests": []
+    },
+    {
+        "_id": "578b0049-5ca8-4456-8460-75ef7750b3de",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/posts/3/",
+        "url": "http://127.0.0.1:8000/account/posts/3/",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-15T18:12:10.195Z",
+        "modified": "2023-07-15T18:12:10.195Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"user\":\"thorfinnwreck@gmail.com\",\n  \"post_id\":4\n}",
+            "form": []
+        },
+        "tests": []
+    },
+    {
+        "_id": "8ef53a24-5456-457c-8fed-3eef963a7a9c",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/posts/2/",
+        "url": "http://127.0.0.1:8000/account/posts/2/",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-15T18:12:14.595Z",
+        "modified": "2023-07-15T18:12:14.595Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"user\":\"thorfinnwreck@gmail.com\",\n  \"post_id\":4\n}",
+            "form": []
+        },
+        "tests": []
+    },
+    {
+        "_id": "cf3f88fc-2c96-4cbf-9a69-f4d8f5bca9fc",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://127.0.0.1:8000/account/posts/1/",
+        "url": "http://127.0.0.1:8000/account/posts/1/",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-15T18:12:22.330Z",
+        "modified": "2023-07-15T18:12:22.330Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"user\":\"thorfinnwreck@gmail.com\",\n  \"post_id\":4\n}",
+            "form": []
+        },
+        "tests": []
+    },
+    {
+        "_id": "a0d46dec-9148-4708-863c-dedf531b310a",
+        "colId": "history",
+        "containerId": "",
+        "name": "https://www.thunderclient.com/welcome",
+        "url": "https://www.thunderclient.com/welcome",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-15T18:16:52.100Z",
+        "modified": "2023-07-15T18:16:52.100Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"user\":\"thorfinnwreck@gmail.com\",\n  \"post_id\":4\n}",
+            "form": []
+        },
+        "tests": []
     }
 ]

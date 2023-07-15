@@ -1,0 +1,85 @@
+{
+    "_id": "27cb2b1e-623d-4468-ae0b-b68c417f4309",
+    "colName": "posts",
+    "created": "2023-07-15T18:16:31.897Z",
+    "sortNum": 10000,
+    "folders": [],
+    "requests": [
+        {
+            "_id": "cc54ae9c-ab0c-4a50-b360-918c6148f532",
+            "colId": "27cb2b1e-623d-4468-ae0b-b68c417f4309",
+            "containerId": "",
+            "name": "getpost",
+            "url": "http://127.0.0.1:8000/account/posts/1/",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-07-15T18:17:35.253Z",
+            "modified": "2023-07-15T18:17:49.328Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"user\":\"thorfinnwreck@gmail.com\",\n  \"post_id\":4\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "70820a06-7af2-485a-9c9e-dd9301aa7097",
+            "colId": "27cb2b1e-623d-4468-ae0b-b68c417f4309",
+            "containerId": "",
+            "name": "createpost",
+            "url": "http://127.0.0.1:8000/account/posts/",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-07-15T18:18:03.126Z",
+            "modified": "2023-07-15T18:21:48.797Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"user\": \"admin@gmail.com\",\n  \n  \"post\": \"this is my brand new post\",\n  \"post_id\": 2\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "48e6cc54-3af1-4948-aa5f-829777a42e75",
+            "colId": "27cb2b1e-623d-4468-ae0b-b68c417f4309",
+            "containerId": "",
+            "name": "getprofile",
+            "url": "http://127.0.0.1:8000/account/getuserprofile/",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-07-15T18:23:01.964Z",
+            "modified": "2023-07-15T18:23:44.532Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"a@gmail.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "cb039c5a-db1c-4d53-85a1-5fd64a50ff73",
+            "colId": "27cb2b1e-623d-4468-ae0b-b68c417f4309",
+            "containerId": "",
+            "name": "createprofile",
+            "url": "http://127.0.0.1:8000/account/userprofiles/",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-07-15T18:24:19.810Z",
+            "modified": "2023-07-15T18:24:56.845Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"user\": \"admin@gmail.com\",\n  \"about\": \"Lorem ipsum dolor sit amet\",\n  \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\",\n  \"location\": \"New York, USA\",\n  \"skills\": \"Python, Django, JavaScript\",\n  \"mobile_number\": \"1234567890\",\n  \"name\": \"John Doe\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

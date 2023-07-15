@@ -21,4 +21,12 @@ class CommentsSerializer(serializers.ModelSerializer):
         model = Comments
         fields = ['user','post','comment']
 
+class LikesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Likes
+        fields = '__all__'
 
+class CommentsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comments
+        fields = '__all__'

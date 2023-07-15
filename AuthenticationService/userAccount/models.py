@@ -19,7 +19,7 @@ class Posts(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, to_field='email')
     post_image = models.ImageField(upload_to='post_image', blank=True)
     post = models.TextField(max_length=500, blank=True,null=True)
-    post_id = models.IntegerField(primary_key=True, default=0)
+    post_id = models.IntegerField(primary_key=True)
 
     def __str__(self):
         return self.user.name
