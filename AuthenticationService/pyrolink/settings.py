@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "corsheaders",
     'rest_framework_simplejwt',
     'userAccount',
+    'courses_notes'
 
 ]
 

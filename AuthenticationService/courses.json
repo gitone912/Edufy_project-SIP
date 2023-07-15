@@ -1,0 +1,486 @@
+{
+  "info": {
+    "_postman_id": "your-postman-id",
+    "name": "Web App API",
+    "description": "API endpoints for the web application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "Create a Course",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Mathematics\",\n  \"description\": \"Introduction to Mathematics\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/courses/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "courses"
+              ]
+            },
+            "description": "Create a new course"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Courses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "http://127.0.0.1:8000/courses/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "courses"
+              ]
+            },
+            "description": "Retrieve all courses"
+          },
+          "response": []
+        },
+        {
+          "name": "Get a Course",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "http://127.0.0.1:8000/courses/{course_id}/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "courses",
+                "{course_id}"
+              ]
+            },
+            "description": "Retrieve a specific course"
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Course",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Mathematics\",\n  \"description\": \"Updated description of Mathematics\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/courses/{course_id}/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "courses",
+                "{course_id}"
+              ]
+            },
+            "description": "Update a specific course"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Course",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "http://127.0.0.1:8000/courses/{course_id}/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "courses",
+                "{course_id}"
+              ]
+            },
+            "description": "Delete a specific course"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Playlists",
+      "item": [
+        {
+          "name": "Create a Playlist",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Algebra\",\n  \"description\": \"Introduction to Algebra\",\n  \"course\": 1\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/playlists/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "playlists"
+              ]
+            },
+            "description": "Create a new playlist"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Playlists",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "http://127.0.0.1:8000/playlists/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "playlists"
+              ]
+            },
+            "description": "Retrieve all playlists"
+          },
+          "response": []
+        },
+        {
+          "name": "Get a Playlist",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "http://127.0.0.1:8000/playlists/{playlist_id}/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "playlists",
+                "{playlist_id}"
+              ]
+            },
+            "description": "Retrieve a specific playlist"
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Playlist",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Algebra\",\n  \"description\": \"Updated description of Algebra\",\n  \"course\": 1\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/playlists/{playlist_id}/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "playlists",
+                "{playlist_id}"
+              ]
+            },
+            "description": "Update a specific playlist"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Playlist",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "http://127.0.0.1:8000/playlists/{playlist_id}/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "playlists",
+                "{playlist_id}"
+              ]
+            },
+            "description": "Delete a specific playlist"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Notes",
+      "item": [
+        {
+          "name": "Create a Note",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Algebra Note\",\n  \"content\": \"This is a note about algebra\",\n  \"course\": 1\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/notes/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "notes"
+              ]
+            },
+            "description": "Create a new note"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Notes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "http://127.0.0.1:8000/notes/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "notes"
+              ]
+            },
+            "description": "Retrieve all notes"
+          },
+          "response": []
+        },
+        {
+          "name": "Get a Note",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "http://127.0.0.1:8000/notes/{note_id}/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "notes",
+                "{note_id}"
+              ]
+            },
+            "description": "Retrieve a specific note"
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Note",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Algebra Note\",\n  \"content\": \"Updated content of the algebra note\",\n  \"course\": 1\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/notes/{note_id}/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "notes",
+                "{note_id}"
+              ]
+            },
+            "description": "Update a specific note"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Note",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "http://127.0.0.1:8000/notes/{note_id}/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "notes",
+                "{note_id}"
+              ]
+            },
+            "description": "Delete a specific note"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Dashboards",
+      "item": [
+        {
+          "name": "Create a Dashboard",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user\": 1,\n  \"courses\": [1],\n  \"playlists\": [1],\n  \"notes\": [1]\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboards/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboards"
+              ]
+            },
+            "description": "Create a new dashboard"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Dashboards",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboards/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboards"
+              ]
+            },
+            "description": "Retrieve all dashboards"
+          },
+          "response": []
+        },
+        {
+          "name": "Get a Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboards/{dashboard_id}/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboards",
+                "{dashboard_id}"
+              ]
+            },
+            "description": "Retrieve a specific dashboard"
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Dashboard",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user\": 1,\n  \"courses\": [1, 2],\n  \"playlists\": [1, 2],\n  \"notes\": [1, 2]\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboards/{dashboard_id}/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboards",
+                "{dashboard_id}"
+              ]
+            },
+            "description": "Update a specific dashboard"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a Dashboard",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "http://127.0.0.1:8000/dashboards/{dashboard_id}/",
+              "protocol": "http",
+              "host": [
+                "127.0.0.1"
+              ],
+              "port": "8000",
+              "path": [
+                "dashboards",
+                "{dashboard_id}"
+              ]
+            },
+            "description": "Delete a specific dashboard"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
