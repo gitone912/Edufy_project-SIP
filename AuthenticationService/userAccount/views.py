@@ -31,11 +31,11 @@ class UserProfileRetrieveView(generics.RetrieveAPIView):
         
 
 class PostsListCreateView(generics.ListCreateAPIView):
-    queryset = Posts.objects.all()
+    queryset = UserPosts.objects.all()
     serializer_class = PostsSerializer
 
 class PostsRetrieveDestroyView(generics.RetrieveDestroyAPIView):
-    queryset = Posts.objects.all()
+    queryset = UserPosts.objects.all()
     serializer_class = PostsSerializer
         
 
@@ -50,3 +50,22 @@ class CommentsCreateView(generics.CreateAPIView):
 class CommentsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comments.objects.all()
     serializer_class = CommentsSerializer
+
+
+class MyPosts(APIView):
+    serializer_class = PostsSerializer
+
+    def post(self, request, *args, **kwargs):
+        # Extract the email ID from the request
+        email = request.data.get('email')
+
+        # Retrieve the user based on the email ID
+        try:
+            user = MyUser.objects.get(email=email)
+        except MyUser.DoesNotExist:
+            return Response({'error': 'User not found.'}, status=404)
+
+        # Retrieve the posts for the user
+        posts = UserPosts.objects.filter(user=user)
+        serializer = self.serializer_class(posts, many=True)
+        return Response(serializer.data)

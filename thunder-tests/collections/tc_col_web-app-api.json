@@ -265,12 +265,12 @@
             "method": "POST",
             "sortNum": 160000,
             "created": "2023-07-15T19:53:41.668Z",
-            "modified": "2023-07-15T19:59:28.800Z",
+            "modified": "2023-07-15T20:39:00.365Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"user\": 1,\n  \"courses\": [1],\n  \"playlists\": [1],\n  \"notes\": [1]\n}",
+                "raw": "{\n  \"user\": \"admin@gmail.com\",\n  \"courses\": [1],\n  \"playlists\": [1],\n  \"notes\": [1]\n}",
                 "form": []
             },
             "tests": []

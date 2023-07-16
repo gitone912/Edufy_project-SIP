@@ -10,16 +10,16 @@
             "colId": "27cb2b1e-623d-4468-ae0b-b68c417f4309",
             "containerId": "",
             "name": "getpost",
-            "url": "http://127.0.0.1:8000/account/posts/1/",
+            "url": "http://127.0.0.1:8000/account/posts/",
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-07-15T18:17:35.253Z",
-            "modified": "2023-07-15T18:17:49.328Z",
+            "modified": "2023-07-16T13:19:21.725Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"user\":\"thorfinnwreck@gmail.com\",\n  \"post_id\":4\n}",
+                "raw": "{\n  \n}",
                 "form": []
             },
             "tests": []
@@ -33,12 +33,12 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-07-15T18:18:03.126Z",
-            "modified": "2023-07-15T18:21:48.797Z",
+            "modified": "2023-07-16T15:51:52.448Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"user\": \"admin@gmail.com\",\n  \n  \"post\": \"this is my brand new post\",\n  \"post_id\": 2\n}",
+                "raw": "{\n  \"user\": \"admin@gmail.com\",\n  \"title\":\"c\",\n  \"description\": \"this is my brand new post\",\n  \"post_id\": 4\n}",
                 "form": []
             },
             "tests": []
@@ -52,12 +52,12 @@
             "method": "POST",
             "sortNum": 30000,
             "created": "2023-07-15T18:23:01.964Z",
-            "modified": "2023-07-15T18:23:44.532Z",
+            "modified": "2023-07-16T10:39:31.137Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\":\"a@gmail.com\"\n}",
+                "raw": "{\n  \"email\":\"admin@gmail.com\"\n}",
                 "form": []
             },
             "tests": []
@@ -77,6 +77,25 @@
             "body": {
                 "type": "json",
                 "raw": "{\n  \"user\": \"admin@gmail.com\",\n  \"about\": \"Lorem ipsum dolor sit amet\",\n  \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\",\n  \"location\": \"New York, USA\",\n  \"skills\": \"Python, Django, JavaScript\",\n  \"mobile_number\": \"1234567890\",\n  \"name\": \"John Doe\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "33c0ecbc-b580-4f17-9225-18d004ccb575",
+            "colId": "27cb2b1e-623d-4468-ae0b-b68c417f4309",
+            "containerId": "",
+            "name": "getmypost",
+            "url": "http://127.0.0.1:8000/account/myposts/",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2023-07-16T13:18:56.478Z",
+            "modified": "2023-07-16T15:46:28.150Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"a@gmail.com\"\n}",
                 "form": []
             },
             "tests": []

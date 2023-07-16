@@ -4,11 +4,13 @@ import { userAuthApi } from '../services/userAuthApi';
 import { productApi } from '../services/productServiceApi';
 import authSlice from '../features/authSlice';
 import { cartApi } from '../services/cartServiceApi';
+import { userAccountApi } from '../services/userAccountApi';
 
 export const store = configureStore({
   reducer: {
     [userAuthApi.reducerPath]: userAuthApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
+    [userAccountApi.reducerPath]: userAccountApi.reducer, 
     [cartApi.reducerPath]: cartApi.reducer,
     auth: authSlice,
   },
@@ -16,7 +18,8 @@ export const store = configureStore({
     getDefaultMiddleware()
       .concat(userAuthApi.middleware)
       .concat(productApi.middleware)
-      .concat(cartApi.middleware),
+      .concat(cartApi.middleware)
+      .concat(userAccountApi.middleware)
 });
 
 setupListeners(store.dispatch);

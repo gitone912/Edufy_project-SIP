@@ -12,7 +12,7 @@ import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp  } from "@/pages/auth";
 import SignOut from "./pages/auth/sign-out";
 import { ChangePassword } from "@/pages/auth"
-
+import Posts from "./pages/dashboard/posts";
 const icon = {
   className: "w-5 h-5 text-inherit",
 };
@@ -37,7 +37,7 @@ export const routes = [
         icon: <TableCellsIcon {...icon} />,
         name: "Posts",
         path: "/posts",
-        element: <Tables />,
+        element: <Posts />,
       },
       {
         icon: <BellIcon {...icon} />,
@@ -60,7 +60,7 @@ export const routes = [
       {
         icon: <UserIcon {...icon} />,
         name: "Doubts and Discussions",
-        path: "/notes",
+        path: "/doubts_and_discussions",
         element: <Notifications />,
       },
       {

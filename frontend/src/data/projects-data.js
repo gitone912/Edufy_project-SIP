@@ -6,12 +6,7 @@ export const projectsData = [
     description:
       "This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.",
     route: "/dashboard/profile",
-    members: [
-      { img: "/img/team-1.jpeg", name: "Romina Hadid" },
-      { img: "/img/team-2.jpeg", name: "Ryan Tompson" },
-      { img: "/img/team-3.jpeg", name: "Jessica Doe" },
-      { img: "/img/team-4.jpeg", name: "Alexander Smith" },
-    ],
+    
   },
   {
     img: "https://lh3.googleusercontent.com/gi7X34TTW6Uy2F1aiwO9N5GHmkftlVOmfdvWRKUrK3ASh4LV3cKMn-cIJKMj0AiLwVAqLqhouTxohCpQjxkrkk7T1op-503rC4DK6A=w600-l80-sg-rj",
@@ -20,12 +15,7 @@ export const projectsData = [
     description:
       "I Visited the Google Headquarters and had a fun time learning about new stuff.",
     route: "/dashboard/profile",
-    members: [
-      { img: "/img/team-4.jpeg", name: "Alexander Smith" },
-      { img: "/img/team-3.jpeg", name: "Jessica Doe" },
-      { img: "/img/team-2.jpeg", name: "Ryan Tompson" },
-      { img: "/img/team-1.jpeg", name: "Romina Hadid" },
-    ],
+    
   },
   {
     img: "https://www.simplilearn.com/ice9/free_resources_article_thumb/Advantages_and_Disadvantages_of_artificial_intelligence.jpg",
@@ -34,12 +24,7 @@ export const projectsData = [
     description:
       "AI is the future of technology. It is going to change the world.",
     route: "/dashboard/profile",
-    members: [
-      { img: "/img/team-1.jpeg", name: "Romina Hadid" },
-      { img: "/img/team-2.jpeg", name: "Ryan Tompson" },
-      { img: "/img/team-3.jpeg", name: "Jessica Doe" },
-      { img: "/img/team-4.jpeg", name: "Alexander Smith" },
-    ],
+   
   },
   {
     img: "https://www.cyberbahnit.com/wp-content/uploads/2017/11/blockchain.jpg",
@@ -48,12 +33,7 @@ export const projectsData = [
     description:
       "Blockchain is the future of technology. It is going to change the world.",
     route: "/dashboard/profile",
-    members: [
-      { img: "/img/team-4.jpeg", name: "Alexander Smith" },
-      { img: "/img/team-3.jpeg", name: "Jessica Doe" },
-      { img: "/img/team-2.jpeg", name: "Ryan Tompson" },
-      { img: "/img/team-1.jpeg", name: "Romina Hadid" },
-    ],
+    
   },
 ];
 

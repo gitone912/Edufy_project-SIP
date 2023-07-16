@@ -15,7 +15,7 @@ import { useRegisterUserMutation } from "../../services/userAuthApi";
 import { storeToken, storeId } from "../../services/LocalStorageService";
 import { Alert } from "@material-tailwind/react";
 import { useCreateUserMutation } from "../../services/cartServiceApi";
-import { useSaveUserIdMutation } from "../../services/userAuthApi";
+
 import { v4 as uuidv4 } from 'uuid';
 
 export function SignUp() {

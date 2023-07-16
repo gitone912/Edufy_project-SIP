@@ -9,6 +9,7 @@ urlpatterns = [
     path('likes/', LikesCreateView.as_view(), name='likes-create'),
     path('comments/', CommentsCreateView.as_view(), name='comments-create'),
     path('comments/<int:pk>/', CommentsRetrieveUpdateDestroyView.as_view(), name='comments-retrieve-update-destroy'),
+    path('myposts/', MyPosts.as_view(), name='my-posts'),
 
 
 

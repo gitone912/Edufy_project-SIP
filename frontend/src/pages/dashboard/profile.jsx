@@ -12,7 +12,7 @@ import {
   Tooltip,
   Button,
 } from "@material-tailwind/react";
-import React, { useEffect } from "react";
+import React from "react";
 import {
   HomeIcon,
   ChatBubbleLeftEllipsisIcon,
@@ -24,25 +24,66 @@ import { ProfileInfoCard, MessageCard } from "@/widgets/cards";
 import {  conversationsData, projectsData } from "@/data";
 import { useGetLoggedUserQuery } from "@/services/userAuthApi";
 import { getToken } from '../../services/LocalStorageService'
-
+import { useGetAccountProfileMutation } from "@/services/userAccountApi";
+import { useState, useEffect } from "react";
+import { useGetPostsQuery } from "@/services/userAccountApi";
+import { useGetMyPostsMutation } from "@/services/userAccountApi";
 export function Profile() {
-  const { access_token } = getToken()
+  const { access_token } = getToken();
+  const [profileDetails, setProfileDetails] = useState(null);
+  const [posts, setPosts] = useState(null);
   const { data: loggedUser, isLoading } = useGetLoggedUserQuery(access_token);
+  
+  
+  const [getAccountProfile, { isLoading: isProfileLoading }] =
+    useGetAccountProfileMutation();
+  const [getMyPosts, { isLoading: isMyPostsLoading }] =
+    useGetMyPostsMutation();
+  
 
+   
   useEffect(() => {
-    console.log("Logged User", loggedUser);
+    
   }, [loggedUser]);
 
-  if (isLoading) {
+  const handleEmailFetch = async () => {
+    try {
+      if (loggedUser && loggedUser.data && loggedUser.data.email) {
+        const email = loggedUser.data.email;
+        console.log("Email", email);
+        const response = await getAccountProfile(email);
+        const postsResponse = await getMyPosts(email);
+        setProfileDetails(response.data);
+        setPosts(postsResponse.data);
+        console.log("Posts",postsResponse.data)
+
+        
+      } else {
+        console.error("Logged user or email not available.");
+      }
+    } catch (error) {
+      console.error("Failed to fetch profile details:", error);
+    }
+  };
+
+ useEffect(() => {
+    handleEmailFetch();
+  }, [loggedUser]);
+ const EditProf = async () => {
+  {window.location.href="/dashboard/editprofile"}
+  }
+
+  if (isLoading || isProfileLoading || !loggedUser || !profileDetails || !posts) {
     return <div>Loading...</div>;
   }
+  
   return (
     <>
     <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
   integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-  crossorigin="anonymous"
+  crossOrigin="anonymous"
   referrerpolicy="no-referrer"
 />
       <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl bg-[url(https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80)] bg-cover	bg-center">
@@ -67,6 +108,7 @@ export function Profile() {
                   className="font-normal text-blue-gray-600"
                 >
                   BCA Student at IUJ
+                 
                 </Typography>
               </div>
             </div>
@@ -77,9 +119,10 @@ export function Profile() {
                     <HomeIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
                     Profile
                   </Tab>
-                  <Tab value="message">
+                  <Tab value="message" onClick={EditProf}>
                     <ChatBubbleLeftEllipsisIcon className="-mt-0.5 mr-2 inline-block h-5 w-5" />
-                    Message
+                    
+                    Edit
                   </Tab>
                   
                 </TabsHeader>
@@ -90,12 +133,12 @@ export function Profile() {
             
             <ProfileInfoCard
               title="Profile Information"
-              description="Hi, I'm Akash, Decisions: If you can't decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
+              description= {profileDetails?.description}
               details={{
                 "first name": "Akash",
-                mobile: "6201933790",
+                mobile: profileDetails?.mobile_number,
                 email: loggedUser.data.email,
-                location: "Ranchi, Jharkhand, India",
+                location: profileDetails?.location,
                 social: (
                   <div className="flex items-center gap-4">
                     <i className="fa-brands fa-facebook text-blue-700" />
@@ -108,7 +151,7 @@ export function Profile() {
             />
             <div>
               <Typography variant="h6" color="blue-gray" className="mb-3">
-                Students similar skills as you
+                Students similar skills as you 
               </Typography>
               <ul className="flex flex-col gap-6">
                 {conversationsData.map((props) => (
@@ -136,7 +179,7 @@ export function Profile() {
               latest posts
             </Typography>
             <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-4">
-              {projectsData.map(
+              {posts?.map(
                 ({ img, title, description, tag, route, members }) => (
                   <Card key={title} color="transparent" shadow={false}>
                     <CardHeader
@@ -145,7 +188,7 @@ export function Profile() {
                       className="mx-0 mt-0 mb-4 h-64 xl:h-40"
                     >
                       <img
-                        src={img}
+                        src={"http://127.0.0.1:8000" + img}
                         alt={title}
                         className="h-full w-full object-cover"
                       />
@@ -177,21 +220,7 @@ export function Profile() {
                           view post
                         </Button>
                       </Link>
-                      <div>
-                        {members.map(({ img, name }, key) => (
-                          <Tooltip key={name} content={name}>
-                            <Avatar
-                              src={img}
-                              alt={name}
-                              size="xs"
-                              variant="circular"
-                              className={`cursor-pointer border-2 border-white ${
-                                key === 0 ? "" : "-ml-2.5"
-                              }`}
-                            />
-                          </Tooltip>
-                        ))}
-                      </div>
+                      
                     </CardFooter>
                   </Card>
                 )

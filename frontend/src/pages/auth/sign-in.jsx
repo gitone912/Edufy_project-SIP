@@ -16,8 +16,8 @@ import { getToken, storeToken } from "../../services/LocalStorageService";
 import { useLoginUserMutation } from "../../services/userAuthApi";
 import { Alert } from "@material-tailwind/react";
 import React, { useState, useEffect } from "react";
-import { storeId } from "../../services/LocalStorageService";
-import { useGetUserIdMutation } from "../../services/userAuthApi";
+
+
 export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +25,6 @@ export function SignIn() {
   const navigate = useNavigate();
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const dispatch = useDispatch();
-  const [getUserId, { data: responseInfo, error }] = useGetUserIdMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,6 +52,7 @@ export function SignIn() {
 
 
     const res = await loginUser(actualData);
+    console.log(res);
     if (res.error) {
       console.log(res.error.data.data);
       setServerError(res.error.data.data);

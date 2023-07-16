@@ -8,8 +8,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 class PostsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Posts
-        fields = ['user','post_image','post','post_id']
+        model = UserPosts
+        fields = '__all__'
 
 class LikesSerializer(serializers.ModelSerializer):
     class Meta:
