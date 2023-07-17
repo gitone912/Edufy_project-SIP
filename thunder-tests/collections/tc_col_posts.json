@@ -29,16 +29,16 @@
             "colId": "27cb2b1e-623d-4468-ae0b-b68c417f4309",
             "containerId": "",
             "name": "createpost",
-            "url": "http://127.0.0.1:8000/account/posts/4/",
-            "method": "PUT",
+            "url": "http://127.0.0.1:8000/account/posts/",
+            "method": "POST",
             "sortNum": 20000,
             "created": "2023-07-15T18:18:03.126Z",
-            "modified": "2023-07-17T18:29:55.270Z",
+            "modified": "2023-07-17T19:07:53.983Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"user\": \"admin@gmail.com\",\n  \"title\":\"c\",\n  \"description\": \"this is my brand new post\",\n  \"post_id\": 4\n}",
+                "raw": "{\n  \"user\": \"a@gmail.com\",\n  \"title\":\"csharp learn\",\n  \"description\": \"this is my brand new post\",\n  \"post_id\": 7\n}",
                 "form": []
             },
             "tests": []

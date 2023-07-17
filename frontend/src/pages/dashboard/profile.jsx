@@ -28,6 +28,7 @@ import { useGetAccountProfileMutation } from "@/services/userAccountApi";
 import { useState, useEffect } from "react";
 import { useGetPostsQuery } from "@/services/userAccountApi";
 import { useGetMyPostsMutation } from "@/services/userAccountApi";
+import Error404 from "../NoAuth404";
 export function Profile() {
   const { access_token } = getToken();
   const [profileDetails, setProfileDetails] = useState(null);
@@ -55,7 +56,8 @@ export function Profile() {
         const postsResponse = await getMyPosts(email);
         setProfileDetails(response.data);
         setPosts(postsResponse.data);
-        console.log("Posts",postsResponse.data)
+      
+        
 
         
       } else {
@@ -72,7 +74,12 @@ export function Profile() {
  const EditProf = async () => {
   {window.location.href="/dashboard/edit-profile"}
   }
-
+  const UploadPosts = async () => {
+    {window.location.href="/dashboard/upload-post"}
+    }
+  if ( !loggedUser ) {
+      return <Error404 />;
+    }
   if (isLoading || isProfileLoading || !loggedUser || !profileDetails || !posts) {
     return <div>Loading...</div>;
   }
@@ -93,15 +100,25 @@ export function Profile() {
         <CardBody className="p-4">
           <div className="mb-10 flex items-center justify-between gap-6">
             <div className="flex items-center gap-6">
-              <Avatar
-                src="https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFja2dyb3VuZCUyMHBvc3R8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"
-                alt="bruce-mars"
-                size="xl"
-                className="rounded-lg shadow-lg shadow-blue-gray-500/40"
-              />
+            {profileDetails?.image ? (
+        <Avatar
+          src={profileDetails?.image}
+          alt="Profile Image"
+          size="xl"
+          className="rounded-lg shadow-lg shadow-blue-gray-500/40"
+        />
+      ) : (
+        <Avatar
+          src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+          alt="User Icon"
+          size="xl"
+          className="rounded-lg shadow-lg shadow-blue-gray-500/40"
+        />
+      )}
               <div>
                 <Typography variant="h5" color="blue-gray" className="mb-1">
                   {loggedUser.data.name}
+                  
                 </Typography>
                 <Typography
                   variant="small"
@@ -174,7 +191,7 @@ export function Profile() {
             <Typography variant="h6" color="blue-gray" className="mb-2 ">
               Your Posts 
             </Typography>
-            <Button variant="outlined" size="md" color="blue-purple" onClick={EditProf}>
+            <Button variant="outlined" size="md" color="blue-purple" onClick={UploadPosts}>
                   Upload Posts
                 </Button>
             </div>

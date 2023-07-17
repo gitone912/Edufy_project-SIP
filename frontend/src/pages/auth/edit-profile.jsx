@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import {
   Typography,
   Alert,
@@ -10,16 +11,15 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import { useUpdateAccountProfileMutation } from "@/services/userAccountApi";
-import { useGetAccountProfileMutation } from "@/services/userAccountApi";
 import { getToken } from "@/services/LocalStorageService";
 import { useGetLoggedUserQuery } from "@/services/userAuthApi";
 import { useEffect } from "react";
+import { Form } from "react-router-dom";
 
 export function EditProfile() {
   const { access_token } = getToken();
-  const [updateProfile, responseInfo] = useUpdateAccountProfileMutation();
   const { data: loggedUser, isLoading } = useGetLoggedUserQuery(access_token);
+  const [selectedImage, setSelectedImage] = useState('');
 
   useEffect(() => {}, [loggedUser]);
 
@@ -31,32 +31,31 @@ export function EditProfile() {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const data = {
-          name: name,
-          user: email,
-          description: formData.get("description"),
-          location: formData.get("location"),
-          skills: formData.get("skills"),
-          mobileNumber: formData.get("mobileNumber"),
-          social_link1: formData.get("social_link1"),
-          social_link2: formData.get("social_link2"),
-          social_link3: formData.get("social_link3"),
-        };
-        console.log("data", data);
-        const response = await updateProfile(data);
-        console.log("response", response);
+        formData.append("user", email);
+        formData.append("name", name);
+        formData.append("image", selectedImage); // Append the selected image file
+        formData.append("description", formData.get("description"));
+        formData.append("location", formData.get("location"));
+        formData.append("skills", formData.get("skills"));
+        formData.append("mobileNumber", formData.get("mobileNumber"));
+        console.log("formData", formData);
+
+        const response = await axios.post("http://127.0.0.1:8000/account/update-profile/", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        console.log("response", response.data);
         window.location.href = "/dashboard/profile";
       }
     } catch (error) {
       console.log(error);
     }
-    
   };
 
-  if (responseInfo.isLoading) return <div>is loading......</div>;
-  if (responseInfo.isError)
-    return <div>error occured {responseInfo.error.error} </div>;
-  
+  const handleImageChange = (e) => {
+    setSelectedImage(e.target.files[0]);
+  };
 
   return (
     <div className="mx-auto my-20 flex max-w-screen-lg flex-col gap-8">
@@ -69,18 +68,19 @@ export function EditProfile() {
         <CardBody className="flex items-center justify-center overflow-x-scroll px-0 pt-0 pb-2">
           <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={handleUpdateProfile}>
             <div className="mb-4 flex flex-col gap-6">
-            <Typography color="gray">Profile Information</Typography>
-            <Input size="lg" label="Name" value={loggedUser?.data.email} readOnly />
-<Input size="lg" label="Email" value={loggedUser?.data.name} readOnly />
+              <Typography color="gray">Profile Information</Typography>
+              <Input size="lg" label="Email" value={loggedUser?.data.email} readOnly />
+              <Input size="lg" label="Name" value={loggedUser?.data.name} readOnly />
 
-              <Input size="lg" label="Description"  name="description" required/>
-              <Input size="lg" label="Location" name="location" required/>
-              <Input size="lg" label="Skills" name="skills" required/>
-              <Input size="lg" label="Mobile Number" name="mobileNumber"/>
+              <Input size="lg" label="Description" name="description" required />
+              <Input size="lg" label="Location" name="location" required />
+              <Input size="lg" label="Skills" name="skills" required />
+              <Input size="lg" label="Mobile Number" name="mobileNumber" />
               <Input size="lg" label="Instagram" name="social_link1" />
-              <Input size="lg" label="linked In" name="social_link2"/>
-              <Input size="lg" label="Facebook" name="social_link3"/>
-              
+              <Input size="lg" label="LinkedIn" name="social_link2" />
+              <Input size="lg" label="Facebook" name="social_link3" />
+
+              <Input type="file" label="Profile Image" onChange={handleImageChange} />
             </div>
 
             <Button className="mt-6" fullWidth type="submit">
