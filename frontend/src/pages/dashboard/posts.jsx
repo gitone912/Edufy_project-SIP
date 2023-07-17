@@ -58,7 +58,9 @@ import {
       handleEmailFetch();
     }, [loggedUser]);
   
-  
+    const viewPost = (post) => {
+      window.location.href = `/dashboard/view-post/${post}`;
+    };
     if (isLoading || isProfileLoading) {
       return <div>Loading...</div>;
     }
@@ -95,7 +97,7 @@ import {
               </Typography>
               <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-4">
                 {postsResponse.data?.map(
-                  ({ img, title, description, tag, route, members }) => (
+                  ({ img, title, description, tag, route, post_id,hashtags}) => (
                     <Card key={title} color="transparent" shadow={false}>
                       <CardHeader
                         floated={false}
@@ -129,12 +131,21 @@ import {
                           {description}
                         </Typography>
                       </CardBody>
+                      <div class="px-6 pt-4 pb-2">
+       
+        
+      </div>
                       <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
-                        <Link to={route}>
-                          <Button variant="outlined" size="sm">
-                            view post
-                          </Button>
-                        </Link>
+                      <Link to={route}>
+                        <Button
+                          variant="outlined"
+                          size="sm"
+                          type="submit"
+                          onClick={() => viewPost(post_id)}
+                        >
+                          view post
+                        </Button>
+                      </Link>
                         
                       </CardFooter>
                     </Card>

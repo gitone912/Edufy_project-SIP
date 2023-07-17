@@ -11,6 +11,7 @@ import routes from "@/routes";
 import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
 import { EditProfile } from "@/pages/auth/edit-profile";
 import { UpdatePost } from "@/pages/dashboard/upload-post";
+import { ViewPost } from "@/pages/dashboard/viewOnePost";
 export function Dashboard() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
@@ -45,6 +46,7 @@ export function Dashboard() {
           )}
           <Route path="/edit-profile/" element={<EditProfile />} />
           <Route path="/upload-post/" element={<UpdatePost />} />
+          <Route path="/view-post/:postId" element={<ViewPost />} />
         </Routes>
         <div className="text-blue-gray-600">
           <Footer />
