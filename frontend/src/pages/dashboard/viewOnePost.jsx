@@ -5,39 +5,18 @@ import {
     CardFooter,
     Avatar,
     Typography,
-    Tabs,
-    TabsHeader,
-    Tab,
-    Switch,
-    Tooltip,
     Button,
   } from "@material-tailwind/react";
   import React from "react";
-  import {
-    HomeIcon,
-    ChatBubbleLeftEllipsisIcon,
-    Cog6ToothIcon,
-    PencilIcon,
-  } from "@heroicons/react/24/solid";
   import { Link } from "react-router-dom";
-  import { ProfileInfoCard, MessageCard } from "@/widgets/cards";
-  import { conversationsData, projectsData } from "@/data";
-  import { useGetLoggedUserQuery } from "@/services/userAuthApi";
-  import { getToken } from '../../services/LocalStorageService'
-  import { useGetAccountProfileMutation } from "@/services/userAccountApi";
-  import { useState, useEffect } from "react";
   import { useGetPostsQuery } from "@/services/userAccountApi";
   import { useParams } from "react-router-dom";
   
   export function ViewPost() {
-    const { access_token } = getToken();
     const { postId } = useParams();
-    console.log("Post ID", postId);
     const postsResponse = useGetPostsQuery(postId);
-  
-    console.log("Posts",postsResponse.data)
     const res = postsResponse.data;
-      
+  
     return (
       <>
         <link
@@ -47,51 +26,61 @@ import {
           crossOrigin="anonymous"
           referrerpolicy="no-referrer"
         />
-        <div className="mx-auto my-20 flex max-w-screen-lg flex-col gap-8">
-          <Card className="mx-3 -mt-16 mb-6 lg:mx-4">
+  
+        <div >
+          <Card >
             <CardBody className="p-4">
-              <CardHeader variant="gradient" color="blue" className="mb-8 p-6">
+              <CardHeader
+                variant="gradient"
+                color="blue"
+                className="mb-8 p-6 rounded-t-lg"
+              >
                 <Typography variant="h6" color="white">
-                  Courses
+                  Post
                 </Typography>
               </CardHeader>
+  
               <div className="px-4 pb-4">
-                <Typography variant="h6" color="blue-gray" className="mb-2">
+                <Typography variant="h6" color="blue-gray-500" className="mb-2">
                   All Posts
                 </Typography>
                 <Typography
                   variant="small"
                   className="font-normal text-blue-gray-500"
                 >
-                  latest posts
+                  Latest Posts
                 </Typography>
-                <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-4">
+  
+                <div className="mt-6 ">
                   <Card color="transparent" shadow={false}>
                     <CardHeader
                       floated={false}
                       color="gray"
-                      className="mx-0 mt-0 mb-4 h-64 xl:h-40"
+                      className="mx-0 mt-0 mb-4 rounded-t-lg "
                     >
                       <img
-                        src="http://127.0.0.1:8000/media/post_img/s.jpeg"
+                        src={res && res.img}
                         alt="Post Image"
-                        className="h-full w-full object-cover"
+                        className="h-full w-full  rounded-t-lg"
                       />
                     </CardHeader>
-                    <CardBody className="py-0 px-1">
+  
+                    <CardBody className="py-0 px-2">
                       <Typography
                         variant="small"
                         className="font-normal text-blue-gray-500"
                       >
                         {res && res.user}
                       </Typography>
+  
                       <Typography
                         variant="h5"
-                        color="blue-gray"
+                        color="blue-gray-800"
                         className="mt-1 mb-2"
                       >
                         {res && res.title}
                       </Typography>
+  
                       <Typography
                         variant="small"
                         className="font-normal text-blue-gray-500"
@@ -99,23 +88,76 @@ import {
                         {res && res.description}
                       </Typography>
                     </CardBody>
-                    <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
+  
+                    <CardFooter className="mt-6 flex items-center justify-between py-2 px-4">
                       <div>
-                        <Button color="gray" ripple="light">
-                          <i className="fas fa-heart"></i> {res && res.likes_count}
+                        <Button
+                          color="blue"
+                          ripple="light"
+                          size="regular"
+                          buttonType="outline"
+                          rounded={false}
+                          block={false}
+                          iconOnly={false}
+                          // Replace "fas fa-heart" with appropriate icon class
+                          icon={<i className="fas fa-heart"></i>}
+                        >
+                          {res && res.likes_count}
                         </Button>
-                        <Button color="gray" ripple="light">
-                          <i className="fas fa-comment"></i> {res && res.comments_count}
+  
+                        <Button
+                          color="blue"
+                          ripple="light"
+                          size="regular"
+                          buttonType="outline"
+                          rounded={false}
+                          block={false}
+                          iconOnly={false}
+                          // Replace "fas fa-comment" with appropriate icon class
+                          icon={<i className="fas fa-comment"></i>}
+                        >
+                          {res && res.comments_count}
                         </Button>
-                        <Button color="gray" ripple="light">
-                          <i className="fas fa-share"></i> {res && res.shares_count}
+  
+                        <Button
+                          color="blue"
+                          ripple="light"
+                          size="regular"
+                          buttonType="outline"
+                          rounded={false}
+                          block={false}
+                          iconOnly={false}
+                          // Replace "fas fa-share" with appropriate icon class
+                          icon={<i className="fas fa-share"></i>}
+                        >
+                          {res && res.shares_count}
                         </Button>
                       </div>
+  
                       <div>
-                        <Button color="gray" ripple="light">
-                          <i className="fas fa-map-marker-alt"></i> {res && res.location}
+                        <Button
+                          color="gray"
+                          ripple="light"
+                          size="regular"
+                          buttonType="outline"
+                          rounded={false}
+                          block={false}
+                          iconOnly={false}
+                          // Replace "fas fa-map-marker-alt" with appropriate icon class
+                          icon={<i className="fas fa-map-marker-alt"></i>}
+                        >
+                          {res && res.location}
                         </Button>
-                        <Button color="gray" ripple="light">
+  
+                        <Button
+                          color="gray"
+                          ripple="light"
+                          size="regular"
+                          buttonType="outline"
+                          rounded={false}
+                          block={false}
+                          iconOnly={false}
+                        >
                           {res && res.hashtags}
                         </Button>
                       </div>
