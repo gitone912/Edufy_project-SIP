@@ -29,7 +29,27 @@ class UserProfileRetrieveView(generics.RetrieveAPIView):
         except UserProfile.DoesNotExist:
             return Response({'error': 'User profile Id not found.'}, status=404)
         
+class UserProfileRetrieveUpdateView(APIView):
+    serializer_class = UserProfileSerializer
 
+    def get_object(self):
+        email = self.request.data.get('user')
+        try:
+            return UserProfile.objects.get(user=email)
+        except UserProfile.DoesNotExist:
+            return None
+
+    def post(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance is None:
+            return Response({'error': 'User profile not found.'}, status=404)
+        
+        serializer = self.serializer_class(instance, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+    
 class PostsListCreateView(generics.ListCreateAPIView):
     queryset = UserPosts.objects.all()
     serializer_class = PostsSerializer

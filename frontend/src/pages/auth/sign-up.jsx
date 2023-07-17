@@ -14,7 +14,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { useRegisterUserMutation } from "../../services/userAuthApi";
 import { storeToken, storeId } from "../../services/LocalStorageService";
 import { Alert } from "@material-tailwind/react";
-import { useCreateUserMutation } from "../../services/cartServiceApi";
+import { useCreateAccountProfileMutation } from "@/services/userAccountApi";
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -22,7 +22,7 @@ export function SignUp() {
 
   const [server_error, setServerError] = useState({});
   const [registerUser, { isLoading }] = useRegisterUserMutation();
-  // const [createUser, responseInfo] = useCreateUserMutation();
+  const [createUser, responseInfo] = useCreateAccountProfileMutation();
   // const [saveUserId, responseInfo2] = useSaveUserIdMutation();
   // const navigate = useNavigate();
 
@@ -44,11 +44,11 @@ export function SignUp() {
       setServerError(res.error.data.errors);
     }
 
-    // if (res.data) {
-    //   const response = await createUser({ name: actualData.name });
-    //   console.log(response);
-    //   const userId = response.data.id;
-    //   console.log(response);
+    if (res.data) {
+      const response = await createUser({ user: actualData.email,name: actualData.name });
+      console.log(response);
+      
+    }
       
     //   const res2 = await saveUserId({
     //     user: actualData.email,
@@ -57,7 +57,7 @@ export function SignUp() {
     //   });
 
       storeToken(res.data.data.token);
-      // storeId(userId);
+     
 
       // console.log(userId, actualData.name, actualData.email);
 

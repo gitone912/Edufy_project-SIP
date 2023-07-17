@@ -8,6 +8,7 @@ import {
 import { Navbar, Footer } from "@/widgets/layout";
 import routes from "@/routes";
 
+
 export function Auth() {
   const navbarRoutes = [
     {
@@ -40,6 +41,7 @@ export function Auth() {
         <Navbar routes={navbarRoutes} />
       </div>
       <Routes>
+      
         {routes.map(
           ({ layout, pages }) =>
             layout === "auth" &&
@@ -47,6 +49,8 @@ export function Auth() {
               <Route exact path={path} element={element} />
             ))
         )}
+       
+        
       </Routes>
       <div className="container absolute bottom-8 left-2/4 z-10 mx-auto -translate-x-2/4 text-white">
         <Footer />

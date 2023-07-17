@@ -9,7 +9,7 @@ import {
 } from "@/widgets/layout";
 import routes from "@/routes";
 import { useMaterialTailwindController, setOpenConfigurator } from "@/context";
-
+import { EditProfile } from "@/pages/auth/edit-profile";
 export function Dashboard() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
@@ -42,6 +42,7 @@ export function Dashboard() {
                 <Route exact path={path} element={element} />
               ))
           )}
+          <Route path="/edit-profile/" element={<EditProfile />} />
         </Routes>
         <div className="text-blue-gray-600">
           <Footer />

@@ -70,7 +70,7 @@ export function Profile() {
     handleEmailFetch();
   }, [loggedUser]);
  const EditProf = async () => {
-  {window.location.href="/dashboard/editprofile"}
+  {window.location.href="/dashboard/edit-profile"}
   }
 
   if (isLoading || isProfileLoading || !loggedUser || !profileDetails || !posts) {
@@ -94,7 +94,7 @@ export function Profile() {
           <div className="mb-10 flex items-center justify-between gap-6">
             <div className="flex items-center gap-6">
               <Avatar
-                src="/img/bruce-mars.jpeg"
+                src="https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFja2dyb3VuZCUyMHBvc3R8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80"
                 alt="bruce-mars"
                 size="xl"
                 className="rounded-lg shadow-lg shadow-blue-gray-500/40"
@@ -107,7 +107,7 @@ export function Profile() {
                   variant="small"
                   className="font-normal text-blue-gray-600"
                 >
-                  BCA Student at IUJ
+                o kawai koto
                  
                 </Typography>
               </div>
@@ -122,8 +122,9 @@ export function Profile() {
                   <Tab value="message" onClick={EditProf}>
                     <ChatBubbleLeftEllipsisIcon className="-mt-0.5 mr-2 inline-block h-5 w-5" />
                     
-                    Edit
+                    Edit Profile
                   </Tab>
+                  
                   
                 </TabsHeader>
               </Tabs>
@@ -135,14 +136,14 @@ export function Profile() {
               title="Profile Information"
               description= {profileDetails?.description}
               details={{
-                "first name": "Akash",
                 mobile: profileDetails?.mobile_number,
                 email: loggedUser.data.email,
                 location: profileDetails?.location,
+                skills: profileDetails?.skills,
                 social: (
                   <div className="flex items-center gap-4">
-                    <i className="fa-brands fa-facebook text-blue-700" />
-                    <i className="fa-brands fa-twitter text-blue-400" />
+                    <i className="fa-brands fa-facebook text-blue-700"  />
+                    <i className="fa-brands fa-linkedin text-blue-400" />
                     <i className="fa-brands fa-instagram text-purple-500" />
                   </div>
                 ),
@@ -169,15 +170,21 @@ export function Profile() {
             </div>
           </div>
           <div className="px-4 pb-4">
-            <Typography variant="h6" color="blue-gray" className="mb-2">
-              Your Posts
+          <div class="grid grid-cols-2 gap-x-8">
+            <Typography variant="h6" color="blue-gray" className="mb-2 ">
+              Your Posts 
             </Typography>
+            <Button variant="outlined" size="md" color="blue-purple" onClick={EditProf}>
+                  Upload Posts
+                </Button>
+            </div>
             <Typography
               variant="small"
               className="font-normal text-blue-gray-500"
             >
               latest posts
             </Typography>
+            
             <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-4">
               {posts?.map(
                 ({ img, title, description, tag, route, members }) => (

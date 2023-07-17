@@ -12,6 +12,9 @@ class UserProfile(models.Model):
     image = models.ImageField(upload_to='profile_img', blank=True)
     mobile_number = models.CharField(max_length=10, default='')
     name = models.CharField(max_length=100)
+    social_link1 = models.CharField(max_length=100, default='')
+    social_link2 = models.CharField(max_length=100, default='')
+    social_link3 = models.CharField(max_length=100, default='')
     def __str__(self):
         return self.user.name
 

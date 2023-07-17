@@ -26,6 +26,16 @@ export const userAccountApi = createApi({
                 },
             }),
         }),
+        UpdateAccountProfile: builder.mutation({
+            query: (user) => ({
+                url: 'update-profile/',
+                method: 'POST',
+                body: user,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }),
+        }),
         
         GetPosts: builder.query({
             query: (categoryId) => {
@@ -74,4 +84,4 @@ export const userAccountApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useCreateAccountProfileMutation, useGetAccountProfileMutation, useGetPostsQuery, useCreatePostMutation ,useGetMyPostsMutation ,useGetAllPostsQuery} = userAccountApi
+export const { useCreateAccountProfileMutation, useGetAccountProfileMutation, useGetPostsQuery, useCreatePostMutation ,useGetMyPostsMutation ,useGetAllPostsQuery ,useUpdateAccountProfileMutation} = userAccountApi

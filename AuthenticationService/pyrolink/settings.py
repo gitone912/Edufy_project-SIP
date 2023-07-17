@@ -175,11 +175,7 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:8000",
-    "http://localhost:5173",
-]
+
 AUTH_USER_MODEL = "userAuth.MyUser"
 
 PASSWORD_RESET_TIMEOUT = 900
@@ -196,3 +192,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Specify the URL prefix for media files
 MEDIA_URL = '/media/'
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://localhost:5173",
+]

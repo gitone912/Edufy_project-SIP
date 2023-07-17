@@ -10,6 +10,7 @@ urlpatterns = [
     path('comments/', CommentsCreateView.as_view(), name='comments-create'),
     path('comments/<int:pk>/', CommentsRetrieveUpdateDestroyView.as_view(), name='comments-retrieve-update-destroy'),
     path('myposts/', MyPosts.as_view(), name='my-posts'),
+    path('update-profile/', UserProfileRetrieveUpdateView.as_view(), name='profile-retrieve-update'),
 
 
 

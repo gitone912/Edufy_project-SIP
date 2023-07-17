@@ -10,11 +10,11 @@
             "colId": "27cb2b1e-623d-4468-ae0b-b68c417f4309",
             "containerId": "",
             "name": "getpost",
-            "url": "http://127.0.0.1:8000/account/posts/",
+            "url": "http://127.0.0.1:8000/account/posts/2",
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-07-15T18:17:35.253Z",
-            "modified": "2023-07-16T13:19:21.725Z",
+            "modified": "2023-07-17T18:32:12.536Z",
             "headers": [],
             "params": [],
             "body": {
@@ -29,11 +29,11 @@
             "colId": "27cb2b1e-623d-4468-ae0b-b68c417f4309",
             "containerId": "",
             "name": "createpost",
-            "url": "http://127.0.0.1:8000/account/posts/",
-            "method": "POST",
+            "url": "http://127.0.0.1:8000/account/posts/4/",
+            "method": "PUT",
             "sortNum": 20000,
             "created": "2023-07-15T18:18:03.126Z",
-            "modified": "2023-07-16T15:51:52.448Z",
+            "modified": "2023-07-17T18:29:55.270Z",
             "headers": [],
             "params": [],
             "body": {
@@ -52,7 +52,7 @@
             "method": "POST",
             "sortNum": 30000,
             "created": "2023-07-15T18:23:01.964Z",
-            "modified": "2023-07-16T10:39:31.137Z",
+            "modified": "2023-07-17T14:45:05.849Z",
             "headers": [],
             "params": [],
             "body": {
@@ -68,10 +68,10 @@
             "containerId": "",
             "name": "createprofile",
             "url": "http://127.0.0.1:8000/account/userprofiles/",
-            "method": "POST",
+            "method": "PUT",
             "sortNum": 40000,
             "created": "2023-07-15T18:24:19.810Z",
-            "modified": "2023-07-15T18:24:56.845Z",
+            "modified": "2023-07-17T13:38:22.909Z",
             "headers": [],
             "params": [],
             "body": {
@@ -96,6 +96,25 @@
             "body": {
                 "type": "json",
                 "raw": "{\n  \"email\":\"a@gmail.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "cfee662b-81e8-45ac-b1fe-78cbcb9e5e45",
+            "colId": "27cb2b1e-623d-4468-ae0b-b68c417f4309",
+            "containerId": "",
+            "name": "updateprofile",
+            "url": "http://127.0.0.1:8000/account/update-profile/",
+            "method": "POST",
+            "sortNum": 45000,
+            "created": "2023-07-17T13:41:59.410Z",
+            "modified": "2023-07-17T13:56:43.118Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"user\": \"humann@gmail.com\",\n  \"about\": \"Lrich\",\n  \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\",\n  \"location\": \"New York, CAnadas\",\n  \"skills\": \"Python, Django, JavaScript\",\n  \"mobile_number\": \"1234567890\",\n  \"name\": \"John Doe\"\n}\n",
                 "form": []
             },
             "tests": []
