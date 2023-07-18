@@ -3,7 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import { userAuthApi } from '../services/userAuthApi';
 import { productApi } from '../services/productServiceApi';
 import authSlice from '../features/authSlice';
-import { cartApi } from '../services/cartServiceApi';
+import { cartApi } from '../services/courseServiceApi';
 import { userAccountApi } from '../services/userAccountApi';
 
 export const store = configureStore({

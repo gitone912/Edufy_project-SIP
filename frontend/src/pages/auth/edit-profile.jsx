@@ -37,7 +37,7 @@ export function EditProfile() {
         formData.append("description", formData.get("description"));
         formData.append("location", formData.get("location"));
         formData.append("skills", formData.get("skills"));
-        formData.append("mobileNumber", formData.get("mobileNumber"));
+        formData.append("mobile_number", formData.get("mobileNumber"));
         console.log("formData", formData);
 
         const response = await axios.post("http://127.0.0.1:8000/account/update-profile/", formData, {

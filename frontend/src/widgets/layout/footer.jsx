@@ -14,7 +14,7 @@ export function Footer({ brandName, brandLink, routes }) {
           <a
             href={brandLink}
             target="_blank"
-            className="transition-colors hover:text-blue-500"
+            className="transition-colors text-blue-500"
           >
             {brandName}
           </a>{" "}
@@ -41,7 +41,7 @@ export function Footer({ brandName, brandLink, routes }) {
 }
 
 Footer.defaultProps = {
-  brandName: "Edufy",
+  brandName: "Edufy Team",
   brandLink: "https://www.edufy.in",
   routes: [
     { name: "Edufy", path: "https://www.Edufy.in" },

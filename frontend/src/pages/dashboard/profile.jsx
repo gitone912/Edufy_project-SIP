@@ -77,6 +77,9 @@ export function Profile() {
   const UploadPosts = async () => {
     {window.location.href="/dashboard/upload-post"}
     }
+    const viewPost = (post) => {
+      window.location.href = `/dashboard/view-post/${post}`;
+    };
   if ( !loggedUser ) {
       return <Error404 />;
     }
@@ -204,7 +207,7 @@ export function Profile() {
             
             <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-4">
               {posts?.map(
-                ({ img, title, description, tag, route, members }) => (
+                ({ img, title, description, tag, route, members ,post_id}) => (
                   <Card key={title} color="transparent" shadow={false}>
                     <CardHeader
                       floated={false}
@@ -240,7 +243,7 @@ export function Profile() {
                     </CardBody>
                     <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
                       <Link to={route}>
-                        <Button variant="outlined" size="sm">
+                        <Button variant="outlined" size="sm" onClick={() => viewPost(post_id)}>
                           view post
                         </Button>
                       </Link>

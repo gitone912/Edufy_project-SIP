@@ -13,6 +13,8 @@ import { SignIn, SignUp  } from "@/pages/auth";
 import SignOut from "./pages/auth/sign-out";
 import { ChangePassword } from "@/pages/auth"
 import Posts from "./pages/dashboard/posts";
+import { AllCourses } from "./pages/coursesNotes/allCourses";
+import { Playlists } from "./pages/coursesNotes/playlists";
 const icon = {
   className: "w-5 h-5 text-inherit",
 };
@@ -43,13 +45,13 @@ export const routes = [
         icon: <BellIcon {...icon} />,
         name: "One shot courses",
         path: "/courses",
-        element: <Notifications />,
+        element: <AllCourses />,
       },
       {
         icon: <UserIcon {...icon} />,
         name: "Playlists(full courses)",
         path: "/playlists",
-        element: <Notifications/>,
+        element: <Playlists/>,
       },
       {
         icon: <UserIcon {...icon} />,

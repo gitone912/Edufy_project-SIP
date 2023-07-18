@@ -2,7 +2,7 @@ import { Button } from "@material-tailwind/react";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetSingleProductQuery } from "../../services/productServiceApi";
 import { Alert } from "@material-tailwind/react";
-import { useCreateCartMutation } from "../../services/cartServiceApi";
+import { useCreateCartMutation } from "../../services/courseServiceApi";
 import { getToken } from '../../services/LocalStorageService.js';
 import { getId } from "../../services/LocalStorageService.js";
 
