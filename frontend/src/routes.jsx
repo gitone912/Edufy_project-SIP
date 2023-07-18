@@ -15,6 +15,7 @@ import { ChangePassword } from "@/pages/auth"
 import Posts from "./pages/dashboard/posts";
 import { AllCourses } from "./pages/coursesNotes/allCourses";
 import { Playlists } from "./pages/coursesNotes/playlists";
+import { Notes } from "./pages/coursesNotes/notes";
 const icon = {
   className: "w-5 h-5 text-inherit",
 };
@@ -57,7 +58,7 @@ export const routes = [
         icon: <UserIcon {...icon} />,
         name: "Notes",
         path: "/notes",
-        element: <Notifications />,
+        element: <Notes />,
       },
       {
         icon: <UserIcon {...icon} />,

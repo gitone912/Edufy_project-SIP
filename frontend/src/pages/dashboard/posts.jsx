@@ -91,7 +91,7 @@ export function Posts() {
             >
               latest posts
             </Typography>
-            <div className="mt-6 grid grid-cols-2 gap-12 md:grid-cols-3 xl:grid-cols-4">
+            <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
               {postsResponse.data?.map(
                 ({
                   img,
@@ -106,7 +106,7 @@ export function Posts() {
                     <CardHeader
                       floated={false}
                       color="gray"
-                      className="mx-0 mt-0 mb-4 h-64 xl:h-40"
+                      className="mx-0 mt-0 mb-4 h-full xl:h-full w-full rounded-none bg-transparent"
                     >
                       <img
                         src={img}

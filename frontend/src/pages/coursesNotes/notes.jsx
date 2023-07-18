@@ -8,10 +8,10 @@ import {
   CardBody,
 } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import { useListAllPlaylistsQuery } from "@/services/courseServiceApi";
+import { useListAllnotesQuery } from "@/services/courseServiceApi";
 
-export function Playlists() {
-  const Response = useListAllPlaylistsQuery();
+export function Notes() {
+  const Response = useListAllnotesQuery();
   const res = Response.data;
 
   const handlePlaylistClick = (playlistId) => {
@@ -37,7 +37,7 @@ export function Playlists() {
             latest posts
           </Typography>
           <div className="mt-6 grid grid-cols-2 gap-12 md:grid-cols-3 xl:grid-cols-4">
-            {res?.map(({ id, title, description, tag, route, post_id, hashtags }) => (
+            {res?.map(({ id, title,content }) => (
               <Card
                 key={id}
                 shadow={false}
@@ -56,7 +56,7 @@ export function Playlists() {
                     {title}
                   </Typography>
                   <Typography variant="h5" className="mb-4 text-gray-400">
-                    {description}
+                    {content}
                   </Typography>
                   <button
                     onClick={() => handlePlaylistClick(id)} // Pass the playlist ID when the button is clicked

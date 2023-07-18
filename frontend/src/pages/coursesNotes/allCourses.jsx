@@ -34,7 +34,7 @@ export function AllCourses() {
               latest posts
             </Typography>
             <div className="mt-6 grid grid-cols-2 gap-12 md:grid-cols-3 xl:grid-cols-4">
-            {res?.map(({ id, title, description, tag, route, post_id, hashtags }) => (
+            {res?.map(({ id, title, description }) => (
     <Card
       key={id}
       shadow={false}

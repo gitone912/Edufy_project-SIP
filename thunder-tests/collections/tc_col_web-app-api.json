@@ -121,12 +121,12 @@
             "method": "POST",
             "sortNum": 60000,
             "created": "2023-07-15T19:53:41.658Z",
-            "modified": "2023-07-15T19:59:17.650Z",
+            "modified": "2023-07-18T19:00:12.275Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"title\": \"Algebra\",\n  \"description\": \"Introduction to Algebra\",\n  \"course\": 1\n}",
+                "raw": "{\n  \"title\": \"Python\",\n  \"description\": \"Introduction to Algebra\",\n  \"course\": 1\n}",
                 "form": []
             },
             "tests": []
@@ -192,12 +192,12 @@
             "method": "POST",
             "sortNum": 110000,
             "created": "2023-07-15T19:53:41.663Z",
-            "modified": "2023-07-15T19:59:24.105Z",
+            "modified": "2023-07-18T19:41:30.786Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"title\": \"Algebra Note\",\n  \"content\": \"This is a note about algebra\",\n  \"course\": 1\n}",
+                "raw": "{\n  \"title\": \"Java Note\",\n  \"content\": \"This is a note about algebra\",\n  \"course\": 2\n}",
                 "form": []
             },
             "tests": []

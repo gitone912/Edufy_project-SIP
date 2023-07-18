@@ -73,7 +73,7 @@ export function UpdatePost() {
               <Typography color="gray">Upload new Post </Typography>
               <Input size="lg" label="Title" name="title" required />
               <Input size="lg" label="Description" name="description" required />
-              <Input size="lg" label="Image" type="file" onChange={handleImageChange} />
+              <Input size="lg" label="Image" type="file" onChange={handleImageChange} required/>
               <Input size="lg" label="Tag" name="tag" required />
               <Input size="lg" label="Location" name="location" required />
               <Input size="lg" label="Hashtags" name="hashtags" required />
