@@ -9,6 +9,7 @@ import {
   UserPlusIcon,
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/solid";
+import { Typography } from '@material-tailwind/react';
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(); // Initialize to undefined
@@ -48,22 +49,23 @@ const VideoList = () => {
       <Navbar routes={navbarRoutes} />
     </div>
       <main className="videocontainer">
-        <section className="main-video">
+      <div className="embed-responsive embed-responsive-16by9 relative w-full overflow-hidden" style={{paddingTop: '56.25%'}}>
           {selectedVideo && (
-            <iframe
+            <iframe className="embed-responsive-item absolute bottom-0 left-0 right-0 top-0 h-full w-full"
               title={selectedVideo.title}
               width="560"
               height="315"
               src={`${selectedVideo.video_link}`}
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-            ></iframe>
+            />
           )}
           {selectedVideo && <h3 className="title">{selectedVideo.title}</h3>}
-        </section>
+          </div>
+          <div className="flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
 
         <section className="video-playlist">
-          {selectedVideo && <p>{selectedVideo.description}</p>}
+          
           <div className="videos">
             {videos.map((video, i) => (
               <div
@@ -79,7 +81,13 @@ const VideoList = () => {
             ))}
           </div>
         </section>
+        
+        </div>
+        
       </main>
+      <div className='container mx-auto p-4'>
+      <Typography color="gray">{selectedVideo && <p>{selectedVideo.description}</p>}</Typography>
+      </div>
       <div className="container absolute bottom-8 left-2/4 z-10 mx-auto -translate-x-2/4 text-black">
         <Footer />
       </div>
