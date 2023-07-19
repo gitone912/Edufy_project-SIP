@@ -31,7 +31,7 @@ class AllNotes(models.Model):
 
 class Playlist(models.Model):
     title = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     all_videos = models.ManyToManyField(Videos, related_name='playlists', blank=True)
     def __str__(self):

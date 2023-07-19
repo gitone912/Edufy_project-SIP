@@ -1,0 +1,23 @@
+{
+    "_id": "1ee5c630-c09c-4cca-8e59-c31542db3c13",
+    "colName": "all_notes",
+    "created": "2023-07-19T19:50:50.665Z",
+    "sortNum": 50000,
+    "folders": [],
+    "requests": [
+        {
+            "_id": "03888e5d-4497-4893-8f47-8e5fe91c165c",
+            "colId": "1ee5c630-c09c-4cca-8e59-c31542db3c13",
+            "containerId": "",
+            "name": "getallnotes",
+            "url": "http://127.0.0.1:8000/all_notes/",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-07-19T19:51:02.648Z",
+            "modified": "2023-07-19T19:52:05.086Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

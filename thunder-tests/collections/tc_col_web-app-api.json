@@ -213,19 +213,21 @@
             "method": "GET",
             "sortNum": 120000,
             "created": "2023-07-15T19:53:41.664Z",
-            "modified": "2023-07-15T19:53:41.664Z",
-            "headers": []
+            "modified": "2023-07-19T20:00:06.059Z",
+            "headers": [],
+            "params": [],
+            "tests": []
         },
         {
             "_id": "0a6275ee-2550-40cc-8a18-8968a43cd120",
             "colId": "acc77877-0066-42d6-aedc-aee3dc108298",
             "containerId": "7237ce59-698f-4420-b101-ad6574b2f5f8",
             "name": "Get a Note",
-            "url": "http://127.0.0.1:8000/notes/1/",
+            "url": "http://127.0.0.1:8000/notes/4/",
             "method": "GET",
             "sortNum": 130000,
             "created": "2023-07-15T19:53:41.665Z",
-            "modified": "2023-07-15T20:04:26.873Z",
+            "modified": "2023-07-19T20:15:12.590Z",
             "headers": [],
             "params": [],
             "tests": []

@@ -14,8 +14,8 @@ export function Notes() {
   const Response = useListAllnotesQuery();
   const res = Response.data;
 
-  const handlePlaylistClick = (playlistId) => {
-    window.location.href = `/dashboard/playlists/${playlistId}`;
+  const handleClick = (NotesId) => {
+    window.location.href = `/notes/${NotesId}`;
   };
 
   return (
@@ -59,7 +59,7 @@ export function Notes() {
                     {content}
                   </Typography>
                   <button
-                    onClick={() => handlePlaylistClick(id)} // Pass the playlist ID when the button is clicked
+                    onClick={() => handleClick(id)} // Pass the playlist ID when the button is clicked
                     className="px-4 py-2 bg-blue-500 text-white rounded-md mt-4"
                   >
                     View Notes

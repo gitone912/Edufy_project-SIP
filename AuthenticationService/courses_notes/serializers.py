@@ -28,6 +28,7 @@ class PlaylistSerializer(serializers.ModelSerializer):
 
 
 class NoteSerializer(serializers.ModelSerializer):
+    all_notes = AllNotesSerializer(many=True, read_only=True)
     class Meta:
         model = Note
         fields = '__all__'
@@ -38,7 +39,7 @@ class DashboardSerializer(serializers.ModelSerializer):
     playlists = PlaylistSerializer(many=True, read_only=True)
     notes = NoteSerializer(many=True, read_only=True)
     videos = VideosSerializer(many=True, read_only=True)
-
+    all_notes = AllNotesSerializer(many=True, read_only=True)
     class Meta:
         model = Dashboard
         fields = '__all__'
