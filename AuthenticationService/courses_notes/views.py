@@ -1,11 +1,12 @@
 from rest_framework import viewsets
-from .models import Course, Playlist, Note, Dashboard, Videos
+from .models import Course, Playlist, Note, Dashboard, Videos, AllNotes
 from .serializers import (
     CourseSerializer,
     PlaylistSerializer,
     NoteSerializer,
     DashboardSerializer,
     VideosSerializer,
+    AllNotesSerializer
 )
 
 
@@ -32,3 +33,7 @@ class NoteViewSet(viewsets.ModelViewSet):
 class DashboardViewSet(viewsets.ModelViewSet):
     queryset = Dashboard.objects.all()
     serializer_class = DashboardSerializer
+
+class AllNotesViewSet(viewsets.ModelViewSet):
+    queryset = AllNotes.objects.all()
+    serializer_class = AllNotesSerializer

@@ -20,6 +20,15 @@ class Videos(models.Model):
     def __str__(self):
         return self.title
 
+class AllNotes(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField(blank=True, null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    notes_link = models.CharField(max_length=255, blank=True, null=True)
+    notesNumber = models.IntegerField(blank=True, null=True)
+    def __str__(self):
+        return self.title
+
 class Playlist(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
@@ -31,8 +40,9 @@ class Playlist(models.Model):
 
 class Note(models.Model):
     title = models.CharField(max_length=255)
-    content = models.TextField()
+    content = models.TextField(blank=True, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    all_notes = models.ManyToManyField(AllNotes, related_name='notes', blank=True)
     def __str__(self):
         return self.title
     
@@ -44,5 +54,6 @@ class Dashboard(models.Model):
     playlists = models.ManyToManyField(Playlist, related_name='dashboards')
     notes = models.ManyToManyField(Note, related_name='dashboards')
     videos = models.ManyToManyField(Videos, related_name='dashboards')
+    all_notes = models.ManyToManyField(AllNotes, related_name='dashboards')
     def __str__(self):
         return self.user.email

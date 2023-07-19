@@ -23,25 +23,25 @@ export function Notes() {
       <Card>
         <CardHeader variant="gradient" color="blue" className="mb-8 p-6">
           <Typography variant="h6" color="white">
-            Courses
+            Notes
           </Typography>
         </CardHeader>
         <div className="px-4 pb-4">
           <Typography variant="h6" color="blue-gray" className="mb-2">
-            All Posts
+            All Notes
           </Typography>
           <Typography
             variant="small"
             className="font-normal text-blue-gray-500"
           >
-            latest posts
+            latest notes
           </Typography>
           <div className="mt-6 grid grid-cols-2 gap-12 md:grid-cols-3 xl:grid-cols-4">
             {res?.map(({ id, title,content }) => (
               <Card
                 key={id}
                 shadow={false}
-                className="relative grid h-[25rem] w-full max-w-[22rem] items-end justify-center overflow-hidden text-center md:w-[100%] lg:w-[100%] p-4"
+                className="relative grid h-[25rem] w-full max-w-[20rem] items-end justify-center overflow-hidden text-center md:w-[100%] lg:w-[100%] p-4"
               >
                 <CardHeader
                   floated={false}
@@ -62,7 +62,7 @@ export function Notes() {
                     onClick={() => handlePlaylistClick(id)} // Pass the playlist ID when the button is clicked
                     className="px-4 py-2 bg-blue-500 text-white rounded-md mt-4"
                   >
-                    View Videos
+                    View Notes
                   </button>
                 </CardBody>
               </Card>
