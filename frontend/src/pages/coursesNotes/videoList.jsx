@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 import { useGetOnePlaylistQuery } from '@/services/courseServiceApi';
 import { useParams } from 'react-router-dom';
-
+import { Navbar, Footer } from "@/widgets/layout";
+import {
+  ChartPieIcon,
+  UserIcon,
+  UserPlusIcon,
+  ArrowRightOnRectangleIcon,
+} from "@heroicons/react/24/solid";
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(); // Initialize to undefined
@@ -25,9 +31,22 @@ const VideoList = () => {
   };
 
   console.log('videos', videos);
-
+  const navbarRoutes = [
+    {
+      name: "dashboard",
+      path: "/dashboard/home",
+      icon: ChartPieIcon,
+    },
+    {
+      name: "profile",
+      path: "/dashboard/home",
+      icon: UserIcon,
+    }];
   return (
-    <>
+    <> <div className="relative min-h-screen w-full">
+    <div className="container relative z-40 mx-auto p-4">
+      <Navbar routes={navbarRoutes} />
+    </div>
       <main className="videocontainer">
         <section className="main-video">
           {selectedVideo && (
@@ -61,6 +80,10 @@ const VideoList = () => {
           </div>
         </section>
       </main>
+      <div className="container absolute bottom-8 left-2/4 z-10 mx-auto -translate-x-2/4 text-black">
+        <Footer />
+      </div>
+    </div>
     </>
   );
 };
