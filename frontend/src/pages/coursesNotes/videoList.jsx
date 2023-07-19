@@ -45,12 +45,16 @@ export function VideoList() {
 
   return (
     <>
+    <style>
+      {`
+      `}
+    </style>
      <div className="relative min-h-screen w-full">
       <div className="container relative z-40 mx-auto p-4">
         <Navbar routes={navbarRoutes} />
       </div>
-    {videos?.map(({ id, title, description, course }) => (
-     <p>{title}</p>
+    {videos?.map(({ id, title, description, course,video_link }) => (
+     <p>{title} {video_link}</p>
       ))}
       <div className="container absolute bottom-8 left-2/4 z-10 mx-auto -translate-x-2/4 text-black">
         <Footer />
