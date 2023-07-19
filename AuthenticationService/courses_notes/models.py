@@ -15,6 +15,7 @@ class Videos(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     codes = models.TextField(blank=True, null=True)
     video_link = models.CharField(max_length=255, blank=True, null=True)
+    videoNumber = models.IntegerField(blank=True, null=True)
     
     def __str__(self):
         return self.title
