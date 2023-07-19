@@ -48,7 +48,7 @@ export function Dashboard() {
           <Route path="/edit-profile/" element={<EditProfile />} />
           <Route path="/upload-post/" element={<UpdatePost />} />
           <Route path="/view-post/:postId" element={<ViewPost />} />
-          <Route path="/playlists/:playlistId" element={<VideoList />} />
+         
         </Routes>
         <div className="text-blue-gray-600">
           <Footer />

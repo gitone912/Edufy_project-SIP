@@ -85,14 +85,7 @@ export function Navbar({ brandName, routes, action }) {
 Navbar.defaultProps = {
   brandName: "Edufy",
   action: (
-    <a
-      href="/auth/sign-up"
-      target="_blank"
-    >
-      <Button variant="gradient" size="sm" fullWidth>
-       Signup
-      </Button>
-    </a>
+    <p></p>
   ),
 };
 
