@@ -2,47 +2,51 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 import { useGetOnnotesQuery } from '@/services/courseServiceApi';
 import { useParams } from 'react-router-dom';
-import { Navbar, Footer } from "@/widgets/layout";
+import { Navbar, Footer } from '@/widgets/layout';
 import {
   ChartPieIcon,
   UserIcon,
   UserPlusIcon,
   ArrowRightOnRectangleIcon,
-} from "@heroicons/react/24/solid";
+} from '@heroicons/react/24/solid';
 import { Typography } from '@material-tailwind/react';
 
 const NotesList = () => {
   const [notes, setNotes] = useState([]);
-  const [selectedNote, setSelectedNote] = useState(null);
-
+  const [selectedNotes, setSelectedNotes] = useState();
   const { notesId } = useParams();
-
   const Response = useGetOnnotesQuery(notesId);
+  const res = Response.data;
 
   useEffect(() => {
-    // Check if Response.data.all_notes is defined before setting the notes
-    if (Response.data && Response.data.all_notes) {
-      setNotes(Response.data.all_notes);
+    if (res) {
+      const sortedNotes = [...res.all_notes].sort((a, b) => a.notesNumber - b.notesNumber);
+      setNotes(sortedNotes);
+      setSelectedNotes(sortedNotes[0].notes_link);
     }
-  }, [notesId, Response.data]); // Add notesId as a dependency
+  }, [res]);
+
+  const handleNotesClick = (note) => {
+    setSelectedNotes(note.notes_link);
+  };
 
   const navbarRoutes = [
     {
-      name: "dashboard",
-      path: "/dashboard/home",
+      name: 'dashboard',
+      path: '/dashboard/home',
       icon: ChartPieIcon,
     },
     {
-      name: "profile",
-      path: "/dashboard/home",
+      name: 'profile',
+      path: '/dashboard/home',
       icon: UserIcon,
-    }
+    },
   ];
 
-  const handleNoteClick = (notes_link) => {
-    setSelectedNote();
-    setSelectedNote(notes_link);
-  };
+  if (!res) {
+    // Show a loading state when data is being fetched
+    return <p>Loading</p>;
+  }
 
   return (
     <>
@@ -53,17 +57,16 @@ const NotesList = () => {
           <div className="flex mt-4">
             <div className="w-1/4">
               <div className="grid gap-4">
-                {notes?.map(({ id, title, notes_link }) => (
+                {notes?.map((note) => (
                   <div
-                    key={id}
+                    key={note.id}
                     className={`bg-white rounded-lg p-4 shadow-md cursor-pointer ${
-                      selectedNote === notes_link ? 'bg-gray-200' : ''
+                      selectedNotes === note.notes_link ? 'bg-gray-200' : ''
                     }`}
-                    onClick={() => handleNoteClick(notes_link)}
+                    onClick={() => handleNotesClick(note)}
                   >
-                    {/* Render the data from each note here */}
-                    <Typography>{title}</Typography>
-                    <a href={notes_link} target="_blank" rel="noreferrer">
+                    <Typography>{note.title}</Typography>
+                    <a href={note.notes_link} target="_blank" rel="noreferrer">
                       go
                     </a>
                   </div>
@@ -71,13 +74,14 @@ const NotesList = () => {
               </div>
             </div>
             <div className="w-3/4 pl-4">
-              {selectedNote && (
+              {selectedNotes && (
                 <div style={{ height: '800px' }}>
-                  <embed
-                    src={selectedNote}
+                  <iframe
+                    src={selectedNotes}
                     type="application/pdf"
                     width="100%"
                     height="100%"
+                    
                   />
                 </div>
               )}
