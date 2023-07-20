@@ -15,7 +15,7 @@ import { useRegisterUserMutation } from "../../services/userAuthApi";
 import { storeToken, storeId } from "../../services/LocalStorageService";
 import { Alert } from "@material-tailwind/react";
 import { useCreateAccountProfileMutation } from "@/services/userAccountApi";
-
+import { useCreateDashboardMutation } from "@/services/courseServiceApi";
 import { v4 as uuidv4 } from 'uuid';
 
 export function SignUp() {
@@ -23,6 +23,7 @@ export function SignUp() {
   const [server_error, setServerError] = useState({});
   const [registerUser, { isLoading }] = useRegisterUserMutation();
   const [createUser, responseInfo] = useCreateAccountProfileMutation();
+  const [createDashboard, responseInfo1] = useCreateDashboardMutation();
   // const [saveUserId, responseInfo2] = useSaveUserIdMutation();
   // const navigate = useNavigate();
 
@@ -37,26 +38,23 @@ export function SignUp() {
       terms: data.get("terms"),
     };
 
-    // console.log(actualData.name);
+   
     const res = await registerUser(actualData);
+    const response = await createUser({ user: actualData.email,name: actualData.name });
+    const DashboardResponse = await createDashboard({ user: actualData.email });
+    // console.log("res", res);
+    // console.log("res", response);
+    // console.log("res", DashboardResponse);
 
     if (res.error) {
       setServerError(res.error.data.errors);
     }
 
-    if (res.data) {
-      const response = await createUser({ user: actualData.email,name: actualData.name });
-      console.log(response);
-      
-    }
-      
-    //   const res2 = await saveUserId({
-    //     user: actualData.email,
-    //     user_cart_id: userId,
-    //     name: actualData.name
-    //   });
+    
 
       storeToken(res.data.data.token);
+      storeId(DashboardResponse.data.id);
+      
      
 
       // console.log(userId, actualData.name, actualData.email);

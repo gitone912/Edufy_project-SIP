@@ -16,6 +16,8 @@ import { getToken, storeToken } from "../../services/LocalStorageService";
 import { useLoginUserMutation } from "../../services/userAuthApi";
 import { Alert } from "@material-tailwind/react";
 import React, { useState, useEffect } from "react";
+import { storeId } from "../../services/LocalStorageService";
+import { useGetDashboardIdMutation } from "@/services/courseServiceApi";
 
 
 export function SignIn() {
@@ -24,6 +26,7 @@ export function SignIn() {
   const [serverError, setServerError] = useState({});
   const navigate = useNavigate();
   const [loginUser, { isLoading }] = useLoginUserMutation();
+  const [dashboardid,Dresponse] = useGetDashboardIdMutation();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -52,6 +55,7 @@ export function SignIn() {
 
 
     const res = await loginUser(actualData);
+    const Dres = await dashboardid({email:actualData.email})
     console.log(res);
     if (res.error) {
       console.log(res.error.data.data);
@@ -59,7 +63,7 @@ export function SignIn() {
     }
     if (res.data) {
       storeToken(res.data.data.token);
-
+      storeId(Dres.data.dashboard_id);
       let { access_token } = getToken();
       dispatch(setUserToken({ access_token: access_token }));
       window.location.href = "/dashboard/home";

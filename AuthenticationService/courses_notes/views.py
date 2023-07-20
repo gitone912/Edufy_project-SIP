@@ -1,3 +1,6 @@
+import json
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from .models import Course, Playlist, Note, Dashboard, Videos, AllNotes
 from .serializers import (
@@ -8,6 +11,10 @@ from .serializers import (
     VideosSerializer,
     AllNotesSerializer
 )
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -37,3 +44,23 @@ class DashboardViewSet(viewsets.ModelViewSet):
 class AllNotesViewSet(viewsets.ModelViewSet):
     queryset = AllNotes.objects.all()
     serializer_class = AllNotesSerializer
+
+@csrf_exempt
+@require_POST
+def find_dashboard_id_by_email(request):
+    try:
+        data = json.loads(request.body)
+        email = data.get('email', None)
+        if email:
+            dashboard = get_object_or_404(Dashboard, user__email=email)
+            # Assuming Dashboard model has an 'id' field that you want to retrieve
+            response_data = {
+                'dashboard_id': dashboard.id
+            }
+            return JsonResponse(response_data)
+        else:
+            return JsonResponse({"error": "Email parameter is missing."}, status=400)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON payload."}, status=400)
+    except Dashboard.DoesNotExist:
+        return JsonResponse({"error": "No dashboard found for the given email."}, status=404)

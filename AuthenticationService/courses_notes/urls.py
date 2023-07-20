@@ -6,7 +6,8 @@ from .views import (
     NoteViewSet,
     DashboardViewSet,
     VideosViewSet,
-    AllNotesViewSet
+    AllNotesViewSet,
+    find_dashboard_id_by_email
 )
 
 router = routers.DefaultRouter()
@@ -20,4 +21,6 @@ router.register(r'all_notes', AllNotesViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('find_dashboard_id_by_email/', find_dashboard_id_by_email, name='find_dashboard_id_by_email'),
+
 ]

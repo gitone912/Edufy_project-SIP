@@ -269,12 +269,12 @@
             "method": "POST",
             "sortNum": 160000,
             "created": "2023-07-15T19:53:41.668Z",
-            "modified": "2023-07-15T20:39:00.365Z",
+            "modified": "2023-07-20T19:19:43.957Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"user\": \"admin@gmail.com\",\n  \"courses\": [1],\n  \"playlists\": [1],\n  \"notes\": [1]\n}",
+                "raw": "{\n  \"user\": \"pinky@gmail.com\"\n}",
                 "form": []
             },
             "tests": []
@@ -368,6 +368,25 @@
             "body": {
                 "type": "json",
                 "raw": "{\n  \"title\": \"java\",\n  \"description\": \n    \"This field is required.\"\n  ,\n  \"course\": 3\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "50ce5cf3-6363-48e3-89bd-e484f8e50017",
+            "colId": "acc77877-0066-42d6-aedc-aee3dc108298",
+            "containerId": "41bfa68c-704f-429b-a323-942dced595fb",
+            "name": "find",
+            "url": "http://127.0.0.1:8000/find_dashboard_id_by_email/",
+            "method": "POST",
+            "sortNum": 230000,
+            "created": "2023-07-20T19:57:15.669Z",
+            "modified": "2023-07-20T20:09:34.978Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"a@gmail.com\"\n}",
                 "form": []
             },
             "tests": []

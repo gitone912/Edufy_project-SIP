@@ -59,6 +59,12 @@ export const cartApi = createApi({
         }),
 
 
+
+
+
+
+        // createPlaylist
+
         createPlaylist: builder.mutation({
             query: (cart) => ({
                 url: 'playlists/',
@@ -110,6 +116,9 @@ export const cartApi = createApi({
             },
         }),
         
+// notes
+
+
 
 
         creatnotes: builder.mutation({
@@ -173,9 +182,56 @@ export const cartApi = createApi({
             }
         }),
 
+// dashboard
+
+
+
+        createDashboard: builder.mutation({
+            query: (cart) => ({
+                url: 'dashboards/',
+                method: 'POST',
+                body: cart,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }),
+        }),
+        updateDashboard: builder.mutation({
+            query: (cart) => {
+                const {id, ...data} = cart
+                return {
+                url: `dashboards/${id}/`,
+                method: 'PUT',
+                body :data,
+                headers : {
+                    'Content-Type': 'application/json',
+                },
+                }
+            }
+        }),
+        GetOneDashboard: builder.query({
+            query: (userId) => {
+                console.log("id",userId)
+                return {
+                url: `dashboards/${userId}/`,
+                method: 'GET'
+                }
+            }
+        }),
+        getDashboardId: builder.mutation({
+            query: (mail) => ({
+                url: 'find_dashboard_id_by_email/',
+                method: 'POST',
+                body: mail,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }),
+        })
+
     })
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useListAllCourseQuery, useGetOneCourseQuery, useCreateCourseMutation, useUpdateCourseMutation, useDeleteCourseMutation, useCreatePlaylistMutation, useUpdatePlaylistMutation, useDeletePlaylistMutation, useListAllPlaylistsQuery, useGetOnePlaylistQuery, useCreatnotesMutation, useUpdatnotesMutation, useDeletnotesMutation, useListAllnotesQuery, useGetOnnotesQuery , useGetoneAllNotesQuery} = cartApi
+export const { useListAllCourseQuery, useGetOneCourseQuery, useCreateCourseMutation, useUpdateCourseMutation, useDeleteCourseMutation, useCreatePlaylistMutation, useUpdatePlaylistMutation, useDeletePlaylistMutation, useListAllPlaylistsQuery, useGetOnePlaylistQuery, useCreatnotesMutation, useUpdatnotesMutation, useDeletnotesMutation, useListAllnotesQuery, useGetOnnotesQuery , useGetoneAllNotesQuery , useCreateDashboardMutation, useUpdateDashboardMutation, useGetOneDashboardQuery , useGetDashboardIdMutation} = cartApi
