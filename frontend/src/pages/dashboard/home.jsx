@@ -29,13 +29,18 @@ import {
 } from "@/data";
 import { useGetOneDashboardQuery } from "@/services/courseServiceApi";
 import { getId } from "@/services/LocalStorageService";
+import Error404 from "../NoAuth404";
 export function Home() {
   const id = getId()
   const Response = useGetOneDashboardQuery(id);
-  const courses = Response.data.courses
-  const videos = Response.data.videos
-  const notes = Response.data.notes
-  const playlist = Response.data.playlists
+  if (Response.isLoading) return <div>Loading...</div>;
+  if (Response.isError) return <div>{Response.error.message}<Error404/> </div>;
+  if(Response.isSuccess){
+    var courses = Response.data.courses
+    var videos = Response.data.videos
+    var notes = Response.data.notes
+    var playlist = Response.data.playlist
+  }
 //  console.log(courses,videos,notes,playlist)
   return (
     <>
