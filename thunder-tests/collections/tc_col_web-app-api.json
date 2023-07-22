@@ -162,16 +162,19 @@
             "colId": "acc77877-0066-42d6-aedc-aee3dc108298",
             "containerId": "6c9f4e8a-2128-4896-b39c-b00264c5428a",
             "name": "Update a Playlist",
-            "url": "http://127.0.0.1:8000/playlists/{playlist_id}/",
+            "url": "http://127.0.0.1:8000/playlists/1/",
             "method": "PUT",
             "sortNum": 90000,
             "created": "2023-07-15T19:53:41.661Z",
-            "modified": "2023-07-15T19:53:41.661Z",
+            "modified": "2023-07-22T11:00:06.537Z",
             "headers": [],
+            "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"title\": \"Algebra\",\n  \"description\": \"Updated description of Algebra\",\n  \"course\": 1\n}"
-            }
+                "raw": "{\n  \"title\": \"Algebra\",\n  \"description\": \"Updated description of Algebra\",\n  \"course\": 1\n}",
+                "form": []
+            },
+            "tests": []
         },
         {
             "_id": "693ac922-1905-426c-bc36-af5af4ece2ab",
@@ -296,19 +299,13 @@
             "colId": "acc77877-0066-42d6-aedc-aee3dc108298",
             "containerId": "41bfa68c-704f-429b-a323-942dced595fb",
             "name": "Get a Dashboard",
-            "url": "http://127.0.0.1:8000/dashboards/{dashboard_id}/",
+            "url": "http://127.0.0.1:8000/dashboards/2/",
             "method": "GET",
             "sortNum": 180000,
             "created": "2023-07-15T19:53:41.670Z",
-            "modified": "2023-07-15T20:30:48.794Z",
+            "modified": "2023-07-22T13:25:48.639Z",
             "headers": [],
-            "params": [
-                {
-                    "name": "dashboard_id",
-                    "value": "1",
-                    "isPath": true
-                }
-            ],
+            "params": [],
             "tests": []
         },
         {
@@ -316,16 +313,19 @@
             "colId": "acc77877-0066-42d6-aedc-aee3dc108298",
             "containerId": "41bfa68c-704f-429b-a323-942dced595fb",
             "name": "Update a Dashboard",
-            "url": "http://127.0.0.1:8000/dashboards/{dashboard_id}/",
-            "method": "PUT",
+            "url": "http://127.0.0.1:8000/dashboard/update/2/",
+            "method": "POST",
             "sortNum": 190000,
             "created": "2023-07-15T19:53:41.671Z",
-            "modified": "2023-07-15T19:53:41.671Z",
+            "modified": "2023-07-22T13:25:08.377Z",
             "headers": [],
+            "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"user\": 1,\n  \"courses\": [1, 2],\n  \"playlists\": [1, 2],\n  \"notes\": [1, 2]\n}"
-            }
+                "raw": "{\n    \"courses\": [1, 2, 3],\n    \"playlists\": [4, 5],\n    \"notes\": [6],\n    \"videos\": [7, 8],\n    \"all_notes\": [2]\n}\n",
+                "form": []
+            },
+            "tests": []
         },
         {
             "_id": "94fb6374-fa6e-48bb-890c-da95a0cca4ac",
@@ -381,12 +381,12 @@
             "method": "POST",
             "sortNum": 230000,
             "created": "2023-07-20T19:57:15.669Z",
-            "modified": "2023-07-20T20:09:34.978Z",
+            "modified": "2023-07-22T11:38:08.092Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\":\"a@gmail.com\"\n}",
+                "raw": "{\n  \"email\":\"admin@gmail.com\"\n}",
                 "form": []
             },
             "tests": []

@@ -39,9 +39,12 @@ export function Home() {
     var courses = Response.data.courses
     var videos = Response.data.videos
     var notes = Response.data.notes
-    var playlist = Response.data.playlist
+    var playlist = Response.data.playlists
+    console.log("courses",courses)
+    console.log("videos",videos)
+    console.log("notes",notes)
+    console.log("playlist",playlist)
   }
-//  console.log(courses,videos,notes,playlist)
   return (
     <>
       <link
@@ -52,28 +55,31 @@ export function Home() {
         referrerpolicy="no-referrer"
       />
       <Typography variant="h5" color="black" className="mb-1">
-        Your selected courses
+        Your selected Playlists
       </Typography>
       <div className="mt-12">
         <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
-          {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
+          {playlist?.map(({ icon, title,footerLabel, total_hours_playlist,color }) => (
             <StatisticsCard
               key={title}
-              {...rest}
-              title={title}
-              icon={<i class={icon}></i>}
+              value ={total_hours_playlist}
+              title="Total Time Of Plalist"
+              color= {color}
+              icon={<i className={"fa-brands fa-" + icon + " fa-2xl text-white"}></i>}
+
               // {React.createElement(icon, {
               //   className: "w-6 h-6 text-white",
               // })}
               footer={
                 <Typography className="font-normal text-blue-gray-600">
-                  <strong className={footer.color}>{footer.value}</strong>
-                  &nbsp;{footer.label}
+                 
+                  &nbsp;{footerLabel}
                 </Typography>
               }
             />
           ))}
         </div>
+        
         <div className="mb-6 grid grid-cols-1 gap-y-12 gap-x-6 md:grid-cols-2 xl:grid-cols-3">
           {statisticsChartsData.map((props) => (
             <StatisticsChart
@@ -244,7 +250,7 @@ export function Home() {
                           : "after:h-4/6"
                       }`}
                     >
-                      {<i class={icon} style={{ color: color }}></i>}
+                      {<i className={icon} style={{ color: color }}></i>}
                     </div>
                     <div>
                       <Typography

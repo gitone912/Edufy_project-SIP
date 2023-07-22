@@ -9,14 +9,21 @@ import {
 } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { useListAllPlaylistsQuery } from "@/services/courseServiceApi";
+import { useUpdatePlaylistMutation } from "@/services/courseServiceApi";
 
 export function Playlists() {
   const Response = useListAllPlaylistsQuery();
   const res = Response.data;
+  const [updatePlaylist, updatePlaylistInfo] = useUpdatePlaylistMutation();
 
   const handlePlaylistClick = (playlistId) => {
     window.location.href = `/playlists/${playlistId}`;
   };
+  const handleUpdatePlaylist = (playlistId) => {
+    updatePlaylist(playlistId);
+    window.location.href = `/dashboard`;
+  };
+  
 
   return (
     <div className="mx-auto my-20">
@@ -41,7 +48,7 @@ export function Playlists() {
               <Card
                 key={id}
                 shadow={false}
-                className="relative grid h-[25rem] w-full max-w-[22rem] items-end justify-center overflow-hidden text-center md:w-[100%] lg:w-[100%] p-4"
+                className="relative grid h-[25rem] w-full max-w-[20rem] items-end justify-center overflow-hidden text-center md:w-[100%] lg:w-[100%] p-4"
               >
                 <CardHeader
                   floated={false}
@@ -63,6 +70,12 @@ export function Playlists() {
                     className="px-4 py-2 bg-blue-500 text-white rounded-md mt-4"
                   >
                     View Videos
+                  </button>
+                  <button
+                    onClick={() => handleUpdatePlaylist(id)} // Pass the playlist ID when the button is clicked
+                    className="px-4 py-2 bg-green-500 text-white rounded-md mt-4"
+                  >
+                    add to dashboard
                   </button>
                 </CardBody>
               </Card>

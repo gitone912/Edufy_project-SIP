@@ -9,7 +9,8 @@ from .serializers import (
     NoteSerializer,
     DashboardSerializer,
     VideosSerializer,
-    AllNotesSerializer
+    AllNotesSerializer,
+    UpdateDashboardSerializer
 )
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -64,3 +65,19 @@ def find_dashboard_id_by_email(request):
         return JsonResponse({"error": "Invalid JSON payload."}, status=400)
     except Dashboard.DoesNotExist:
         return JsonResponse({"error": "No dashboard found for the given email."}, status=404)
+    
+@csrf_exempt
+@require_POST
+def update_dashboard(request, dashboard_id):
+    try:
+        data = json.loads(request.body)
+        dashboard = get_object_or_404(Dashboard, id=dashboard_id)
+        serializer = UpdateDashboardSerializer(dashboard, data=data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=400)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON payload."}, status=400)
+    except Dashboard.DoesNotExist:
+        return JsonResponse({"error": "No dashboard found for the given ID."}, status=404)

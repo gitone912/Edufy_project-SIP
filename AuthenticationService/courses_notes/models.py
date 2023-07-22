@@ -34,6 +34,11 @@ class Playlist(models.Model):
     description = models.TextField(blank=True, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     all_videos = models.ManyToManyField(Videos, related_name='playlists', blank=True)
+    color= models.CharField( max_length=50,blank=True, null=True)
+    icon= models.CharField( max_length=50,blank=True, null=True)
+    total_hours_playlist = models.CharField(max_length=50, blank=True, null=True)
+    footerLabel = models.CharField(max_length=50, blank=True, null=True)
+    
     def __str__(self):
         return self.title
 

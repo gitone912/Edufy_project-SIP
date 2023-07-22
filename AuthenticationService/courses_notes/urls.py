@@ -7,7 +7,8 @@ from .views import (
     DashboardViewSet,
     VideosViewSet,
     AllNotesViewSet,
-    find_dashboard_id_by_email
+    find_dashboard_id_by_email,
+    update_dashboard
 )
 
 router = routers.DefaultRouter()
@@ -22,5 +23,7 @@ router.register(r'all_notes', AllNotesViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('find_dashboard_id_by_email/', find_dashboard_id_by_email, name='find_dashboard_id_by_email'),
+    path('dashboard/update/<int:dashboard_id>/', update_dashboard, name='update_dashboard'),
+
 
 ]

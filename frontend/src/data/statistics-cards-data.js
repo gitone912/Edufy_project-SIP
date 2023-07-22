@@ -8,14 +8,14 @@ import {
 export const statisticsCardsData = [
   {
     color: "blue",
-    icon: "fa-brands fa-python fa-2xl text-white",
+    icon: "python",
     title: "Total minute learned",
     value: "53 minutes",
-    footer: {
-      color: "text-green-500",
-      value: "20%",
-      label: "Python completed",
-    },
+   
+      FooterColor: "text-green-500",
+      FooterValue: "20%",
+      FooterLabel: "Python completed",
+   
   },
   {
     color: "pink",
