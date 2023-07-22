@@ -9,22 +9,38 @@ import {
 } from "@material-tailwind/react";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { useListAllPlaylistsQuery } from "@/services/courseServiceApi";
-import { useUpdatePlaylistMutation } from "@/services/courseServiceApi";
+import { useUpdateDashboardMutation } from "@/services/courseServiceApi";
+import { useGetOneDashboardQuery } from "@/services/courseServiceApi";
+import { getId } from "@/services/LocalStorageService";
 
 export function Playlists() {
+  const id = getId()
+  const Response1 = useGetOneDashboardQuery(id);
+  
+  if(Response1.isSuccess){
+    var courses = Response1.data.courses
+    var videos = Response1.data.videos
+    var notes = Response1.data.notes
+    var playlist = Response1.data.playlists
+    console.log("courses",courses)
+    console.log("videos",videos)
+    console.log("notes",notes)
+    console.log("playlist",playlist)
+  }
   const Response = useListAllPlaylistsQuery();
   const res = Response.data;
-  const [updatePlaylist, updatePlaylistInfo] = useUpdatePlaylistMutation();
+  const [updateDashboard, updatePlaylistInfo] = useUpdateDashboardMutation();
 
   const handlePlaylistClick = (playlistId) => {
     window.location.href = `/playlists/${playlistId}`;
   };
-  const handleUpdatePlaylist = (playlistId) => {
-    updatePlaylist(playlistId);
+  const handleUpdatePlaylist = (playlist) => {
+    updateDashboard(playlist);
     window.location.href = `/dashboard`;
   };
   
-
+  if (Response1.isLoading) return <div>Loading...</div>;
+  if (Response1.isError) return <div>{Response1.error.message}<Error404/> </div>;
   return (
     <div className="mx-auto my-20">
       <Card>

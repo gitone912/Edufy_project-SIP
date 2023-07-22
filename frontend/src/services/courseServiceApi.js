@@ -200,7 +200,7 @@ export const cartApi = createApi({
             query: (cart) => {
                 const {id, ...data} = cart
                 return {
-                url: `dashboards/${id}/`,
+                url: `dashboard/update/${id}/`,
                 method: 'PUT',
                 body :data,
                 headers : {

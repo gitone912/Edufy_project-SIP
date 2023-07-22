@@ -56,3 +56,5 @@ class UpdateDashboardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dashboard
         fields = '__all__'
+
+        

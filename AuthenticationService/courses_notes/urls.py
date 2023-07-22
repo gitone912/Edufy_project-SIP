@@ -8,7 +8,7 @@ from .views import (
     VideosViewSet,
     AllNotesViewSet,
     find_dashboard_id_by_email,
-    update_dashboard
+    update_dashboard,
 )
 
 router = routers.DefaultRouter()
@@ -25,6 +25,4 @@ urlpatterns = [
     path('find_dashboard_id_by_email/', find_dashboard_id_by_email, name='find_dashboard_id_by_email'),
     path('dashboard/update/<int:dashboard_id>/', update_dashboard, name='update_dashboard'),
     
-
-
 ]
