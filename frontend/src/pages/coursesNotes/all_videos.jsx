@@ -27,7 +27,7 @@ import {
   import { useGetAccountProfileMutation } from "@/services/userAccountApi";
   import { useState, useEffect } from "react";
   import { useGetAllPostsQuery } from "@/services/userAccountApi";
-  export function Posts() {
+  export function Videos() {
     const { access_token } = getToken();
     const { data: loggedUser, isLoading } = useGetLoggedUserQuery(access_token);
     const [profileDetails, setProfileDetails] = useState(null);
@@ -159,5 +159,5 @@ import {
     );
   }
   
-  export default Posts;
+
   

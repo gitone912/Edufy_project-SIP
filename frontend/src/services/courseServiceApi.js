@@ -201,7 +201,7 @@ export const cartApi = createApi({
                 const {id, ...data} = cart
                 return {
                 url: `dashboard/update/${id}/`,
-                method: 'PUT',
+                method: 'POST',
                 body :data,
                 headers : {
                     'Content-Type': 'application/json',

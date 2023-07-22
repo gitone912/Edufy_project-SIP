@@ -14,18 +14,31 @@ import { useGetOneDashboardQuery } from "@/services/courseServiceApi";
 import { getId } from "@/services/LocalStorageService";
 
 export function Playlists() {
-  const id = getId()
+  const id = getId();
   const Response1 = useGetOneDashboardQuery(id);
-  
-  if(Response1.isSuccess){
-    var courses = Response1.data.courses
-    var videos = Response1.data.videos
-    var notes = Response1.data.notes
-    var playlist = Response1.data.playlists
-    console.log("courses",courses)
-    console.log("videos",videos)
-    console.log("notes",notes)
-    console.log("playlist",playlist)
+
+  if (Response1.isSuccess) {
+    var courses = Response1.data.courses;
+    var videos = Response1.data.videos;
+    var notes = Response1.data.notes;
+    var playlist = Response1.data.playlists;
+    var all_notes = Response1.data.all_notes;
+    console.log("courses", courses);
+    console.log("videos", videos);
+    console.log("notes", notes);
+    console.log("playlist", playlist);
+    console.log("all_notes", all_notes);
+    // Separate lists for IDs
+    var courseIds = Response1.data.courses.map((course) => course.id);
+   
+    var videoIds = Response1.data.videos.map((video) => video.id);
+
+    var noteIds = Response1.data.notes.map((note) => note.id);
+
+    var playlistIds = Response1.data.playlists.map((playlist) => playlist.id);
+
+    var allNoteIds = Response1.data.all_notes.map((note) => note.id);
+    console.log("courseIds", courseIds);
   }
   const Response = useListAllPlaylistsQuery();
   const res = Response.data;
@@ -34,13 +47,29 @@ export function Playlists() {
   const handlePlaylistClick = (playlistId) => {
     window.location.href = `/playlists/${playlistId}`;
   };
-  const handleUpdatePlaylist = (playlist) => {
-    updateDashboard(playlist);
-    window.location.href = `/dashboard`;
+  const handleUpdatePlaylist = (playlistId) => {
+    playlistIds.push(playlistId);
+    updateDashboard(
+      {
+        id: id,
+        courses: courseIds,
+        videos: videoIds,
+        notes: noteIds,
+        playlists: playlistIds,
+        all_notes: allNoteIds,
+      }
+    );
+    window.location.href = `/dashboard/home`;
   };
-  
+
   if (Response1.isLoading) return <div>Loading...</div>;
-  if (Response1.isError) return <div>{Response1.error.message}<Error404/> </div>;
+  if (Response1.isError)
+    return (
+      <div>
+        {Response1.error.message}
+        <Error404 />{" "}
+      </div>
+    );
   return (
     <div className="mx-auto my-20">
       <Card>
@@ -60,11 +89,11 @@ export function Playlists() {
             latest posts
           </Typography>
           <div className="mt-6 grid grid-cols-2 gap-12 md:grid-cols-3 xl:grid-cols-4">
-            {res?.map(({ id, title, description}) => (
+            {res?.map(({ id, title, description }) => (
               <Card
                 key={id}
                 shadow={false}
-                className="relative grid h-[25rem] w-full max-w-[20rem] items-end justify-center overflow-hidden text-center md:w-[100%] lg:w-[100%] p-4"
+                className="relative grid h-[25rem] w-full max-w-[20rem] items-end justify-center overflow-hidden p-4 text-center md:w-[100%] lg:w-[100%]"
               >
                 <CardHeader
                   floated={false}
@@ -75,7 +104,11 @@ export function Playlists() {
                   <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
                 </CardHeader>
                 <CardBody className="relative py-14 px-6 md:px-12">
-                  <Typography variant="h2" color="white" className="mb-6 font-medium leading-[1.5]">
+                  <Typography
+                    variant="h2"
+                    color="white"
+                    className="mb-6 font-medium leading-[1.5]"
+                  >
                     {title}
                   </Typography>
                   <Typography variant="h5" className="mb-4 text-gray-400">
@@ -83,13 +116,13 @@ export function Playlists() {
                   </Typography>
                   <button
                     onClick={() => handlePlaylistClick(id)} // Pass the playlist ID when the button is clicked
-                    className="px-4 py-2 bg-blue-500 text-white rounded-md mt-4"
+                    className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white"
                   >
                     View Videos
                   </button>
                   <button
                     onClick={() => handleUpdatePlaylist(id)} // Pass the playlist ID when the button is clicked
-                    className="px-4 py-2 bg-green-500 text-white rounded-md mt-4"
+                    className="mt-4 rounded-md bg-green-500 px-4 py-2 text-white"
                   >
                     add to dashboard
                   </button>
