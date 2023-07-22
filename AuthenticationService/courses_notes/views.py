@@ -81,3 +81,5 @@ def update_dashboard(request, dashboard_id):
         return JsonResponse({"error": "Invalid JSON payload."}, status=400)
     except Dashboard.DoesNotExist:
         return JsonResponse({"error": "No dashboard found for the given ID."}, status=404)
+    
+
