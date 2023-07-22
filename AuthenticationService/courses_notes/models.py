@@ -48,6 +48,8 @@ class Note(models.Model):
     content = models.TextField(blank=True, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     all_notes = models.ManyToManyField(AllNotes, related_name='notes', blank=True)
+    icon = models.CharField(max_length=50, blank=True, null=True)
+    color = models.CharField(max_length=50, blank=True, null=True)
     def __str__(self):
         return self.title
     
@@ -60,5 +62,12 @@ class Dashboard(models.Model):
     notes = models.ManyToManyField(Note, related_name='dashboards')
     videos = models.ManyToManyField(Videos, related_name='dashboards')
     all_notes = models.ManyToManyField(AllNotes, related_name='dashboards')
+    def __str__(self):
+        return self.user.email
+
+class UserProgress(models.Model):
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE, to_field='email')
+    hours_watched = models.IntegerField(blank=True, null=True)
+    playlists_completed = models.IntegerField(blank=True, null=True)
     def __str__(self):
         return self.user.email

@@ -141,89 +141,55 @@ export function Home() {
               <table className="w-full min-w-[640px] table-auto">
                 <thead>
                   <tr>
-                    {["courses", "languages", "Hours spent", "completion"].map(
-                      (el) => (
-                        <th
-                          key={el}
-                          className="border-b border-blue-gray-50 py-3 px-6 text-left"
+                    {[
+                      "Title",
+                      "Description",
+                      "Codes",
+                      "Video Link",
+                      "Video Number",
+                      "Course",
+                    ].map((el) => (
+                      <th
+                        key={el}
+                        className="border-b border-blue-gray-50 py-3 px-6 text-left"
+                      >
+                        <Typography
+                          variant="small"
+                          className="text-[11px] font-medium uppercase text-blue-gray-400"
                         >
-                          <Typography
-                            variant="small"
-                            className="text-[11px] font-medium uppercase text-blue-gray-400"
-                          >
-                            {el}
-                          </Typography>
-                        </th>
-                      )
-                    )}
+                          {el}
+                        </Typography>
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {projectsTableData.map(
-                    ({ img, name, members, budget, completion }, key) => {
-                      const className = `py-3 px-5 ${
-                        key === projectsTableData.length - 1
-                          ? ""
-                          : "border-b border-blue-gray-50"
-                      }`;
+                  {videos?.map(({ id, title, description, codes, video_link, videoNumber, course }) => {
+                    const className = `py-3 px-5 ${
+                      id === videos[videos.length - 1].id
+                        ? ""
+                        : "border-b border-blue-gray-50"
+                    }`;
 
-                      return (
-                        <tr key={name}>
-                          <td className={className}>
-                            <div className="flex items-center gap-4">
-                              <Avatar src={img} alt={name} size="sm" />
-                              <Typography
-                                variant="small"
-                                color="blue-gray"
-                                className="font-bold"
-                              >
-                                {name}
-                              </Typography>
-                            </div>
-                          </td>
-                          <td className={className}>
-                            {members.map(({ img, name }, key) => (
-                              <Tooltip key={name} content={name}>
-                                <Avatar
-                                  src={img}
-                                  alt={name}
-                                  size="xs"
-                                  variant="circular"
-                                  className={`cursor-pointer border-2 border-white ${
-                                    key === 0 ? "" : "-ml-2.5"
-                                  }`}
-                                />
-                              </Tooltip>
-                            ))}
-                          </td>
-                          <td className={className}>
-                            <Typography
-                              variant="small"
-                              className="text-xs font-medium text-blue-gray-600"
-                            >
-                              {budget}
-                            </Typography>
-                          </td>
-                          <td className={className}>
-                            <div className="w-10/12">
-                              <Typography
-                                variant="small"
-                                className="mb-1 block text-xs font-medium text-blue-gray-600"
-                              >
-                                {completion}%
-                              </Typography>
-                              <Progress
-                                value={completion}
-                                variant="gradient"
-                                color={completion === 100 ? "green" : "blue"}
-                                className="h-1"
-                              />
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    }
-                  )}
+                    return (
+                      <tr key={id}>
+                        <td className={className}>{title}</td>
+                        <td className={className}>{description}</td>
+                        <td className={className}>{codes}</td>
+                        <td className={className}>
+                          <a
+                            href={video_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Video Link
+                          </a>
+                        </td>
+                        <td className={className}>{videoNumber}</td>
+                        <td className={className}>{course}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </CardBody>
@@ -240,8 +206,8 @@ export function Home() {
               </Typography>
             </CardHeader>
             <CardBody className="pt-0">
-              {ordersOverviewData.map(
-                ({ icon, color, title, description }, key) => (
+              {notes?.map(
+                ({ icon, color, title, content }, key) => (
                   <div key={title} className="flex items-start gap-4 py-3">
                     <div
                       className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] ${
@@ -265,7 +231,7 @@ export function Home() {
                         variant="small"
                         className="text-xs font-medium text-blue-gray-500"
                       >
-                        {description}
+                        {content}
                       </Typography>
                     </div>
                   </div>
