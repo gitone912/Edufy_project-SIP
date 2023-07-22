@@ -2,7 +2,7 @@ import json
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
-from .models import Course, Playlist, Note, Dashboard, Videos, AllNotes
+from .models import Course, Playlist, Note, Dashboard, Videos, AllNotes, weeklyProgress, MonthlyUserProgress
 from .serializers import (
     CourseSerializer,
     PlaylistSerializer,
@@ -10,7 +10,9 @@ from .serializers import (
     DashboardSerializer,
     VideosSerializer,
     AllNotesSerializer,
-    UpdateDashboardSerializer
+    UpdateDashboardSerializer,
+    weeklyProgressSerializer,
+    MonthlyUserProgressSerializer
 )
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -83,4 +85,10 @@ def update_dashboard(request, dashboard_id):
         return JsonResponse({"error": "No dashboard found for the given ID."}, status=404)
     
 
-    
+class weeklyProgressViewSet(viewsets.ModelViewSet):
+    queryset = weeklyProgress.objects.all()
+    serializer_class = weeklyProgressSerializer
+
+class MonthlyUserProgressViewSet(viewsets.ModelViewSet):
+    queryset = MonthlyUserProgress.objects.all()
+    serializer_class = MonthlyUserProgressSerializer

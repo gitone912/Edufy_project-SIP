@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Course, Playlist, Note, Dashboard, Videos, AllNotes
+from .models import Course, Playlist, Note, Dashboard, Videos, AllNotes , weeklyProgress, MonthlyUserProgress
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -57,4 +57,13 @@ class UpdateDashboardSerializer(serializers.ModelSerializer):
         model = Dashboard
         fields = '__all__'
 
-        
+
+class MonthlyUserProgressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MonthlyUserProgress
+        fields = '__all__'
+
+class weeklyProgressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = weeklyProgress
+        fields = '__all__'

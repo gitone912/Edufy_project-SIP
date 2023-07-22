@@ -45,6 +45,9 @@ export function Home() {
     console.log("notes",notes)
     console.log("playlist",playlist)
   }
+  const handleClick = (NotesId) => {
+    window.location.href = `/notes/${NotesId}`;
+  };
   return (
     <>
       <link
@@ -207,7 +210,7 @@ export function Home() {
             </CardHeader>
             <CardBody className="pt-0">
               {notes?.map(
-                ({ icon, color, title, content }, key) => (
+                ({ id,icon, color, title, content }, key) => (
                   <div key={title} className="flex items-start gap-4 py-3">
                     <div
                       className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] ${
@@ -216,7 +219,8 @@ export function Home() {
                           : "after:h-4/6"
                       }`}
                     >
-                      {<i className={icon} style={{ color: color }}></i>}
+                      
+             {<i className={"fa-brands fa-" + icon + " fa-2xl text-"+color}></i>}
                     </div>
                     <div>
                       <Typography
@@ -233,7 +237,14 @@ export function Home() {
                       >
                         {content}
                       </Typography>
+                      
                     </div>
+                    <button
+                    onClick={() => handleClick(id)} // Pass the playlist ID when the button is clicked
+                    className="bg-grey-100 text-blue-900 "
+                  >
+                    View Notes
+                  </button>
                   </div>
                 )
               )}

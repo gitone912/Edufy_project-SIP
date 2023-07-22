@@ -9,6 +9,8 @@ from .views import (
     AllNotesViewSet,
     find_dashboard_id_by_email,
     update_dashboard,
+    weeklyProgressViewSet,
+    MonthlyUserProgressViewSet
 )
 
 router = routers.DefaultRouter()
@@ -18,6 +20,8 @@ router.register(r'notes', NoteViewSet)
 router.register(r'dashboards', DashboardViewSet)
 router.register(r'videos', VideosViewSet)
 router.register(r'all_notes', AllNotesViewSet)
+router.register(r'weekly_progress', weeklyProgressViewSet)
+router.register(r'monthly_progress', MonthlyUserProgressViewSet)
 
 
 urlpatterns = [
