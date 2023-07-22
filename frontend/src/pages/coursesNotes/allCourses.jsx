@@ -14,7 +14,9 @@ export function AllCourses() {
   const courseResponse = useListAllCourseQuery();
   const res = courseResponse.data;
   console.log("Courses", res);
-
+  const handleVideos = (courseId) => {
+    window.location.href = `courses/${courseId}`;
+  };
   return (
     <div className="mx-auto my-20">
       <Card>
@@ -52,9 +54,15 @@ export function AllCourses() {
         <Typography variant="h2" color="white" className="mb-6 font-medium leading-[1.5]">
           {title}
         </Typography>
-        <Typography variant="h5" className="mb-4 text-gray-400">
+        <Typography variant="h6" className="mb-4 text-gray-400">
           {description}
         </Typography>
+        <button
+                    onClick={() => handleVideos(id)} // Pass the playlist ID when the button is clicked
+                    className="mt-4 rounded-md bg-green-500 px-4 py-2 text-white"
+                  >
+                    Videos
+                  </button>
       </CardBody>
     </Card>
   ))}

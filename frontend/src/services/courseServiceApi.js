@@ -228,16 +228,29 @@ export const cartApi = createApi({
                 },
             }),
         }),
+
+        //videos
         listAllVideos: builder.query({
             query: () => ({
                 url: 'videos/',
                 method: 'GET'
             }),
         }),
+        getOneVideo: builder.query({
+            query: (userId) => {
+                console.log("id",userId)
+                return {
+                url: `videos/${userId}/`,
+                method: 'GET'
+                }
+            }
+        }),
+
+        
 
     })
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useListAllCourseQuery, useGetOneCourseQuery, useCreateCourseMutation, useUpdateCourseMutation, useDeleteCourseMutation, useCreatePlaylistMutation, useUpdatePlaylistMutation, useDeletePlaylistMutation, useListAllPlaylistsQuery, useGetOnePlaylistQuery, useCreatnotesMutation, useUpdatnotesMutation, useDeletnotesMutation, useListAllnotesQuery, useGetOnnotesQuery , useGetoneAllNotesQuery , useCreateDashboardMutation, useUpdateDashboardMutation, useGetOneDashboardQuery , useGetDashboardIdMutation , useListAllVideosQuery} = cartApi
+export const { useListAllCourseQuery, useGetOneCourseQuery, useCreateCourseMutation, useUpdateCourseMutation, useDeleteCourseMutation, useCreatePlaylistMutation, useUpdatePlaylistMutation, useDeletePlaylistMutation, useListAllPlaylistsQuery, useGetOnePlaylistQuery, useCreatnotesMutation, useUpdatnotesMutation, useDeletnotesMutation, useListAllnotesQuery, useGetOnnotesQuery , useGetoneAllNotesQuery , useCreateDashboardMutation, useUpdateDashboardMutation, useGetOneDashboardQuery , useGetDashboardIdMutation , useListAllVideosQuery, useGetOneVideoQuery} = cartApi

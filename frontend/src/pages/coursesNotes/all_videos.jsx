@@ -26,43 +26,59 @@ import {
   import { getToken } from "../../services/LocalStorageService";
   import { useGetAccountProfileMutation } from "@/services/userAccountApi";
   import { useState, useEffect } from "react";
-  import { useGetAllPostsQuery } from "@/services/userAccountApi";
-  export function Videos() {
-    const { access_token } = getToken();
-    const { data: loggedUser, isLoading } = useGetLoggedUserQuery(access_token);
-    const [profileDetails, setProfileDetails] = useState(null);
-    const postsResponse = useGetAllPostsQuery();
-    const [getAccountProfile, { isLoading: isProfileLoading }] =
-      useGetAccountProfileMutation();
-  
-    useEffect(() => {
-      console.log("Logged User", loggedUser);
-    }, [loggedUser]);
-    console.log("Posts", postsResponse.data);
-    const handleEmailFetch = async () => {
-      try {
-        if (loggedUser && loggedUser.data && loggedUser.data.email) {
-          const email = loggedUser.data.email;
-          console.log("Email", email);
-          const response = await getAccountProfile(email);
-          setProfileDetails(response.data);
-        } else {
-          console.error("Logged user or email not available.");
-        }
-      } catch (error) {
-        console.error("Failed to fetch profile details:", error);
+import { useListAllVideosQuery } from "@/services/courseServiceApi";
+import { useParams } from "react-router-dom";
+import { useUpdateDashboardMutation } from "@/services/courseServiceApi";
+import { useGetOneDashboardQuery } from "@/services/courseServiceApi";
+import { getId } from "@/services/LocalStorageService";
+  export function AllVideos() {
+    const id = getId();
+  const Response1 = useGetOneDashboardQuery(id);
+  const [updateDashboard, updatePlaylistInfo] = useUpdateDashboardMutation();
+  if (Response1.isSuccess) {
+    var courses = Response1.data.courses;
+    var videos = Response1.data.videos;
+    var notes = Response1.data.notes;
+    var playlist = Response1.data.playlists;
+    var all_notes = Response1.data.all_notes;
+    console.log("courses", courses);
+    console.log("videos", videos);
+    console.log("notes", notes);
+    console.log("playlist", playlist);
+    console.log("all_notes", all_notes);
+    // Separate lists for IDs
+    var courseIds = Response1.data.courses.map((course) => course.id);
+   
+    var videoIds = Response1.data.videos.map((video) => video.id);
+
+    var noteIds = Response1.data.notes.map((note) => note.id);
+
+    var playlistIds = Response1.data.playlists.map((playlist) => playlist.id);
+
+    var allNoteIds = Response1.data.all_notes.map((note) => note.id);
+    console.log("courseIds", courseIds);
+  }
+    const {courseId} = useParams();
+    console.log("courseId",courseId)
+    const videosResponse = useListAllVideosQuery();
+    const filteredVideos = videosResponse.data?.filter(
+      (video) => video.course === parseInt(courseId)
+    );
+    const viewVideo = (videoId) => {
+      videoIds.push(videoId);
+    updateDashboard(
+      {
+        id: id,
+        courses: courseIds,
+        videos: videoIds,
+        notes: noteIds,
+        playlists: playlistIds,
+        all_notes: allNoteIds,
       }
-    };
-    useEffect(() => {
-      handleEmailFetch();
-    }, [loggedUser]);
-  
-    const viewPost = (post) => {
-      window.location.href = `/dashboard/view-post/${post}`;
-    };
-    if (isLoading || isProfileLoading) {
-      return <div>Loading...</div>;
+    );
+      window.location.href = `view-video/${videoId}`;
     }
+
     return (
       <>
         <link
@@ -92,15 +108,16 @@ import {
                 latest posts
               </Typography>
               <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
-                {postsResponse.data?.map(
+                {filteredVideos?.map(
                   ({
                     img,
+                    id,
                     title,
                     description,
-                    tag,
-                    route,
-                    post_id,
-                    hashtags,
+                    codes,
+                    video_link,
+                    videoNumber,
+                    
                   }) => (
                     <Card key={title} color="transparent" shadow={false}>
                       <CardHeader
@@ -119,7 +136,7 @@ import {
                           variant="small"
                           className="font-normal text-blue-gray-500"
                         >
-                          {tag}
+                          {videoNumber}
                         </Typography>
                         <Typography
                           variant="h5"
@@ -137,16 +154,16 @@ import {
                       </CardBody>
                       <div class="px-6 pt-4 pb-2"></div>
                       <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
-                        <Link to={route}>
+                        
                           <Button
                             variant="outlined"
                             size="sm"
                             type="submit"
-                            onClick={() => viewPost(post_id)}
+                            onClick={() => viewVideo(id)}
                           >
-                            view post
+                            view video
                           </Button>
-                        </Link>
+                       
                       </CardFooter>
                     </Card>
                   )
@@ -155,6 +172,7 @@ import {
             </div>
           </CardBody>
         </Card>
+        
       </>
     );
   }
