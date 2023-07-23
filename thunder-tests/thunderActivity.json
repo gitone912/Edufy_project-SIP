@@ -272,16 +272,16 @@
         "colId": "history",
         "containerId": "",
         "name": "http://127.0.0.1:8000/account/posts/2/",
-        "url": "http://127.0.0.1:8000/account/posts/2/",
-        "method": "GET",
+        "url": "http://127.0.0.1:8000/api/update/weekly/",
+        "method": "POST",
         "sortNum": 0,
         "created": "2023-07-15T18:12:14.595Z",
-        "modified": "2023-07-15T18:12:14.595Z",
+        "modified": "2023-07-23T15:01:14.183Z",
         "headers": [],
         "params": [],
         "body": {
             "type": "json",
-            "raw": "{\n  \"user\":\"thorfinnwreck@gmail.com\",\n  \"post_id\":4\n}",
+            "raw": "{\n  \"user_email\": \"admin@gmail.com\",\n  \"hours_spent\": 6\n}\n",
             "form": []
         },
         "tests": []

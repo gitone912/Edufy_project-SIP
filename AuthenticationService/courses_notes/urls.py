@@ -12,7 +12,9 @@ from .views import (
     weeklyProgressViewSet,
     MonthlyUserProgressViewSet,
     monthly_user_progress_view,
-    weekly_progress_view
+    weekly_progress_view,
+    WeeklyProgressUpdateView,
+    MonthlyProgressUpdateView
 )
 
 router = routers.DefaultRouter()
@@ -32,6 +34,9 @@ urlpatterns = [
     path('dashboard/update/<int:dashboard_id>/', update_dashboard, name='update_dashboard'),
     path('monthly-user-progress/', monthly_user_progress_view, name='monthly-user-progress'),
     path('weekly-user-progress/', weekly_progress_view, name='weekly-progress'),
+    path('update/weekly/', WeeklyProgressUpdateView.as_view(), name='weekly-progress-update'),
+    path('update/monthly/', MonthlyProgressUpdateView.as_view(), name='monthly-progress-update'),
+
 
     
 ]

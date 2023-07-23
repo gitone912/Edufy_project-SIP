@@ -132,13 +132,10 @@ export function Profile() {
                 </Typography>
               </div>
             </div>
-            <div className="w-96">
+            <div className="w-46">
               <Tabs value="app">
                 <TabsHeader>
-                  <Tab value="app">
-                    <HomeIcon className="-mt-1 mr-2 inline-block h-5 w-5" />
-                    Profile
-                  </Tab>
+                  
                   <Tab value="message" onClick={EditProf}>
                     <ChatBubbleLeftEllipsisIcon className="-mt-0.5 mr-2 inline-block h-5 w-5" />
                     

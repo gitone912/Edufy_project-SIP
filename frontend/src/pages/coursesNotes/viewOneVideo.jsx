@@ -1,20 +1,79 @@
 import {
-    Card,
-    CardBody,
-    CardHeader,
-    CardFooter,
-    Typography,
-  } from "@material-tailwind/react";
-  import React from "react";
-  import { useGetOneVideoQuery } from "@/services/courseServiceApi";
-  import { useParams } from "react-router-dom";
-  
-  export function ViewVideo() {
-    const { videoId } = useParams();
-    console.log("videoId", videoId);
-    const videoResponse = useGetOneVideoQuery(videoId);
-    const res = videoResponse.data;
-  
+  Card,
+  CardBody,
+  CardHeader,
+  Typography,
+  Button,
+} from "@material-tailwind/react";
+import React, { useState } from "react";
+import { useGetOneVideoQuery } from "@/services/courseServiceApi";
+import { useParams } from "react-router-dom";
+import { useGetLoggedUserQuery } from "@/services/userAuthApi";
+import { getToken } from "../../services/LocalStorageService";
+import { useUpdateWeeklyUpdateMutation, useUpdateMonthlyUpdateMutation } from "@/services/courseServiceApi";
+
+export function ViewVideo() {
+  const { access_token } = getToken();
+  const [profileDetails, setProfileDetails] = useState(null);
+  const { data: loggedUser, isLoading } = useGetLoggedUserQuery(access_token);
+  const { videoId } = useParams();
+  console.log("videoId", videoId);
+  const videoResponse = useGetOneVideoQuery(videoId);
+  const res = videoResponse.data;
+  const [weekly, setWeekly] = useState(null);
+
+  const handleEmailFetch = async (videoDurationInHours) => {
+    try {
+      if (loggedUser && loggedUser.data && loggedUser.data.email) {
+        const email = loggedUser.data.email;
+        console.log("Email", email);
+        const weeklyUpdateData = {
+          user_email: email,
+          hours_spent: videoDurationInHours
+        };
+        const monthlyUpdateData = {
+          user_email: email,
+          hours_spent: videoDurationInHours, // Update this value with appropriate data
+        };
+        console.log("weeklyUpdateData", weeklyUpdateData);
+        console.log("monthlyUpdateData", monthlyUpdateData);
+        // Call the mutations
+        sendWeeklyUpdate(weeklyUpdateData);
+        sendMonthlyUpdate(monthlyUpdateData);
+
+        // Here, you can also implement the logic to send the data via email
+        // For demonstration purposes, we're just logging the data to the console.
+        console.log("Weekly Update Data:", weeklyUpdateData);
+        console.log("Monthly Update Data:", monthlyUpdateData);
+      } else {
+        console.error("Logged user or email not available.");
+      }
+    } catch (error) {
+      console.error("Failed to fetch profile details:", error);
+    }
+  };
+
+  const [updateWeeklyUpdate] = useUpdateWeeklyUpdateMutation();
+  const [updateMonthlyUpdate] = useUpdateMonthlyUpdateMutation();
+
+  const sendWeeklyUpdate = (data) => {
+    try {
+      const response = updateWeeklyUpdate(data);
+      console.log("Weekly Update Mutation Response:", response);
+    } catch (error) {
+      console.error("Failed to update weekly data:", error);
+    }
+  };
+
+  const sendMonthlyUpdate = (data) => {
+    try {
+      const response = updateMonthlyUpdate(data);
+      console.log("Monthly Update Mutation Response:", response);
+    } catch (error) {
+      console.error("Failed to update monthly data:", error);
+    }
+    window.location.href = "/dashboard/home";
+  };
     return (
       <div>
         <Card>
@@ -70,6 +129,19 @@ import {
                     >
                       {res && res.description}
                     </Typography>
+                    <Button
+
+                      color="lightBlue"
+                      buttonType="filled"
+                      size="small"
+                      rounded={false} d
+                      iconOnly={false}
+                      ripple="light"
+                      className="mt-4"
+                      onClick={() => handleEmailFetch(res?.videoDurationInHours)}
+                    >
+                     click if completed { res?.videoDurationInHours} hours
+                    </Button>
                   </CardBody>
                 </Card>
               </div>

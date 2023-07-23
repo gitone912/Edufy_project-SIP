@@ -16,6 +16,7 @@ class Videos(models.Model):
     codes = models.TextField(blank=True, null=True)
     video_link = models.CharField(max_length=255, blank=True, null=True)
     videoNumber = models.IntegerField(blank=True, null=True)
+    videoDurationInHours = models.IntegerField(blank=True, null=True)
     
     def __str__(self):
         return self.title
@@ -103,6 +104,7 @@ class MonthlyUserProgress(models.Model):
     year = models.IntegerField(default=2023)
     def __str__(self):
         return f"{self.user.email} - {self.get_month_display()}"
+
     
 
 class weeklyProgress(models.Model):

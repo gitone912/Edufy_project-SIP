@@ -108,7 +108,7 @@ export function Home() {
       data.week_number === currentWeekNumber && data.month_number === currentMonthNumber
   );
   const monthlyData = monthly?.filter(
-    (data) => data.month_number === currentMonthNumber
+    (data) => data.month === currentMonthNumber
   );
 
   const websiteViewsChart = {
@@ -132,7 +132,7 @@ export function Home() {
       },
       xaxis: {
         ...chartsConfig.xaxis,
-        categories: weekly ? weekly.map((data) => `${data.weekday}`) : [],
+        categories: weekly ? weeklyData.map((data) => `${data.weekday}`) : [],
       },
     },
   };
@@ -163,13 +163,28 @@ export function Home() {
   };
 
   const completedTasksChart = {
-    ...dailySalesChart,
+    type: "line",
+    height: 220,
     series: [
       {
-        name: "Tasks",
-        data: weekly ? weekly.map((data) => data.playlists_completed) : [],
+        name: "Sales",
+        data: weeklyData ? weeklyData.map((data) => data.playlists_completed) : [],
       },
     ],
+    options: {
+      ...chartsConfig,
+      colors: ["#fff"],
+      stroke: {
+        lineCap: "round",
+      },
+      markers: {
+        size: 5,
+      },
+      xaxis: {
+        ...chartsConfig.xaxis,
+        categories: weekly ? weeklyData.map((data) => data.weekday) : [],
+      },
+    },
   };
 
   const statisticsChartsData = [

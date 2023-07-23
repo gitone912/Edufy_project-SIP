@@ -18,7 +18,21 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from rest_framework.views import APIView
+from rest_framework import status
+from userAuth.models import MyUser
+from datetime import datetime
 
+
+
+def get_current_month_number():
+    today = datetime.now()
+    return today.month
+
+def get_current_week_number():
+    today = datetime.now()
+    week_number = today.strftime("%U")
+    return int(int(week_number)/int(get_current_month_number()))
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
@@ -125,3 +139,105 @@ def weekly_progress_view(request):
                 return Response({"error": f"No data found for the user with email: {email}"}, status=404)
         except weeklyProgress.DoesNotExist:
             return Response({"error": f"No data found for the user with email: {email}"}, status=404)
+
+
+class WeeklyProgressUpdateView(APIView):
+    def post(self, request, *args, **kwargs):
+        # Get the user email and hours spent from the request JSON
+        user_email = request.data.get('user_email')  # Assuming you pass the user's email in the JSON data
+        hours_spent = request.data.get('hours_spent')
+        playlists = request.data.get('playlists_completed')
+        if playlists:
+            playlists_completed = playlists
+        else:
+            playlists_completed = 0
+        print(user_email)
+        print(hours_spent)
+        print(playlists_completed)
+        if not user_email:
+            return Response({"error": "User email is required."}, status=status.HTTP_400_BAD_REQUEST)
+        #get the id of the email from my user
+        try:
+
+            userId = MyUser.objects.get(email=user_email)
+            print(userId)
+        except MyUser.DoesNotExist:
+            return Response({"error": "User does not exist."}, status=status.HTTP_404_NOT_FOUND)
+        try:
+            # Get the weekly progress instance for the current week and user
+            current_week_number = get_current_week_number()
+            current_month_number = get_current_month_number()
+            current_date = datetime.now()
+            current_weekday = current_date.weekday()
+
+            weekly_progress_queryset = weeklyProgress.objects.filter(
+            user__email=user_email,
+            week_number=current_week_number,
+            month_number=current_month_number,
+            weekday=current_weekday,
+        )
+
+            if weekly_progress_queryset.exists():
+                for weekly_progress in weekly_progress_queryset:
+                    weekly_progress.hours_watched += hours_spent
+                    weekly_progress.playlists_completed += playlists_completed
+                    weekly_progress.save()
+            else:
+                # If no objects found, create a new one
+                print(user_email)
+                weeklyProgress.objects.create(
+                    user=userId,
+                    hours_watched=0,
+                    week_number=current_week_number,
+                    weekday=current_weekday,
+                    month_number=current_month_number,
+                    playlists_completed=1
+                )
+               
+
+                weekly_progress.hours_watched += hours_spent
+                weekly_progress.playlists_completed += playlists_completed
+                weekly_progress.save()
+        except weeklyProgress.DoesNotExist:
+            weeklyProgress.objects.create(user=user_email, hours_watched=hours_spent, week_number=current_week_number, weekday=current_weekday, month_number=current_month_number)
+
+        return Response({"message": "Weekly progress updated successfully."})
+
+
+
+class MonthlyProgressUpdateView(APIView):
+    def post(self, request, *args, **kwargs):
+        # Get the user email and hours spent from the request JSON
+        user_email = request.data.get('user_email', None)
+        hours_spent = request.data.get('hours_spent', 0)
+
+        if not user_email:
+            return Response({"error": "User email is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            # Check if the user exists based on the provided email
+            user = MyUser.objects.get(email=user_email)
+        except MyUser.DoesNotExist:
+            return Response({"error": "User does not exist."}, status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            # Get the monthly progress instance for the current month and user
+            current_month_number = datetime.now().month
+            current_year = datetime.now().year
+
+            # Fetch or create the monthly progress instance
+            monthly_progress, created = MonthlyUserProgress.objects.get_or_create(
+                user=user,
+                month=current_month_number,
+                year=current_year,
+                defaults={'hours_watched': 0}  # Set default value for hours_watched if the object is created
+            )
+
+            # Update the hours_watched field
+            monthly_progress.hours_watched += hours_spent
+            monthly_progress.save()
+
+        except MonthlyUserProgress.DoesNotExist:
+            return Response({"error": "Monthly progress instance not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response({"message": "Monthly progress updated successfully."})
