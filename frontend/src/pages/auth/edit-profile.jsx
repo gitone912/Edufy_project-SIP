@@ -32,7 +32,7 @@ export function EditProfile() {
         const form = e.target;
         const formData = new FormData(form);
         formData.append("user", email);
-        formData.append("name", name);
+        formData.append("name", formData.get("Name"));
         formData.append("image", selectedImage); // Append the selected image file
         formData.append("description", formData.get("description"));
         formData.append("location", formData.get("location"));
@@ -70,7 +70,7 @@ export function EditProfile() {
             <div className="mb-4 flex flex-col gap-6">
               <Typography color="gray">Profile Information</Typography>
               <Input size="lg" label="Email" value={loggedUser?.data.email} readOnly />
-              <Input size="lg" label="Name" value={loggedUser?.data.name} readOnly />
+              <Input size="lg" label="Name" name="Name" required />
 
               <Input size="lg" label="Description" name="description" required />
               <Input size="lg" label="Location" name="location" required />

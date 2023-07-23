@@ -6,7 +6,12 @@ import {
   ArrowRightOnRectangleIcon,
   UserPlusIcon,
   UserIcon,
-  ArrowLeftOnRectangleIcon
+  ArrowLeftOnRectangleIcon,
+  PhotoIcon,
+  PlayCircleIcon,
+  FolderOpenIcon,
+  DocumentCheckIcon,
+  EyeSlashIcon
 } from "@heroicons/react/24/solid";
 import { Home, Profile, Tables, Notifications } from "@/pages/dashboard";
 import { SignIn, SignUp  } from "@/pages/auth";
@@ -19,6 +24,7 @@ import { Notes } from "./pages/coursesNotes/notes";
 const icon = {
   className: "w-5 h-5 text-inherit",
 };
+
 
 export const routes = [
   {
@@ -37,37 +43,32 @@ export const routes = [
         element: <Profile />,
       },
       {
-        icon: <TableCellsIcon {...icon} />,
+        icon: <PhotoIcon {...icon} />,
         name: "Posts",
         path: "/posts",
         element: <Posts />,
       },
       {
-        icon: <BellIcon {...icon} />,
-        name: "One shot courses",
+        icon: <FolderOpenIcon {...icon} />,
+        name: "Courses",
         path: "/courses",
         element: <AllCourses />,
       },
       {
-        icon: <UserIcon {...icon} />,
+        icon: <PlayCircleIcon {...icon} />,
         name: "Playlists(full courses)",
         path: "/playlists",
         element: <Playlists/>,
       },
       {
-        icon: <UserIcon {...icon} />,
+        icon: <DocumentCheckIcon {...icon} />,
         name: "Notes",
         path: "/notes",
         element: <Notes />,
       },
+      
       {
-        icon: <UserIcon {...icon} />,
-        name: "Doubts and Discussions",
-        path: "/doubts_and_discussions",
-        element: <Notifications />,
-      },
-      {
-        icon: <UserIcon {...icon} />,
+        icon: <EyeSlashIcon {...icon} />,
         name: "change password",
         path: "/change-password",
         element: <ChangePassword />,
