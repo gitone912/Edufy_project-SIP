@@ -21,20 +21,30 @@ import {
 } from "@heroicons/react/24/outline";
 import { StatisticsCard } from "@/widgets/cards";
 import { StatisticsChart } from "@/widgets/charts";
-import {
-  statisticsCardsData,
-  statisticsChartsData,
-  projectsTableData,
-  ordersOverviewData,
-} from "@/data";
 import { useGetOneDashboardQuery } from "@/services/courseServiceApi";
 import { getId } from "@/services/LocalStorageService";
 import Error404 from "../NoAuth404";
+import { useGetUserMonthlyRepMutation } from "@/services/courseServiceApi";
+import { useGetUserWeeklyRepMutation } from "@/services/courseServiceApi";
+import { useGetLoggedUserQuery } from "@/services/userAuthApi";
+import { getToken } from "@/services/LocalStorageService";
+import { useState,useEffect } from "react";
+import { chartsConfig } from "@/configs";
 export function Home() {
+
+
+
+
   const id = getId()
   const Response = useGetOneDashboardQuery(id);
-  if (Response.isLoading) return <div>Loading...</div>;
-  if (Response.isError) return <div>{Response.error.message}<Error404/> </div>;
+  const { access_token } = getToken();
+  const [profileDetails, setProfileDetails] = useState(null);
+  const { data: loggedUser, isLoading } = useGetLoggedUserQuery(access_token);
+  const [getUserWeeklyReport, { isLoading: isProfileLoading }] = useGetUserWeeklyRepMutation();
+  const [getUserMonthlyReport, { isLoading: isProfileLoading1 }] = useGetUserMonthlyRepMutation();
+  const [weekly, setWeekly] = useState(null);
+  const [monthly, setMonthly] = useState(null);
+  
   if(Response.isSuccess){
     var courses = Response.data.courses
     var videos = Response.data.videos
@@ -48,6 +58,148 @@ export function Home() {
   const handleClick = (NotesId) => {
     window.location.href = `/notes/${NotesId}`;
   };
+  useEffect(() => {
+  }, [loggedUser]);
+  const handleEmailFetch = async () => {
+    try {
+      if (loggedUser && loggedUser.data && loggedUser.data.email) {
+        const email = loggedUser.data.email;
+        console.log("Email", email);
+        const Weeklyresponse = await getUserWeeklyReport(email);
+        const Monthlyresponse = await getUserMonthlyReport(email);
+        setWeekly(Weeklyresponse.data);
+        setMonthly(Monthlyresponse.data);  
+      } else {
+        console.error("Logged user or email not available.");
+      }
+    } catch (error) {
+      console.error("Failed to fetch profile details:", error);
+    }
+  };
+  useEffect(() => {
+    handleEmailFetch();
+  }, [loggedUser]);
+
+
+  const getCurrentWeekNumber = () => {
+    const now = new Date();
+    const startOfYear = new Date(now.getFullYear(), 0, 0);
+    const diff = now - startOfYear;
+    const oneWeek = 1000 * 60 * 60 * 24 * 7;
+    const weekNumber = Math.floor(diff / oneWeek);
+    
+    return weekNumber;
+  };
+
+  // Function to get the current month number
+  const getCurrentMonthNumber = () => {
+    const now = new Date();
+    const monthNumber = now.getMonth() + 1;
+    return monthNumber;
+  };
+
+  // Use the current week and month number to filter the data
+  const currentMonthNumber = getCurrentMonthNumber();
+  const currentWeekNumber = Math.floor(getCurrentWeekNumber()/currentMonthNumber);
+  console.log("weekNumber", currentWeekNumber);
+
+  const weeklyData = weekly?.filter(
+    (data) =>
+      data.week_number === currentWeekNumber && data.month_number === currentMonthNumber
+  );
+  const monthlyData = monthly?.filter(
+    (data) => data.month_number === currentMonthNumber
+  );
+
+  const websiteViewsChart = {
+    type: "bar",
+    height: 220,
+    series: [
+      {
+        name: "Views",
+        data: weeklyData ? weeklyData.map((data) => data.hours_watched) : [],
+
+      },
+    ],
+    options: {
+      ...chartsConfig,
+      colors: "#fff",
+      plotOptions: {
+        bar: {
+          columnWidth: "16%",
+          borderRadius: 5,
+        },
+      },
+      xaxis: {
+        ...chartsConfig.xaxis,
+        categories: weekly ? weekly.map((data) => `${data.weekday}`) : [],
+      },
+    },
+  };
+
+  const dailySalesChart = {
+    type: "line",
+    height: 220,
+    series: [
+      {
+        name: "Sales",
+        data: monthly ? monthly.map((data) => data.hours_watched) : [],
+      },
+    ],
+    options: {
+      ...chartsConfig,
+      colors: ["#fff"],
+      stroke: {
+        lineCap: "round",
+      },
+      markers: {
+        size: 5,
+      },
+      xaxis: {
+        ...chartsConfig.xaxis,
+        categories: monthly ? monthly.map((data) => `${data.month}`) : [],
+      },
+    },
+  };
+
+  const completedTasksChart = {
+    ...dailySalesChart,
+    series: [
+      {
+        name: "Tasks",
+        data: weekly ? weekly.map((data) => data.playlists_completed) : [],
+      },
+    ],
+  };
+
+  const statisticsChartsData = [
+    {
+      color: "blue",
+      title: "Weekly View",
+      description: "Weekly performance Hours spent on learning",
+      footer: "last updated on Monday",
+      chart: websiteViewsChart,
+    },
+    {
+      color: "pink",
+      title: "Monthly view",
+      description: "Monthly performance Hours spent on learning",
+      footer: "last updated 1st June 2023",
+      chart: dailySalesChart,
+    },
+    {
+      color: "green",
+      title: "Completed Tasks",
+      description: "Completed Tasks Hours spent on learning",
+      footer: "last updated yesterday",
+      chart: completedTasksChart,
+    },
+  ];
+
+
+
+if (Response.isLoading) return <div>Loading.....</div>;
+  if (Response.isError) return <div>{Response.error.message}<Error404/> </div>;
   return (
     <>
       <link
@@ -59,6 +211,8 @@ export function Home() {
       />
       <Typography variant="h5" color="black" className="mb-1">
         Your selected Playlists
+        
+
       </Typography>
       <div className="mt-12">
         <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
@@ -213,11 +367,7 @@ export function Home() {
                 ({ id,icon, color, title, content }, key) => (
                   <div key={title} className="flex items-start gap-4 py-3">
                     <div
-                      className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] ${
-                        key === ordersOverviewData.length - 1
-                          ? "after:h-0"
-                          : "after:h-4/6"
-                      }`}
+                      className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] `}
                     >
                       
              {<i className={"fa-brands fa-" + icon + " fa-2xl text-"+color}></i>}

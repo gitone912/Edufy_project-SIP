@@ -10,7 +10,9 @@ from .views import (
     find_dashboard_id_by_email,
     update_dashboard,
     weeklyProgressViewSet,
-    MonthlyUserProgressViewSet
+    MonthlyUserProgressViewSet,
+    monthly_user_progress_view,
+    weekly_progress_view
 )
 
 router = routers.DefaultRouter()
@@ -28,5 +30,8 @@ urlpatterns = [
     path('', include(router.urls)),
     path('find_dashboard_id_by_email/', find_dashboard_id_by_email, name='find_dashboard_id_by_email'),
     path('dashboard/update/<int:dashboard_id>/', update_dashboard, name='update_dashboard'),
+    path('monthly-user-progress/', monthly_user_progress_view, name='monthly-user-progress'),
+    path('weekly-user-progress/', weekly_progress_view, name='weekly-progress'),
+
     
 ]

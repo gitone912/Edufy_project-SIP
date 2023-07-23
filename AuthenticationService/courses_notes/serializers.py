@@ -59,11 +59,24 @@ class UpdateDashboardSerializer(serializers.ModelSerializer):
 
 
 class MonthlyUserProgressSerializer(serializers.ModelSerializer):
+    month = serializers.SerializerMethodField()
+
+    def get_month(self, obj):
+        return dict(MonthlyUserProgress.MONTH_CHOICES).get(obj.month)
     class Meta:
         model = MonthlyUserProgress
         fields = '__all__'
 
 class weeklyProgressSerializer(serializers.ModelSerializer):
+    weekday = serializers.SerializerMethodField()
+    week_number = serializers.SerializerMethodField()
+
+    def get_weekday(self, obj):
+        return dict(weeklyProgress.WEEKDAYS_CHOICES).get(obj.weekday)
+
+    def get_week_number(self, obj):
+        return obj.week_number
+
     class Meta:
         model = weeklyProgress
         fields = '__all__'

@@ -14,12 +14,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2023-07-22T21:28:08.417Z",
-            "modified": "2023-07-22T21:29:15.074Z",
+            "modified": "2023-07-23T04:27:10.675Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n    \"user\": \"admin@gmail.com\",\n    \"hours_watched\": 10,\n    \"playlists_completed\": 2\n}\n",
+                "raw": "{\n    \"user\": \"admin@gmail.com\",\n    \"hours_watched\": 10,\n    \"playlists_completed\": 2,\n    \"week_number\":2,\n    \"month_number\":2,\n    \"weekday\":0\n}\n",
                 "form": []
             },
             "tests": []
@@ -33,12 +33,50 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-07-22T21:29:24.052Z",
-            "modified": "2023-07-22T21:30:21.100Z",
+            "modified": "2023-07-23T04:09:35.125Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n    \"user\": \"admin@gmail.com\",\n    \"hours_watched\": 10,\n    \"playlists_completed\": 2\n}\n",
+                "raw": "{\n    \"user\": \"admin@gmail.com\",\n    \"hours_watched\": 10,\n    \"playlists_completed\": 2,\n    \"month_number\":3,\n    \"year\":2024\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "6a7f3e50-9e03-4ec0-8eed-45d8a35ea481",
+            "colId": "09a763bf-350d-4a9a-a438-8314bf487a0e",
+            "containerId": "",
+            "name": "getreport",
+            "url": "http://127.0.0.1:8000/weekly-user-progress/",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-07-23T04:13:49.497Z",
+            "modified": "2023-07-23T05:34:04.307Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"admin@gmail.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "3c4b2013-b47b-40a0-a78d-20f7f1688868",
+            "colId": "09a763bf-350d-4a9a-a438-8314bf487a0e",
+            "containerId": "",
+            "name": "getmonthly",
+            "url": "http://127.0.0.1:8000/monthly-user-progress/",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-07-23T04:15:15.536Z",
+            "modified": "2023-07-23T05:34:17.392Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"admin@gmail.com\"\n}",
                 "form": []
             },
             "tests": []

@@ -246,6 +246,29 @@ export const cartApi = createApi({
             }
         }),
 
+
+        //weekly monthly reports
+        getUserMonthlyRep: builder.mutation({
+            query: (mail) => ({
+                url: 'monthly-user-progress/',
+                method: 'POST',
+                body: {"email":mail},
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }),
+        }),
+        getUserWeeklyRep: builder.mutation({
+            query: (mail) => ({
+                url: 'weekly-user-progress/',
+                method: 'POST',
+                body: {"email":mail},
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }),
+        }),
+
         
 
     })
@@ -253,4 +276,4 @@ export const cartApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useListAllCourseQuery, useGetOneCourseQuery, useCreateCourseMutation, useUpdateCourseMutation, useDeleteCourseMutation, useCreatePlaylistMutation, useUpdatePlaylistMutation, useDeletePlaylistMutation, useListAllPlaylistsQuery, useGetOnePlaylistQuery, useCreatnotesMutation, useUpdatnotesMutation, useDeletnotesMutation, useListAllnotesQuery, useGetOnnotesQuery , useGetoneAllNotesQuery , useCreateDashboardMutation, useUpdateDashboardMutation, useGetOneDashboardQuery , useGetDashboardIdMutation , useListAllVideosQuery, useGetOneVideoQuery} = cartApi
+export const { useListAllCourseQuery, useGetOneCourseQuery, useCreateCourseMutation, useUpdateCourseMutation, useDeleteCourseMutation, useCreatePlaylistMutation, useUpdatePlaylistMutation, useDeletePlaylistMutation, useListAllPlaylistsQuery, useGetOnePlaylistQuery, useCreatnotesMutation, useUpdatnotesMutation, useDeletnotesMutation, useListAllnotesQuery, useGetOnnotesQuery , useGetoneAllNotesQuery , useCreateDashboardMutation, useUpdateDashboardMutation, useGetOneDashboardQuery , useGetDashboardIdMutation , useListAllVideosQuery, useGetOneVideoQuery,useGetUserMonthlyRepMutation,useGetUserWeeklyRepMutation} = cartApi

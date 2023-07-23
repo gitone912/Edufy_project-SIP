@@ -92,3 +92,36 @@ class weeklyProgressViewSet(viewsets.ModelViewSet):
 class MonthlyUserProgressViewSet(viewsets.ModelViewSet):
     queryset = MonthlyUserProgress.objects.all()
     serializer_class = MonthlyUserProgressSerializer
+
+
+@api_view(['POST'])
+def monthly_user_progress_view(request):
+    if request.method == 'POST':
+        email = request.data.get('email')
+        if not email:
+            return Response({"error": "Please provide an 'email' in the JSON payload."}, status=400)
+        
+        try:
+            user_progress = MonthlyUserProgress.objects.filter(user__email=email)
+            serializer = MonthlyUserProgressSerializer(user_progress,many=True)
+            return Response(serializer.data)
+        except MonthlyUserProgress.DoesNotExist:
+            return Response({"error": f"No user found with email: {email}"}, status=404)
+        except MonthlyUserProgress.DoesNotExist:
+            return Response({"error": f"No data found for the user with email: {email}"}, status=404)
+
+@api_view(['POST'])
+def weekly_progress_view(request):
+    if request.method == 'POST':
+        email = request.data.get('email')
+        if not email:
+            return Response({"error": "Please provide an 'email' in the JSON payload."}, status=400)
+        try:
+            weekly_progress = weeklyProgress.objects.filter(user__email=email)
+            if weekly_progress.exists():
+                serializer = weeklyProgressSerializer(weekly_progress, many=True)
+                return Response(serializer.data)
+            else:
+                return Response({"error": f"No data found for the user with email: {email}"}, status=404)
+        except weeklyProgress.DoesNotExist:
+            return Response({"error": f"No data found for the user with email: {email}"}, status=404)
