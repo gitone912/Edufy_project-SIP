@@ -13,19 +13,6 @@ import {
     Button,
   } from "@material-tailwind/react";
   import React from "react";
-  import {
-    HomeIcon,
-    ChatBubbleLeftEllipsisIcon,
-    Cog6ToothIcon,
-    PencilIcon,
-  } from "@heroicons/react/24/solid";
-  import { Link } from "react-router-dom";
-  import { ProfileInfoCard, MessageCard } from "@/widgets/cards";
-  import { conversationsData, projectsData } from "@/data";
-  import { useGetLoggedUserQuery } from "@/services/userAuthApi";
-  import { getToken } from "../../services/LocalStorageService";
-  import { useGetAccountProfileMutation } from "@/services/userAccountApi";
-  import { useState, useEffect } from "react";
 import { useListAllVideosQuery } from "@/services/courseServiceApi";
 import { useParams } from "react-router-dom";
 import { useUpdateDashboardMutation } from "@/services/courseServiceApi";
@@ -81,97 +68,57 @@ import { getId } from "@/services/LocalStorageService";
 
     return (
       <>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-          crossOrigin="anonymous"
-          referrerpolicy="no-referrer"
-        />
-        <div className="mx-auto my-20 flex max-w-screen-lg flex-col gap-8"></div>
-  
-        <Card className="mx-3 -mt-16 mb-6 lg:mx-4">
-          <CardBody className="p-4">
-            <CardHeader variant="gradient" color="blue" className="mb-8 p-6">
-              <Typography variant="h6" color="white">
-                Posts
-              </Typography>
-            </CardHeader>
-            <div className="px-4 pb-4">
-              <Typography variant="h6" color="blue-gray" className="mb-2">
-                All Posts
-              </Typography>
-              <Typography
-                variant="small"
-                className="font-normal text-blue-gray-500"
+         <div className="mx-auto my-10">
+      <Card>
+        <CardHeader variant="gradient" color="blue" className="mb-3 p-2">
+          <Typography variant="h6" color="white">
+            All Videos
+          </Typography>
+        </CardHeader>
+        <div className="px-4 pb-4">
+          <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredVideos?.map(({ id, title, video_link ,videoNumber,description}) => (
+              <Card
+                key={id}
+                shadow={false}
+                className="relative flex flex-col h-[25rem] w-full max-w-[25rem] items-stretch justify-center overflow-hidden text-center rounded-lg p-4 cursor-pointer transition-transform duration-300 transform-gpu hover:scale-105"
+                onClick={() => viewVideo(id)}
               >
-                latest posts
-              </Typography>
-              <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
-                {filteredVideos?.map(
-                  ({
-                    img,
-                    id,
-                    title,
-                    description,
-                    codes,
-                    video_link,
-                    videoNumber,
-                    
-                  }) => (
-                    <Card key={title} color="transparent" shadow={false}>
-                      <CardHeader
-                        floated={false}
-                        color="gray"
-                        className="mx-0 mt-0 mb-4 h-full xl:h-full w-full rounded-none bg-transparent"
-                      >
-                        <img
-                          src={img}
-                          alt={title}
-                          className="h-full w-full object-cover"
-                        />
-                      </CardHeader>
-                      <CardBody className="py-0 px-1">
-                        <Typography
-                          variant="small"
-                          className="font-normal text-blue-gray-500"
-                        >
-                          {videoNumber}
-                        </Typography>
-                        <Typography
-                          variant="h5"
-                          color="blue-gray"
-                          className="mt-1 mb-2"
-                        >
-                          {title}
-                        </Typography>
-                        <Typography
-                          variant="small"
-                          className="font-normal text-blue-gray-500"
-                        >
-                          {description}
-                        </Typography>
-                      </CardBody>
-                      <div class="px-6 pt-4 pb-2"></div>
-                      <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
-                        
-                          <Button
-                            variant="outlined"
-                            size="sm"
-                            type="submit"
-                            onClick={() => viewVideo(id)}
-                          >
-                            view video
-                          </Button>
-                       
-                      </CardFooter>
-                    </Card>
-                  )
-                )}
-              </div>
-            </div>
-          </CardBody>
-        </Card>
+                 <div className="aspect-w-16 aspect-h-9 mb-4 sm:aspect-none sm:w-full sm:h-48">
+  <iframe
+    title={title}
+    src={video_link}
+    allowFullScreen
+    className="w-full h-full"
+  ></iframe>
+</div>
+
+                <CardBody className="flex flex-col justify-between flex-1">
+                  <Typography
+                    variant="h2"
+                    color="blue-gray"
+                    className="mb-2 text-lg font-medium line-clamp-2"
+                  >
+                    {videoNumber +" : "+title}
+                  </Typography>
+                  <Typography
+  variant="h2"
+  color="blue-gray"
+  className="text-xs font-normal line-clamp-1"
+>
+  {description}
+</Typography>
+
+                  <button className="rounded-md bg-green-500 px-3 py-1.5 text-white text-xs md:text-sm lg:text-base">
+                    Watch Now
+                  </button>
+                </CardBody>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </Card>
+    </div>
         
       </>
     );

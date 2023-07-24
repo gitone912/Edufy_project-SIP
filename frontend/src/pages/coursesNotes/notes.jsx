@@ -66,9 +66,9 @@ export function Notes() {
   };
 
   return (
-    <div className="mx-auto my-20">
+    <div className="mx-auto my-10">
       <Card>
-        <CardHeader variant="gradient" color="blue" className="mb-8 p-6">
+        <CardHeader variant="gradient" color="blue" className="mb-5 p-3">
           <Typography variant="h6" color="white">
             Notes
           </Typography>
@@ -84,38 +84,45 @@ export function Notes() {
             latest notes
           </Typography>
           <div className="mt-6 grid grid-cols-2 gap-12 md:grid-cols-3 xl:grid-cols-4">
-            {res?.map(({ id, title,content }) => (
+            {res?.map(({ id, title, content }) => (
               <Card
                 key={id}
                 shadow={false}
-                className="relative grid h-[25rem] w-full max-w-[20rem] items-end justify-center overflow-hidden text-center md:w-[100%] lg:w-[100%] p-4"
+                className="relative grid h-[20rem] w-full max-w-[15rem] items-end justify-center overflow-hidden text-center md:w-full lg:w-full md:h-[20rem] lg:h-[20rem] p-4"
               >
                 <CardHeader
                   floated={false}
                   shadow={false}
                   color="transparent"
-                  className="absolute inset-0 m-0 h-full w-full rounded-none bg-[url('https://images.unsplash.com/photo-1552960562-daf630e9278b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')] bg-cover bg-center"
+                  className={`absolute inset-0 m-0 h-full w-full rounded-none bg-cover bg-center bg-[url('https://source.unsplash.com/random/')]`}
                 >
                   <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
                 </CardHeader>
-                <CardBody className="relative py-14 px-6 md:px-12">
-                  <Typography variant="h2" color="white" className="mb-6 font-medium leading-[1.5]">
+                <CardBody className="relative ">
+                  <Typography
+                    variant="h2"
+                    color="white"
+                    className="mb-6 font-medium leading-[1.5] text-2xl md:text-3xl lg:text-4xl"
+                  >
                     {title}
                   </Typography>
-                  <Typography variant="h5" className="mb-4 text-gray-400">
+                  <Typography
+                    variant="h6"
+                    className="mb-3 text-gray-400 text-sm md:text-base lg:text-lg"
+                  >
                     {content}
                   </Typography>
                   <button
-                    onClick={() => handleClick(id)} // Pass the playlist ID when the button is clicked
-                    className="px-4 py-2 bg-blue-500 text-white rounded-md mt-4"
+                    onClick={() => handleClick(id)}
+                    className="mt-2 rounded-md bg-blue-500 px-3 py-1.5 text-white text-xs md:text-sm lg:text-sm"
                   >
                     View Notes
                   </button>
                   <button
-                    onClick={() => handleUpdatePlaylist(id)} // Pass the playlist ID when the button is clicked
-                    className="mt-4 rounded-md bg-green-500 px-4 py-2 text-white"
+                    onClick={() => handleUpdatePlaylist(id)}
+                    className="mt-2 rounded-md bg-green-500 px-3 py-1.5 text-white text-xs md:text-sm lg:text-sm"
                   >
-                    add to dashboard
+                    Add to Dashboard
                   </button>
                 </CardBody>
               </Card>

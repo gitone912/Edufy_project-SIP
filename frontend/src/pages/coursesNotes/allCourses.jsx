@@ -18,9 +18,9 @@ export function AllCourses() {
     window.location.href = `courses/${courseId}`;
   };
   return (
-    <div className="mx-auto my-20">
+    <div className="mx-auto my-10">
       <Card>
-        <CardHeader variant="gradient" color="blue" className="mb-8 p-6">
+        <CardHeader variant="gradient" color="blue" className="mb-4 p-4">
           <Typography variant="h6" color="white">
             Courses
           </Typography>
@@ -29,19 +29,15 @@ export function AllCourses() {
             <Typography variant="h6" color="blue-gray" className="mb-2">
               All Posts
             </Typography>
-            <Typography
-              variant="small"
-              className="font-normal text-blue-gray-500"
-            >
-              latest posts
-            </Typography>
-            <div className="mt-6 grid grid-cols-2 gap-12 md:grid-cols-3 xl:grid-cols-4">
+           
+            <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
             {res?.map(({ id, title, description }) => (
-    <Card
-      key={id}
-      shadow={false}
-      className="relative grid h-[20rem] w-full max-w-[15rem] items-end justify-center overflow-hidden text-center md:w-[100%] lg:w-[100%] p-4"
-    >
+              <Card
+  key={id}
+  shadow={false}
+  className="relative grid h-[20rem] w-full max-w-[15rem] items-end justify-center overflow-hidden text-center md:w-full lg:w-full md:h-[20rem] lg:h-[20rem] p-4"
+>
+
       <CardHeader
         floated={false}
         shadow={false}
@@ -51,18 +47,29 @@ export function AllCourses() {
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
       </CardHeader>
       <CardBody className="relative py-14 px-6 md:px-12">
-        <Typography variant="h2" color="white" className="mb-6 font-medium leading-[1.5]">
-          {title}
-        </Typography>
-        <Typography variant="h6" className="mb-4 text-gray-400">
-          {description}
-        </Typography>
-        <button
-                    onClick={() => handleVideos(id)} // Pass the playlist ID when the button is clicked
-                    className="mt-4 rounded-md bg-green-500 px-4 py-2 text-white"
-                  >
-                    Videos
-                  </button>
+      <Typography
+  variant="h2"
+  color="white"
+  className="mb-6 font-medium leading-[1.5] text-2xl md:text-3xl lg:text-4xl"
+>
+  {title}
+</Typography>
+
+<Typography
+  variant="h6"
+  className="mb-3 text-gray-400 text-sm md:text-base lg:text-lg"
+>
+  {description}
+</Typography>
+
+<button
+  onClick={() => handleVideos(id)}
+  className="mt-2 rounded-md bg-green-500 px-3 py-1.5 text-white text-xs md:text-sm lg:text-base"
+>
+  Videos
+</button>
+
+
       </CardBody>
     </Card>
   ))}

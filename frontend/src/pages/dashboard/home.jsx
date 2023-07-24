@@ -58,6 +58,9 @@ export function Home() {
   const handleClick = (NotesId) => {
     window.location.href = `/notes/${NotesId}`;
   };
+  const handlevideoClick = (videoId) => {
+    window.location.href = `courses/view-video/${videoId}`;
+  };
   useEffect(() => {
   }, [loggedUser]);
   const handleEmailFetch = async () => {
@@ -116,7 +119,7 @@ export function Home() {
     height: 220,
     series: [
       {
-        name: "Views",
+        name: "Hours",
         data: weeklyData ? weeklyData.map((data) => data.hours_watched) : [],
 
       },
@@ -289,7 +292,8 @@ if (Response.isLoading) return <div>Loading.....</div>;
                     strokeWidth={3}
                     className="h-4 w-4 text-blue-500"
                   />
-                  <strong>Ongoing</strong>
+                  <strong>Previous 5 Videos</strong>
+                  
                 </Typography>
               </div>
               <Menu placement="left-start">
@@ -306,6 +310,7 @@ if (Response.isLoading) return <div>Loading.....</div>;
                   <MenuItem>Action</MenuItem>
                   <MenuItem>Another Action</MenuItem>
                   <MenuItem>Something else here</MenuItem>
+                  
                 </MenuList>
               </Menu>
             </CardHeader>
@@ -318,7 +323,7 @@ if (Response.isLoading) return <div>Loading.....</div>;
                       "Description",
                       "Codes",
                       "Video Link",
-                      "Video Number",
+                      
                       "Course",
                     ].map((el) => (
                       <th
@@ -336,32 +341,26 @@ if (Response.isLoading) return <div>Loading.....</div>;
                   </tr>
                 </thead>
                 <tbody>
-                  {videos?.map(({ id, title, description, codes, video_link, videoNumber, course }) => {
-                    const className = `py-3 px-5 ${
-                      id === videos[videos.length - 1].id
-                        ? ""
-                        : "border-b border-blue-gray-50"
-                    }`;
+                {videos?.slice(0, 5).reverse().map(({ id, title, description, codes, video_link, videoNumber, course }) => {
+  const className = `py-3 px-5 ${
+    id === videos[videos.length - 1].id ? "" : "border-b border-blue-gray-50"
+  }`;
 
-                    return (
-                      <tr key={id}>
-                        <td className={className}>{title}</td>
-                        <td className={className}>{description}</td>
-                        <td className={className}>{codes}</td>
-                        <td className={className}>
-                          <a
-                            href={video_link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Video Link
-                          </a>
-                        </td>
-                        <td className={className}>{videoNumber}</td>
-                        <td className={className}>{course}</td>
-                      </tr>
-                    );
-                  })}
+  return (
+    <tr key={id}>
+      <td className={className}>{title}</td>
+      <td className={className}>{description}</td>
+      <td className={className}>{codes}</td>
+      <td className={className}>
+        <button onClick={() => handlevideoClick(id)} className="bg-grey-100 text-blue-900">
+          View Video
+        </button>
+      </td>
+      <td className={className}>{course}</td>
+    </tr>
+  );
+})}
+
                 </tbody>
               </table>
             </CardBody>
@@ -385,7 +384,7 @@ if (Response.isLoading) return <div>Loading.....</div>;
                       className={`relative p-1 after:absolute after:-bottom-6 after:left-2/4 after:w-0.5 after:-translate-x-2/4 after:bg-blue-gray-50 after:content-[''] `}
                     >
                       
-             {<i className={"fa-brands fa-" + icon + " fa-2xl text-"+color}></i>}
+             {<i className={"fa-brands fa-" + icon + " fa-2xl text-blue"}></i>}
                     </div>
                     <div>
                       <Typography

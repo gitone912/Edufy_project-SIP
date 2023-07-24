@@ -61,7 +61,7 @@ import {
                       <img
                         src={res && res.img}
                         alt="Post Image"
-                        className="h-full w-full  rounded-t-lg"
+                        className="h-full w-full  rounded-t-lg "
                       />
                     </CardHeader>
   

@@ -72,11 +72,11 @@ export function Posts() {
         crossOrigin="anonymous"
         referrerpolicy="no-referrer"
       />
-      <div className="mx-auto my-20 flex max-w-screen-lg flex-col gap-8"></div>
+      <div className="mx-auto my-10 flex max-w-screen-lg flex-col gap-8"></div>
 
       <Card className="mx-3 -mt-16 mb-6 lg:mx-4">
         <CardBody className="p-4">
-          <CardHeader variant="gradient" color="blue" className="mb-8 p-6">
+          <CardHeader variant="gradient" color="blue" className="mb-6 p-4">
             <Typography variant="h6" color="white">
               Posts
             </Typography>
@@ -85,12 +85,7 @@ export function Posts() {
             <Typography variant="h6" color="blue-gray" className="mb-2">
               All Posts
             </Typography>
-            <Typography
-              variant="small"
-              className="font-normal text-blue-gray-500"
-            >
-              latest posts
-            </Typography>
+            
             <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
               {postsResponse.data?.map(
                 ({
