@@ -67,12 +67,7 @@ export const routes = [
         element: <Notes />,
       },
       
-      {
-        icon: <EyeSlashIcon {...icon} />,
-        name: "change password",
-        path: "/change-password",
-        element: <ChangePassword />,
-      }
+     
     ],
   },
   {

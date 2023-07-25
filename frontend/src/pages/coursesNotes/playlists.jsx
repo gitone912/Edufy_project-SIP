@@ -12,6 +12,7 @@ import { useListAllPlaylistsQuery } from "@/services/courseServiceApi";
 import { useUpdateDashboardMutation } from "@/services/courseServiceApi";
 import { useGetOneDashboardQuery } from "@/services/courseServiceApi";
 import { getId } from "@/services/LocalStorageService";
+import Error404 from "../NoAuth404";
 
 export function Playlists() {
   const id = getId();
@@ -63,13 +64,13 @@ export function Playlists() {
   };
 
   if (Response1.isLoading) return <div>Loading...</div>;
-  if (Response1.isError)
-    return (
-      <div>
-        {Response1.error.message}
-        <Error404 />{" "}
-      </div>
-    );
+  // if (Response1.isError)
+  //   return (
+  //     <div>
+  //       {Response1.error.message}
+  //       <Error404 />{" "}
+  //     </div>
+  //   );
   return (
     <div className="mx-auto my-10">
       <Card>

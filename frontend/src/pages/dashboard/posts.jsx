@@ -60,9 +60,11 @@ export function Posts() {
   const viewPost = (post) => {
     window.location.href = `/dashboard/view-post/${post}`;
   };
+
   if (isLoading || isProfileLoading) {
     return <div>Loading...</div>;
   }
+
   return (
     <>
       <link
@@ -72,84 +74,84 @@ export function Posts() {
         crossOrigin="anonymous"
         referrerpolicy="no-referrer"
       />
-      <div className="mx-auto my-10 flex max-w-screen-lg flex-col gap-8"></div>
-
-      <Card className="mx-3 -mt-16 mb-6 lg:mx-4">
-        <CardBody className="p-4">
-          <CardHeader variant="gradient" color="blue" className="mb-6 p-4">
-            <Typography variant="h6" color="white">
-              Posts
-            </Typography>
-          </CardHeader>
-          <div className="px-4 pb-4">
-            <Typography variant="h6" color="blue-gray" className="mb-2">
-              All Posts
-            </Typography>
-            
-            <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
-              {postsResponse.data?.map(
-                ({
-                  img,
-                  title,
-                  description,
-                  tag,
-                  route,
-                  post_id,
-                  hashtags,
-                }) => (
-                  <Card key={title} color="transparent" shadow={false}>
-                    <CardHeader
-                      floated={false}
-                      color="gray"
-                      className="mx-0 mt-0 mb-4 h-full xl:h-full w-full rounded-none bg-transparent"
-                    >
-                      <img
-                        src={img}
-                        alt={title}
-                        className="h-full w-full object-cover"
-                      />
-                    </CardHeader>
-                    <CardBody className="py-0 px-1">
-                      <Typography
-                        variant="small"
-                        className="font-normal text-blue-gray-500"
+      <div className="my-10 ">
+        <Card className="mx-3 mb-6 lg:mx-4">
+          <CardBody className="p-4">
+            <CardHeader variant="gradient" color="blue" className="mb-5 p-3">
+              <Typography variant="h6" color="white">
+                Posts
+              </Typography>
+            </CardHeader>
+            <div className="px-4 pb-4">
+              <Typography variant="h6" color="blue-gray" className="mb-2">
+                All Posts
+              </Typography>
+              
+              <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+                {postsResponse.data?.map(
+                  ({
+                    img,
+                    title,
+                    description,
+                    tag,
+                    route,
+                    post_id,
+                    hashtags,
+                  }) => (
+                    <Card key={title} color="transparent" shadow={false}>
+                      <CardHeader
+                        floated={false}
+                        color="gray"
+                        className="mx-0 mt-0 mb-4 h-40 sm:h-48 lg:h-56 rounded-none bg-transparent"
                       >
-                        {tag}
-                      </Typography>
-                      <Typography
-                        variant="h5"
-                        color="blue-gray"
-                        className="mt-1 mb-2"
-                      >
-                        {title}
-                      </Typography>
-                      <Typography
-                        variant="small"
-                        className="font-normal text-blue-gray-500"
-                      >
-                        {description}
-                      </Typography>
-                    </CardBody>
-                    <div class="px-6 pt-4 pb-2"></div>
-                    <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
-                      <Link to={route}>
-                        <Button
-                          variant="outlined"
-                          size="sm"
-                          type="submit"
-                          onClick={() => viewPost(post_id)}
+                        <img
+                          src={img}
+                          alt={title}
+                          className="h-full w-full object-cover"
+                        />
+                      </CardHeader>
+                      <CardBody className="py-0 px-1">
+                        <Typography
+                          variant="small"
+                          className="font-normal text-blue-gray-500"
                         >
-                          view post
-                        </Button>
-                      </Link>
-                    </CardFooter>
-                  </Card>
-                )
-              )}
+                          {tag}
+                        </Typography>
+                        <Typography
+                          variant="h5"
+                          color="blue-gray"
+                          className="mt-1 mb-2"
+                        >
+                          {title}
+                        </Typography>
+                        <Typography
+                          variant="small"
+                          className="font-normal text-blue-gray-500"
+                        >
+                          {description}
+                        </Typography>
+                      </CardBody>
+                      <div className="px-6 pt-4 pb-2"></div>
+                      <CardFooter className="mt-6 flex items-center justify-between py-0 px-1">
+                        <Link to={route}>
+                          <Button
+                            variant="outlined"
+                            size="sm"
+                            type="submit"
+                            onClick={() => viewPost(post_id)}
+                          >
+                            view post
+                          </Button>
+                        </Link>
+                      </CardFooter>
+                    </Card>
+                  )
+                )}
+              </div>
             </div>
-          </div>
-        </CardBody>
-      </Card>
+          </CardBody>
+        </Card>
+      </div>
     </>
   );
 }

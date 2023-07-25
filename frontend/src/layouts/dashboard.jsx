@@ -14,9 +14,17 @@ import { UpdatePost } from "@/pages/dashboard/upload-post";
 import { ViewPost } from "@/pages/dashboard/viewOnePost";
 import { ViewVideo } from "@/pages/coursesNotes/viewOneVideo";
 import { AllVideos } from "@/pages/coursesNotes/all_videos";
+import { ChangePassword } from "@/pages/auth";
+import { getToken } from "@/services/LocalStorageService";
+import Error404 from "@/pages/NoAuth404";
+import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
+
 export function Dashboard() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
+  const { access_token } = getToken();
+
 
   return (
     <div className="min-h-screen bg-blue-gray-50/50">
@@ -51,6 +59,8 @@ export function Dashboard() {
           <Route path="/view-post/:postId" element={<ViewPost />} />
           <Route path="/courses/:courseId" element={<AllVideos />} />
           <Route path="courses/view-video/:videoId" element={<ViewVideo />} />
+          <Route path="/change-password/" element={access_token ? <ChangePassword/> : <Navigate to="/dashboard/error-404" />} />
+          <Route path="/error-404" element={<Error404 />} />
          
         </Routes>
         <div className="text-blue-gray-600">

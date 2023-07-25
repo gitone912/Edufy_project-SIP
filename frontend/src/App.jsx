@@ -11,6 +11,7 @@ function App() {
       <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
       <Route path="/playlists/:playlistId" element={<VideoList />} />
       <Route path="/notes/:notesId" element={<NotesList />} />
+      <Route path="/dashboard" element={<Navigate to="/dashboard/home" replace />} />
     </Routes>
   );
 }

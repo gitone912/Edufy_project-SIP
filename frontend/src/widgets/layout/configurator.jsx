@@ -66,10 +66,10 @@ export function Configurator() {
       <div className="flex items-start justify-between px-6 pt-8 pb-6">
         <div>
           <Typography variant="h5" color="blue-gray">
-            Dashboard Settings
+             Settings
           </Typography>
           <Typography className="font-normal text-blue-gray-600">
-            See your dashboard options.
+            See your settings options.
           </Typography>
         </div>
         <IconButton
@@ -140,7 +140,19 @@ export function Configurator() {
             />
           </div>
           <hr />
-          
+          <div className="flex items-center justify-between py-5">
+            <Button
+              variant="gradient"
+              color="blue"
+              onClick={() => {
+                window.location.href = "/dashboard/change-password/";
+
+              }}
+            >
+            Change password
+            </Button>
+
+          </div>
           
         </div>
         
