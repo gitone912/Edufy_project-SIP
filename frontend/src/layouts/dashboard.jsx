@@ -54,8 +54,8 @@ export function Dashboard() {
                 <Route exact path={path} element={element} />
               ))
           )}
-          <Route path="/edit-profile/" element={<EditProfile />} />
-          <Route path="/upload-post/" element={<UpdatePost />} />
+          <Route path="/edit-profile/" element={access_token ? <EditProfile/> : <Navigate to="/dashboard/error-404" />} />
+          <Route path="/upload-post/" element={access_token ? <UpdatePost/> : <Navigate to="/dashboard/error-404" />} />
           <Route path="/view-post/:postId" element={<ViewPost />} />
           <Route path="/courses/:courseId" element={<AllVideos />} />
           <Route path="courses/view-video/:videoId" element={<ViewVideo />} />
