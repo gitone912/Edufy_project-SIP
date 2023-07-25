@@ -89,18 +89,18 @@ export function Playlists() {
           >
             latest posts
           </Typography>
-          <div className="mt-6 grid grid-cols-2 gap-12 md:grid-cols-3 xl:grid-cols-4">
-            {res?.map(({ id, title, description }) => (
+          <div className=" grid grid-cols-2 gap-12 md:grid-cols-3 xl:grid-cols-4">
+            {res?.map(({ id, title, description ,image_link}) => (
               <Card
                 key={id}
                 shadow={false}
-                className="relative grid h-[20rem] w-full max-w-[15rem] items-end justify-center overflow-hidden text-center md:w-full lg:w-full md:h-[20rem] lg:h-[20rem] p-4"
+                className="relative grid h-[20rem] w-full max-w-[15rem] items-end justify-center overflow-hidden text-center md:w-full lg:w-full md:h-[20rem] lg:h-[20rem] "
               >
                 <CardHeader
                   floated={false}
                   shadow={false}
                   color="transparent"
-                  className={`absolute inset-0 m-0 h-full w-full rounded-none bg-cover bg-center bg-[url('https://source.unsplash.com/random/')]`}
+                  className={`absolute inset-0 m-0 h-full w-full rounded-none bg-cover bg-center bg-[url('${image_link}')]`}
                 >
                   <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
                 </CardHeader>
@@ -108,19 +108,19 @@ export function Playlists() {
                   <Typography
                     variant="h2"
                     color="white"
-                    className="mb-6 font-medium leading-[1.5] text-2xl md:text-3xl lg:text-4xl"
+                    className="mb-6 font-medium leading-[1.5] text-2xl md:text-2xl lg:text-2xl"
                   >
                     {title}
                   </Typography>
                   <Typography
                     variant="h6"
-                    className="mb-1 text-gray-400 text-sm md:text-base lg:text-lg"
+                    className="text-gray-400 text-sm md:text-sm lg:text-sm"
                   >
                     {description}
                   </Typography>
                   <button
                     onClick={() => handlePlaylistClick(id)}
-                    className="mt-2 rounded-md bg-blue-500 px-1 py-1.5 text-white text-xs md:text-sm lg:text-sm"
+                    className="mt-2 rounded-md bg-blue-500 px-1 py-1 text-white text-xs md:text-sm lg:text-sm"
                   >
                     View Videos
                   </button>

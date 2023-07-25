@@ -5,6 +5,7 @@ from userAuth.models import MyUser
 class Course(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
+    image_link = models.CharField(max_length=255, blank=True, null=True)
     def __str__(self):
         return self.title
 
@@ -39,6 +40,7 @@ class Playlist(models.Model):
     icon= models.CharField( max_length=50,blank=True, null=True)
     total_hours_playlist = models.CharField(max_length=50, blank=True, null=True)
     footerLabel = models.CharField(max_length=50, blank=True, null=True)
+    image_link = models.CharField(max_length=255, blank=True, null=True)
     
     def __str__(self):
         return self.title
@@ -51,6 +53,7 @@ class Note(models.Model):
     all_notes = models.ManyToManyField(AllNotes, related_name='notes', blank=True)
     icon = models.CharField(max_length=50, blank=True, null=True)
     color = models.CharField(max_length=50, blank=True, null=True)
+    image_link = models.CharField(max_length=255, blank=True, null=True)
     def __str__(self):
         return self.title
     
