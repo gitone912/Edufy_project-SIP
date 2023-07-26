@@ -1,12 +1,8 @@
+import React from "react";
 import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  Avatar,
-  Button,
-  IconButton,
-  Typography,
-} from "@material-tailwind/react";
+import { Avatar, Button, IconButton, Typography } from "@material-tailwind/react";
 import { useMaterialTailwindController, setOpenSidenav } from "@/context";
 
 export function Sidenav({ brandImg, brandName, routes }) {
@@ -41,12 +37,12 @@ export function Sidenav({ brandImg, brandName, routes }) {
         <IconButton
           variant="text"
           color="white"
-          size="sm"
+          size="xl"
           ripple={false}
-          className="absolute right-0 top-0 grid rounded-br-none rounded-tl-none xl:hidden"
+          className="absolute right-0 top-7 grid rounded-br-none rounded-tl-none 3xl:hidden"
           onClick={() => setOpenSidenav(dispatch, false)}
         >
-          <XMarkIcon strokeWidth={2.5} className="h-5 w-5 text-white" />
+          <XMarkIcon strokeWidth={4.0} className="h-5 w-5 text-white" />
         </IconButton>
       </div>
       <div className="m-4">
@@ -93,6 +89,18 @@ export function Sidenav({ brandImg, brandName, routes }) {
             ))}
           </ul>
         ))}
+        {openSidenav && ( 
+          <div className="flex justify-center mt-auto">
+            <Button
+              variant="gradient"
+              color="white"
+              className="w-80 py-2 rounded-lg"
+              onClick={() => setOpenSidenav(dispatch, false)}
+            >
+              Close  Navbar
+            </Button>
+          </div>
+        )}
       </div>
     </aside>
   );

@@ -136,11 +136,11 @@
             "colId": "acc77877-0066-42d6-aedc-aee3dc108298",
             "containerId": "6c9f4e8a-2128-4896-b39c-b00264c5428a",
             "name": "Get All Playlists",
-            "url": "http://127.0.0.1:8000/playlists/4/",
+            "url": "http://127.0.0.1:8000/playlists/",
             "method": "GET",
             "sortNum": 70000,
             "created": "2023-07-15T19:53:41.659Z",
-            "modified": "2023-07-19T18:25:20.981Z",
+            "modified": "2023-07-26T08:08:58.526Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -154,8 +154,16 @@
             "method": "GET",
             "sortNum": 80000,
             "created": "2023-07-15T19:53:41.660Z",
-            "modified": "2023-07-15T19:53:41.660Z",
-            "headers": []
+            "modified": "2023-07-26T08:08:31.621Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "playlist_id",
+                    "value": "12",
+                    "isPath": true
+                }
+            ],
+            "tests": []
         },
         {
             "_id": "8ec0abae-5861-498f-ab2a-59e77b68891e",
