@@ -66,8 +66,8 @@ const NotesList = () => {
                     onClick={() => handleNotesClick(note)}
                   >
                     <Typography>{note.title}</Typography>
-                    <a href={note.notes_link} target="_blank" rel="noreferrer">
-                      go
+                    <a href={note.notes_link} target="_blank" rel="noreferrer" class="underline decoration-green-500">
+                      Download
                     </a>
                   </div>
                 ))}

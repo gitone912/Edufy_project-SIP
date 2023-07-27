@@ -1,10 +1,11 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
+import { getStaticURL } from './url'
+const url = getStaticURL();
 // Define a service using a base URL and expected endpoints
 export const productApi = createApi({
     reducerPath: 'productApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8001/products/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${url}/products` }),
     endpoints: (builder) => ({
         listProductCategories: builder.query({
             query: () => ({

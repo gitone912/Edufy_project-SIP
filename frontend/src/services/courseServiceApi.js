@@ -1,10 +1,11 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
+import { getStaticURL } from './url'
+const url = getStaticURL();
 // Define a service using a base URL and expected endpoints
 export const cartApi = createApi({
     reducerPath: 'cartApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: url }),
     endpoints: (builder) => ({
         listAllCourse: builder.query({
             query: () => ({
