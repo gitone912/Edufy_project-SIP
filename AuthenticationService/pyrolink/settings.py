@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-pmcjlr$4+guv@(j7b=031n9v1ikqon94t4h=-r2&l#t7qb#__w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.ngrok-free.app',"127.0.0.1",'localhost','hunc.serveo.net']
 
 
 # Application definition
@@ -197,5 +197,5 @@ MEDIA_URL = '/media/'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:8000",
-    "http://localhost:5173",
+    "http://localhost:5173"
 ]
