@@ -323,5 +323,33 @@
             "form": []
         },
         "tests": []
+    },
+    {
+        "_id": "545d77cd-511e-44fd-a9d4-3e62e0aa489b",
+        "colId": "history",
+        "containerId": "",
+        "name": "https://edufybackend.vercel.app/",
+        "url": "https://edufybackend.vercel.app/",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-29T17:43:53.052Z",
+        "modified": "2023-07-29T17:43:53.052Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+    },
+    {
+        "_id": "0378354d-5086-4494-b978-f3bb428d6860",
+        "colId": "history",
+        "containerId": "",
+        "name": "https://edufybackend.vercel.app/courses/",
+        "url": "https://edufybackend.vercel.app/courses/",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-29T17:44:10.195Z",
+        "modified": "2023-07-29T17:44:10.195Z",
+        "headers": [],
+        "params": [],
+        "tests": []
     }
 ]

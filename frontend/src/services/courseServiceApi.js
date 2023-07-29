@@ -5,7 +5,7 @@ const url = getStaticURL();
 // Define a service using a base URL and expected endpoints
 export const cartApi = createApi({
     reducerPath: 'cartApi',
-    baseQuery: fetchBaseQuery({ baseUrl: url }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${url}/` }),
     endpoints: (builder) => ({
         listAllCourse: builder.query({
             query: () => ({
