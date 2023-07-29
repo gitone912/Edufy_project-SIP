@@ -210,3 +210,5 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     'https://edufy-50353.web.app'
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
