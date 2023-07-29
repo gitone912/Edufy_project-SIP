@@ -157,7 +157,7 @@ const VideoList = () => {
         </Typography>
         <Typography color="gray" className="text-sm">
           {selectedVideo && <p>Description: {selectedVideo.description}</p>}
-          {selectedVideo && <p>Codes: {selectedVideo.codes}</p>}
+          {selectedVideo && <p>{selectedVideo.codes}</p>}
           {selectedVideo && <p>Duration: {selectedVideo.videoDurationInHours} Minutes</p>}
         </Typography>
       </div>
