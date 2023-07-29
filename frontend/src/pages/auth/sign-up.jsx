@@ -41,7 +41,21 @@ export function SignUp() {
    
     const res = await registerUser(actualData);
     const response = await createUser({ user: actualData.email,name: actualData.name });
-    const DashboardResponse = await createDashboard({ user: actualData.email });
+    const DashboardResponse = await createDashboard({ user: actualData.email ,"courses": [
+   
+    ],
+    "playlists": [
+     
+    ],
+    "notes": [
+     
+    ],
+    "videos": [
+      
+    ],
+    "all_notes": [
+      
+    ] });
     // console.log("res", res);
     // console.log("res", response);
     // console.log("res", DashboardResponse);

@@ -61,11 +61,11 @@ class Note(models.Model):
 
 class Dashboard(models.Model):
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE, to_field='email')
-    courses = models.ManyToManyField(Course, related_name='dashboards')
-    playlists = models.ManyToManyField(Playlist, related_name='dashboards')
-    notes = models.ManyToManyField(Note, related_name='dashboards')
-    videos = models.ManyToManyField(Videos, related_name='dashboards')
-    all_notes = models.ManyToManyField(AllNotes, related_name='dashboards')
+    courses = models.ManyToManyField(Course, related_name='dashboards', blank=True )
+    playlists = models.ManyToManyField(Playlist, related_name='dashboards', blank=True )
+    notes = models.ManyToManyField(Note, related_name='dashboards', blank=True )
+    videos = models.ManyToManyField(Videos, related_name='dashboards', blank=True )
+    all_notes = models.ManyToManyField(AllNotes, related_name='dashboards', blank=True )
     def __str__(self):
         return self.user.email
 

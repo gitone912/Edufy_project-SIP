@@ -45,6 +45,36 @@ class DashboardSerializer(serializers.ModelSerializer):
         model = Dashboard
         fields = '__all__'
 
+    def create(self, validated_data):
+        # Get the nested data for each serializer
+        courses_data = validated_data.pop('courses', [])
+        playlists_data = validated_data.pop('playlists', [])
+        notes_data = validated_data.pop('notes', [])
+        videos_data = validated_data.pop('videos', [])
+        all_notes_data = validated_data.pop('all_notes', [])
+
+        # Create the Dashboard instance
+        dashboard = Dashboard.objects.create(**validated_data)
+
+        # Create the nested objects and associate them with the Dashboard instance
+        for course_data in courses_data:
+            Course.objects.create(dashboard=dashboard, **course_data)
+
+        for playlist_data in playlists_data:
+            Playlist.objects.create(dashboard=dashboard, **playlist_data)
+
+        for note_data in notes_data:
+            Note.objects.create(dashboard=dashboard, **note_data)
+
+        for video_data in videos_data:
+            Videos.objects.create(dashboard=dashboard, **video_data)
+
+        for all_notes_data in all_notes_data:
+            AllNotes.objects.create(dashboard=dashboard, **all_notes_data)
+
+        return dashboard
+
+
 
 class UpdateDashboardSerializer(serializers.ModelSerializer):
     courses = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), many=True)
