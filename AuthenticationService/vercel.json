@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "pyrolink/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "pyrolink/wsgi.py"
+      }
+    ]
+}
