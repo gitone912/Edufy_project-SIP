@@ -60,6 +60,7 @@ export function Dashboard() {
           <Route path="/courses/:courseId" element={<AllVideos />} />
           <Route path="courses/view-video/:videoId" element={<ViewVideo />} />
           <Route path="/change-password/" element={access_token ? <ChangePassword/> : <Navigate to="/dashboard/error-404" />} />
+          
           <Route path="/error-404" element={<Error404 />} />
          
         </Routes>
