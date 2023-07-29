@@ -15,8 +15,10 @@ import { getToken } from "@/services/LocalStorageService";
 import { useGetLoggedUserQuery } from "@/services/userAuthApi";
 import { useEffect } from "react";
 import { Form } from "react-router-dom";
+import { getStaticURL } from "@/services/url";
 
 export function EditProfile() {
+  const url = getStaticURL();
   const { access_token } = getToken();
   const { data: loggedUser, isLoading } = useGetLoggedUserQuery(access_token);
   const [selectedImage, setSelectedImage] = useState('');
@@ -40,7 +42,7 @@ export function EditProfile() {
         formData.append("mobile_number", formData.get("mobileNumber"));
         console.log("formData", formData);
 
-        const response = await axios.post("http://127.0.0.1:8000/account/update-profile/", formData, {
+        const response = await axios.post(`${url}/account/update-profile/`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

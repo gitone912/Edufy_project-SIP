@@ -14,8 +14,10 @@ import { getToken } from "@/services/LocalStorageService";
 import { useGetLoggedUserQuery } from "@/services/userAuthApi";
 import { useEffect } from "react";
 import { Form } from "react-router-dom";
+import { getStaticURL } from "@/services/url";
 
 export function UpdatePost() {
+  const url = getStaticURL();
   const { access_token } = getToken();
   const { data: loggedUser, isLoading } = useGetLoggedUserQuery(access_token);
   const [selectedImage, setSelectedImage] = useState('');
@@ -41,7 +43,7 @@ export function UpdatePost() {
         formData.append("privacy", formData.get("privacy"));
         console.log("formData", formData);
 
-        const response = await axios.post("http://127.0.0.1:8000/account/posts/", formData, {
+        const response = await axios.post(`${url}/account/posts/`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
