@@ -119,7 +119,7 @@ export function Home() {
     height: 220,
     series: [
       {
-        name: "Hours",
+        name: "Minutes",
         data: weeklyData ? weeklyData.map((data) => data.hours_watched) : [],
 
       },
@@ -145,7 +145,7 @@ export function Home() {
     height: 220,
     series: [
       {
-        name: "Sales",
+        name: "Minutes",
         data: monthly ? monthly.map((data) => data.hours_watched) : [],
       },
     ],
@@ -170,7 +170,7 @@ export function Home() {
     height: 220,
     series: [
       {
-        name: "Sales",
+        name: "Tasks",
         data: weeklyData ? weeklyData.map((data) => data.playlists_completed) : [],
       },
     ],
@@ -194,21 +194,21 @@ export function Home() {
     {
       color: "blue",
       title: "Weekly View",
-      description: "Weekly performance Hours spent on learning",
+      description: "Weekly performance Minutes spent on learning",
       footer: "last updated on Monday",
       chart: websiteViewsChart,
     },
     {
       color: "pink",
       title: "Monthly view",
-      description: "Monthly performance Hours spent on learning",
+      description: "Monthly performance Minutes spent on learning",
       footer: "last updated 1st June 2023",
       chart: dailySalesChart,
     },
     {
       color: "green",
       title: "Completed Tasks",
-      description: "Completed Tasks Hours spent on learning",
+      description: "Completed Tasks in a week",
       footer: "last updated yesterday",
       chart: completedTasksChart,
     },
@@ -373,7 +373,7 @@ if (Response.isLoading) return <div>Loading.....</div>;
               className="m-0 p-6"
             >
               <Typography variant="h6" color="blue-gray" className="mb-2">
-                Todo Tasks
+                Saved Notes
               </Typography>
             </CardHeader>
             <CardBody className="pt-0">

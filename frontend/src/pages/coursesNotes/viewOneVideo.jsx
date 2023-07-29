@@ -140,7 +140,7 @@ export function ViewVideo() {
                       className="mt-4"
                       onClick={() => handleEmailFetch(res?.videoDurationInHours)}
                     >
-                     click if completed { res?.videoDurationInHours} hours
+                     click if completed { res?.videoDurationInHours} Minutes
                     </Button>
                   </CardBody>
                 </Card>

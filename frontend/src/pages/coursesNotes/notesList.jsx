@@ -8,6 +8,7 @@ import {
   UserIcon,
   UserPlusIcon,
   ArrowRightOnRectangleIcon,
+  BackspaceIcon
 } from '@heroicons/react/24/solid';
 import { Typography } from '@material-tailwind/react';
 
@@ -41,6 +42,11 @@ const NotesList = () => {
       path: '/dashboard/home',
       icon: UserIcon,
     },
+    {
+      name: 'Back to All Notes',
+      path: '/dashboard/notes',
+      icon: BackspaceIcon,
+    }
   ];
 
   if (!res) {
@@ -89,9 +95,7 @@ const NotesList = () => {
           </div>
         </div>
 
-        <div className="container absolute bottom-8 left-2/4 z-10 mx-auto -translate-x-2/4 text-black">
-          <Footer />
-        </div>
+        
       </div>
     </>
   );

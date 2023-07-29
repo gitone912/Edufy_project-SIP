@@ -1,4 +1,4 @@
 export function getStaticURL() {
-    return "https://singuli.serveo.net";
+    return "http://127.0.0.1:8000/";
   }
   

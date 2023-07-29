@@ -40,7 +40,7 @@
 }
 
 .video-playlist .videos{
-    height: 70%;
+    height: 95%;
     overflow-y: auto;
 }
 
@@ -52,7 +52,7 @@
 
 .video-playlist .videos::-webkit-scrollbar-thumb {
     border-radius: .4rem;
-    background-color: #fff;
+    background-color: #f10505;
 }
 
 .video-playlist .videos .video {
