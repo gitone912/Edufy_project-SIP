@@ -1,6 +1,5 @@
 from django.db import models
 from userAuth.models import MyUser
-from django.contrib.postgres.fields import ArrayField
 #create a model unique for every user and store the data like adress skills they like etc
 
 class UserProfile(models.Model):
