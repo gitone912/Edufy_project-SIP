@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-pmcjlr$4+guv@(j7b=031n9v1ikqon94t4h=-r2&l#t7qb#__w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.ngrok-free.app',"127.0.0.1",'localhost','singuli.serveo.net','.vercel.app']
+ALLOWED_HOSTS = ['.ngrok-free.app',"127.0.0.1",'localhost','singuli.serveo.net','.vercel.app','.now.sh']
 
 
 # Application definition
@@ -137,7 +137,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -210,5 +210,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     'https://edufy-50353.web.app'
 ]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "static/"
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
