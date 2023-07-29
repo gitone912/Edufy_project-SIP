@@ -1,4 +1,4 @@
 export function getStaticURL() {
-    return "https://edufybackend.vercel.app";
+    return "http://127.0.0.1:8000";
   }
   
