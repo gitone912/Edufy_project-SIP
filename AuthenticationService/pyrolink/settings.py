@@ -212,4 +212,9 @@ CORS_ALLOWED_ORIGINS = [
 ]
 STATIC_URL = "static/"
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build')
+
+# settings.py
+
+# Change the site header to "Edufy Admin Panel"
+ADMIN_SITE_HEADER = 'Edufy Admin Panel'
