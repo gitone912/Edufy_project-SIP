@@ -2,7 +2,7 @@
     "builds": [
       {
         "src": "pyrolink/wsgi.py",
-        "use": "@vercel/python"
+        "use": "@vercel/python@3.11.2"
       }
     ],
     "routes": [
