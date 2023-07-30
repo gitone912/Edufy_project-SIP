@@ -25,7 +25,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
           sidenavType === "dark" ? "border-white/20" : "border-blue-gray-50"
         }`}
       >
-        <Link to="/" className="flex items-center gap-4 py-6 px-8">
+        <Link to="/" className="flex items-center gap-4 py-3 px-4">
           <Avatar src={brandImg} size="sm" />
           <Typography
             variant="h6"
@@ -39,7 +39,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
           color="white"
           size="xl"
           ripple={false}
-          className="absolute right-0 top-7 grid rounded-br-none rounded-tl-none 3xl:hidden"
+          className="absolute right-0 top-3 grid rounded-br-none rounded-tl-none 3xl:hidden"
           onClick={() => setOpenSidenav(dispatch, false)}
         >
           <XMarkIcon strokeWidth={4.0} className="h-5 w-5 text-white" />
@@ -54,6 +54,8 @@ export function Sidenav({ brandImg, brandName, routes }) {
                   variant="small"
                   color={sidenavType === "dark" ? "white" : "blue-gray"}
                   className="font-black uppercase opacity-75"
+                  // Adjust the font size for small screens (phones)
+                  style={{ fontSize: "15px" }}
                 >
                   {title}
                 </Typography>
@@ -79,6 +81,8 @@ export function Sidenav({ brandImg, brandName, routes }) {
                       <Typography
                         color="inherit"
                         className="font-medium capitalize"
+                        // Adjust the font size for small screens (phones)
+                        style={{ fontSize: "13px" }}
                       >
                         {name}
                       </Typography>
@@ -97,7 +101,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
               className="w-80 py-2 rounded-lg"
               onClick={() => setOpenSidenav(dispatch, false)}
             >
-              Close  Navbar
+              Close Navbar
             </Button>
           </div>
         )}
