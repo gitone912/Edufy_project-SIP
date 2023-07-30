@@ -1,4 +1,4 @@
 export function getStaticURL() {
-    return "http://edufybackend.pythonanywhere.com";
+    return "https://edufybackend.pythonanywhere.com";
   }
   
