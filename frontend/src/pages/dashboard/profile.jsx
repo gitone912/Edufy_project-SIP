@@ -29,7 +29,9 @@ import { useState, useEffect } from "react";
 import { useGetPostsQuery } from "@/services/userAccountApi";
 import { useGetMyPostsMutation } from "@/services/userAccountApi";
 import Error404 from "../NoAuth404";
+import { getStaticURL } from "@/services/url";
 export function Profile() {
+  const url = getStaticURL();
   const { access_token } = getToken();
   const [profileDetails, setProfileDetails] = useState(null);
   const [posts, setPosts] = useState(null);
@@ -209,7 +211,7 @@ export function Profile() {
                       className="mx-0 mt-0 mb-4 h-64 xl:h-40"
                     >
                       <img
-                        src={"http://127.0.0.1:8000" + img}
+                        src={url + img}
                         alt={title}
                         className="h-full w-full object-cover"
                       />
