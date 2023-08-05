@@ -219,7 +219,7 @@ const VideoList = () => {
     </svg>}
       >
         <Typography variant="h5" color="white">
-          Success
+        Congrats for Completing
         </Typography>
         <Typography color="white" className="mt-2 font-normal">
           Your Dashboard is &apos; updated
