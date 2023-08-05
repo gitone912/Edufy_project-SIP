@@ -62,7 +62,9 @@ export function Notes() {
         all_notes: allNoteIds,
       }
     );
-    window.location.href = `/dashboard/home`;
+    if(updatePlaylistInfo.isSuccess){
+      window.location.href = `/dashboard`;
+    }
   };
 
   return (

@@ -60,9 +60,12 @@ export function Playlists() {
         all_notes: allNoteIds,
       }
     );
-    window.location.href = `/dashboard/home`;
+    
+    // window.location.href = `/dashboard/home`;
   };
-
+  if (updatePlaylistInfo.isSuccess) {
+    window.location.href = `/dashboard/home`;
+  }
   if (Response1.isLoading) return <div>Loading...</div>;
   // if (Response1.isError)
   //   return (
