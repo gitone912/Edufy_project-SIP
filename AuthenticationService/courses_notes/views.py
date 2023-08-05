@@ -32,7 +32,9 @@ def get_current_month_number():
 def get_current_week_number():
     today = datetime.now()
     week_number = today.strftime("%U")
-    return int(int(week_number)/int(get_current_month_number()))
+    day_of_month = today.day
+    week_number_in_month = (day_of_month - 1) // 7 + 1
+    return week_number_in_month
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
@@ -187,17 +189,12 @@ class WeeklyProgressUpdateView(APIView):
                 print(user_email)
                 weeklyProgress.objects.create(
                     user=userId,
-                    hours_watched=0,
+                    hours_watched=hours_spent,
                     week_number=current_week_number,
                     weekday=current_weekday,
                     month_number=current_month_number,
-                    playlists_completed=1
+                    playlists_completed=playlists_completed
                 )
-               
-
-                weekly_progress.hours_watched += hours_spent
-                weekly_progress.playlists_completed += playlists_completed
-                weekly_progress.save()
         except weeklyProgress.DoesNotExist:
             weeklyProgress.objects.create(user=user_email, hours_watched=hours_spent, week_number=current_week_number, weekday=current_weekday, month_number=current_month_number)
 

@@ -86,10 +86,8 @@ export function Home() {
 
   const getCurrentWeekNumber = () => {
     const now = new Date();
-    const startOfYear = new Date(now.getFullYear(), 0, 0);
-    const diff = now - startOfYear;
-    const oneWeek = 1000 * 60 * 60 * 24 * 7;
-    const weekNumber = Math.floor(diff / oneWeek);
+    const dayOfMonth = now.getDate();
+    const weekNumber = Math.ceil(dayOfMonth / 7);
     
     return weekNumber;
   };
@@ -103,7 +101,7 @@ export function Home() {
 
   // Use the current week and month number to filter the data
   const currentMonthNumber = getCurrentMonthNumber();
-  const currentWeekNumber = Math.floor(getCurrentWeekNumber()/currentMonthNumber);
+  const currentWeekNumber = getCurrentWeekNumber();
   console.log("weekNumber", currentWeekNumber);
 
   const weeklyData = weekly?.filter(
