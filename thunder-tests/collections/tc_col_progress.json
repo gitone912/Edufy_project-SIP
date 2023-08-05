@@ -119,11 +119,11 @@
             "colId": "09a763bf-350d-4a9a-a438-8314bf487a0e",
             "containerId": "",
             "name": "updateweek",
-            "url": "http://127.0.0.1:8000/update/weekly/",
+            "url": "http://edufybackend.pythonanywhere.com/update/weekly/",
             "method": "POST",
             "sortNum": 70000,
             "created": "2023-07-23T12:34:41.502Z",
-            "modified": "2023-07-23T18:30:01.170Z",
+            "modified": "2023-08-05T16:44:40.863Z",
             "headers": [],
             "params": [],
             "body": {

@@ -11,6 +11,8 @@ import {
   useUpdateWeeklyUpdateMutation,
   useUpdateMonthlyUpdateMutation,
 } from '@/services/courseServiceApi';
+import { Alert} from "@material-tailwind/react";
+
 
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
@@ -24,6 +26,9 @@ const VideoList = () => {
   const { data: loggedUser, isLoading } = useGetLoggedUserQuery(access_token);
   const [updateWeeklyUpdate] = useUpdateWeeklyUpdateMutation();
   const [updateMonthlyUpdate] = useUpdateMonthlyUpdateMutation();
+  const [showUpdateNotification, setShowUpdateNotification] = useState(false);
+  const [updateNotificationTimeout, setUpdateNotificationTimeout] = useState(null);
+
 
   useEffect(() => {
     if (res) {
@@ -56,12 +61,31 @@ const VideoList = () => {
         };
         console.log("weeklyUpdateData", weeklyUpdateData);
         console.log("monthlyUpdateData", monthlyUpdateData);
-
-        sendWeeklyUpdate(weeklyUpdateData);
-        sendMonthlyUpdate(monthlyUpdateData);
-
+  
+        // Use Promise.all to wait for both mutations to complete
+        await Promise.all([
+          sendWeeklyUpdate(weeklyUpdateData),
+          sendMonthlyUpdate(monthlyUpdateData),
+        ]);
+  
         console.log("Weekly Update Data:", weeklyUpdateData);
         console.log("Monthly Update Data:", monthlyUpdateData);
+        
+        // Once both mutations have completed, navigate to the desired location
+        setShowUpdateNotification(true);
+
+      // Clear any existing timeout
+      if (updateNotificationTimeout) {
+        clearTimeout(updateNotificationTimeout);
+      }
+
+      // Set a new timeout to hide the notification after 1 second
+      const timeout = setTimeout(() => {
+        setShowUpdateNotification(false);
+      }, 3000);
+
+      setUpdateNotificationTimeout(timeout);
+
       } else {
         console.error("Logged user or email not available.");
       }
@@ -69,7 +93,7 @@ const VideoList = () => {
       console.error("Failed to fetch profile details:", error);
     }
   };
-
+  
   const sendWeeklyUpdate = (data) => {
     try {
       const response = updateWeeklyUpdate(data);
@@ -86,7 +110,7 @@ const VideoList = () => {
     } catch (error) {
       console.error("Failed to update monthly data:", error);
     }
-    window.location.href = "/dashboard/home";
+   
   };
 
   const navbarRoutes = [
@@ -175,6 +199,34 @@ const VideoList = () => {
         >
           Click if completed {totalVideoHours} Minutes
         </Button>
+        {showUpdateNotification && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+        <Alert
+        open={open}
+        color="green"
+        className="max-w-screen-md"
+        icon={<svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-6 w-6"
+    >
+      <path
+        fillRule="evenodd"
+        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
+        clipRule="evenodd"
+      />
+    </svg>}
+      >
+        <Typography variant="h5" color="white">
+          Success
+        </Typography>
+        <Typography color="white" className="mt-2 font-normal">
+          Your Dashboard is &apos; updated
+        </Typography>
+      </Alert>
+        </div>
+      )}
       </div>
     </div>
   </>

@@ -4,6 +4,7 @@ import {
   CardHeader,
   Typography,
   Button,
+  Alert
 } from "@material-tailwind/react";
 import React, { useState } from "react";
 import { useGetOneVideoQuery } from "@/services/courseServiceApi";
@@ -11,6 +12,7 @@ import { useParams } from "react-router-dom";
 import { useGetLoggedUserQuery } from "@/services/userAuthApi";
 import { getToken } from "../../services/LocalStorageService";
 import { useUpdateWeeklyUpdateMutation, useUpdateMonthlyUpdateMutation } from "@/services/courseServiceApi";
+
 
 export function ViewVideo() {
   const { access_token } = getToken();
@@ -21,6 +23,10 @@ export function ViewVideo() {
   const videoResponse = useGetOneVideoQuery(videoId);
   const res = videoResponse.data;
   const [weekly, setWeekly] = useState(null);
+  const [updateWeeklyUpdate] = useUpdateWeeklyUpdateMutation();
+  const [updateMonthlyUpdate] = useUpdateMonthlyUpdateMutation();
+  const [showUpdateNotification, setShowUpdateNotification] = useState(false);
+const [updateNotificationTimeout, setUpdateNotificationTimeout] = useState(null);
 
   const handleEmailFetch = async (videoDurationInHours) => {
     try {
@@ -38,13 +44,29 @@ export function ViewVideo() {
         console.log("weeklyUpdateData", weeklyUpdateData);
         console.log("monthlyUpdateData", monthlyUpdateData);
         // Call the mutations
-        sendWeeklyUpdate(weeklyUpdateData);
-        sendMonthlyUpdate(monthlyUpdateData);
+        await Promise.all([
+          sendWeeklyUpdate(weeklyUpdateData),
+          sendMonthlyUpdate(monthlyUpdateData),
+        ]);
 
-        // Here, you can also implement the logic to send the data via email
-        // For demonstration purposes, we're just logging the data to the console.
         console.log("Weekly Update Data:", weeklyUpdateData);
         console.log("Monthly Update Data:", monthlyUpdateData);
+        
+        // Once both mutations have completed, navigate to the desired location
+        setShowUpdateNotification(true);
+
+      // Clear any existing timeout
+      if (updateNotificationTimeout) {
+        clearTimeout(updateNotificationTimeout);
+      }
+
+      // Set a new timeout to hide the notification after 1 second
+      const timeout = setTimeout(() => {
+        setShowUpdateNotification(false);
+      }, 3000);
+
+      setUpdateNotificationTimeout(timeout);
+
       } else {
         console.error("Logged user or email not available.");
       }
@@ -53,8 +75,7 @@ export function ViewVideo() {
     }
   };
 
-  const [updateWeeklyUpdate] = useUpdateWeeklyUpdateMutation();
-  const [updateMonthlyUpdate] = useUpdateMonthlyUpdateMutation();
+  
 
   const sendWeeklyUpdate = (data) => {
     try {
@@ -72,7 +93,7 @@ export function ViewVideo() {
     } catch (error) {
       console.error("Failed to update monthly data:", error);
     }
-    window.location.href = "/dashboard/home";
+   
   };
     return (
       <div>
@@ -148,6 +169,34 @@ export function ViewVideo() {
             </div>
           </CardBody>
         </Card>
+        {showUpdateNotification && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+        <Alert
+        open={open}
+        color="green"
+        className="max-w-screen-md"
+        icon={<svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-6 w-6"
+    >
+      <path
+        fillRule="evenodd"
+        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
+        clipRule="evenodd"
+      />
+    </svg>}
+      >
+        <Typography variant="h5" color="white">
+          Congrats for Completing
+        </Typography>
+        <Typography color="white" className="mt-2 font-normal">
+          Your Dashboard is &apos; Updated
+        </Typography>
+      </Alert>
+        </div>
+      )}
       </div>
     );
   }
